@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    /*var  a=10;
+    function sum() {
+        var a =0;
+        console.log(a);
+    }
+    sum();/*/// 0
+
+   /* var  a=10;
+    function sum() {
+        console.log(a);
+        var a =0;
+    }
+    sum();*/// undefined
+
+    /*var  a=10;
+    function sum(a) {
+        // 形参也是私有变量；
+        console.log(a);// undefined
+    }
+    sum();*/
+/*
+    var  a=10;
+    function sum() {
+        // 形参也是私有变量；
+        console.log(a);// 10  当前作用域没有a,那么会继续向上一级作用域查找；
+    }
+    sum();*/
+
+    /*var  num=10;
+    function s() {
+        var num=100;
+        return function () {
+            // 函数的定义：
+            console.log(num);
+        }
+    }
+    var  f = s();// s的执行结果是return后面的函数；
+    f();*/// f的上一级作用域就是s执行所形成的私有作用域；
+    // 当前函数的上一级作用域跟函数在哪个作用域下执行没有关系，只跟函数在哪定义有关，
+
+
+    var  num=10;
+    function s() {
+
+        return function () {
+            console.log(num);
+        }
+    }
+    var  f = s();// s的执行结果是return后面的函数；
+    f();
+    // 当获取变量所对应的值时，首先看变量是否是私有变量；如果不是私有变量，要继续向上一级作用域中查找，如果上一级也没有，那么会继续向上一级作用域查找，直到找到全局作用域为止；如果全局作用域也没有，会报错；这样一级一级向上查找，就会形成作用域链
+
+
+
+</script>
+</body>
+</html>

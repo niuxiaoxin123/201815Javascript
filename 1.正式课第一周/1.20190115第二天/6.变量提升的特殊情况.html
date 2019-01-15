@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 1.不管条件是否成立，都要进行变量提升；
+    // 1). 在最新版本浏览器中，在块级作用中，不管条件是否成立，带function只声明不定义；
+    // 2) : 在老版本浏览器中，不仅声明而且定义；
+    //
+   /* console.log(f);
+    if([]==[]){
+        var f = 1;
+    }*/
+   /* console.log(a);// undefined
+    if("a" in window){// true;
+        // 全局变量给window新增键值对是发生在变量提升阶段；
+       var a =0;
+    }
+    console.log(a);// 0;*/
+  /*  console.log(fn);
+   if(isNaN(NaN)){//NaN==NaN
+       // 只要进入块级作用域中，首先对函数进行定义；
+       fn();
+       function fn() {
+           console.log(100);
+       }
+   }*/
+
+  // 2. 变量提升只发生在等号的左边；
+   /* console.log(b);
+    var a = function b() {
+
+    }*/
+    /*console.log(jj);
+    var obj= {
+        hh:function jj() {
+
+        }
+    }*/
+
+    // 3. 函数体中return后面的内容不需要变量提升，但是return下面的内容需要变量提升；
+    // fn  实际存储了一个空间地址；
+   /* function fn() {
+        // return 出去的值就是函数的返回值
+        // 1. 把函数体中的值return出去
+        // 2. return 中止代码的运行；
+        /!*console.log(a);
+        return 100;
+        function a() {
+            console.log(1);
+        }*!/
+        console.log(a);
+        return function a() {
+
+        }
+    }
+    fn();*/
+
+
+   // 4.如果变量名重复，不再进行重复声明，但要重新定义；
+    /*console.log(fn);
+    var fn = 100;
+    function fn() {
+        console.log(1);
+    }
+    fn();
+    function fn() {
+        console.log(2);
+    }
+    fn=1;
+    function fn() {
+        console.log(3);
+    }
+    fn();*/
+
+    // 5.当代码执行到这一行时，自执行函数先定义然后马上执行；
+    //console.log(fn);
+   /* var c = (function fn() {
+        return 1;
+    })()
+    var a = !function () {
+        return 0;
+    }();
+    var b = -function () {
+        return 1;
+    }();
+    console.log(c, a, b);*/
+
+   // 6. let const
+    // let 和const都是es6新增的定义变量的语法；
+    // let和const定义的变量是不进行变量提升的；
+    // let 声明的变量不可以重名；
+    // const : 定义一个常量；
+    console.log(100);
+    let  a = 10;
+    let  a =1;
+    a=19;
+    //const  h =9;
+
+
+
+
+
+</script>
+</body>
+</html>

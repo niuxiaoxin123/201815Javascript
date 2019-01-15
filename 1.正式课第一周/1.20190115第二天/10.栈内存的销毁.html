@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 栈内存： 作用域都是栈内存；
+    // 栈内存的回收伴随着作用域的销毁；
+    // 栈内存的回收
+    // 全局作用域一旦销毁，全局作用域所提供的环境以及存储的基本数据类型值都会随之销毁；
+    //var a = 1;
+    // 1. 全局作用域一个页面只有一个；属于不销毁的作用域；
+    // 当关闭当前页面或者关闭浏览器，全局作用域就会随着销毁；
+
+
+    // 立即销毁作用域
+    /*function fn() {
+        console.log(10);
+    }
+    for (var i = 0; i < 1000; i++) {
+        fn();
+    }*/
+
+    /*var t = 10;
+    function fn() {
+        // 形成作用域
+        var t = 100;
+        return function () {
+            console.log(t);// 100
+        }
+    }
+    fn();
+    var f = fn();// f 占用了fn的返回值；占用了fn执行return出小函数的空间地址；
+    f();*/// 当f执行时，会输出结果100；说明fn所形成的作用域没有销毁；
+    // 不销毁作用域需要满足的条件：
+    //1. 函数需要return一个引用的数据类型
+    //2. 函数返回值要被外界接收
+
+    // 3.不立即销毁的作用域
+
+    var t = 10;
+    function fn() {
+        var t = 100;
+        return function () {
+            console.log(t);// 100
+        }
+    }
+    fn()();
+    // 这样的作用域不立即销毁，会等到里面的小函数执行完成之后，然后立即销毁；
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

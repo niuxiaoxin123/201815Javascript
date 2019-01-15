@@ -5,6 +5,32 @@
     <title>Title</title>
 </head>
 <body>
+<script>
+    // 浏览器 ： 代码的解析器；
+    // webStorm : 代码的编辑器
+    // 让咱们更加清晰浏览器如何对JS代码进行解析的；以及代码的解析顺序；
+    // 全局作用域：当代码运行，那么浏览器会给JS代码提供一个全局的运行环境，那么这个环境就是全局作用域；
 
+    // window : window是全局作用域最大的一个对象；
+    // = : 赋值；  ==  ： 比较   === ： 绝对比较  ！= ！==
+    var  a = 10;
+    var  b;
+    var c=0;
+    function d() {
+    }
+    console.log(window);
+    // 如果是全局变量，都会给window新增一个键值对；属性名就是变量名，属性值就是变量名所存储的值；
+    // 如果变量只被var过，那么存储值是undefined；
+    // 在私有作用域中是可以获取到全局变量的，但是在全局作用域中不能获取私有变量的；
+    // a,b  是全局变量
+   /* function fn() {
+        // 形成一个私有的作用域；
+        // c : 私有变量
+        console.log(a);
+        var c = 100;
+    }
+    fn();*/
+    //console.log(c);
+</script>
 </body>
 </html>

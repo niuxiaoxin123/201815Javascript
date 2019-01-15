@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 浏览器执行代码会形成两种虚拟的内存： 栈内存和堆内存；
+    // 引用类型的值： 都会开辟一个堆内存；
+    var obj = {};
+    // 对象的定义：
+    // 1. 开辟一个堆内存
+    // 2. 把键值对存储到这个堆内存中
+    // 3. 把这个空间地址赋值给变量名；
+/*    console.log(obj);
+
+    // var  arr = [];
+    function fn() {
+
+    }
+    fn()*/
+    // 栈内存；
+    // 1. 基本数据类型存储到栈内存中；
+    // 2. 栈内存提供代码的运行环境；
+    // 全局作用域和私有作用域以及块级作用域都是栈内存；
+    /*var num = 10;
+    var obj = {a:1}*/
+
+
+/*    var foo='hello';
+    (function(foo){// "hello"
+        console.log(foo);// "hello"
+        var foo=foo||'world';
+        console.log(foo);// "hello"
+    })(foo);
+    console.log(foo)*/// "hello"
+
+    // 函数执行：
+    // 1. 形成一个新的私有的作用域
+    // 2. 形参赋值
+    // 3. 变量提升
+    // 4. 代码从上到下执行
+    // 5. 作用域是否销毁；
+    function fn(num) {
+        console.log(num);//
+        function num() {
+
+        }
+    }
+    fn(10)
+
+
+</script>
+</body>
+</html>

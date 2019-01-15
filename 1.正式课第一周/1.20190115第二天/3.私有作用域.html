@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 全局作用域： 一个页面只有一个全局作用域
+    // 私有作用域 : 函数执行会形成一个新的私有的作用域；
+    // 私有作用域在全局作用域中形成，具有包含的关系；
+    // 在一个全局作用域中，可以有很多个私有作用域
+    /*var  b =1;
+    var  a = 100;*/
+    /*function fn() {
+        // 函数体中的代码
+        console.log(a);// undefined
+        var a =10;
+        console.log(a);
+    }
+    fn();*/
+    function fn(a) {
+        console.log(a);
+        function b() {
+        }
+    }
+    fn(1);
+    b();
+    //fn();
+    // 私有变量
+    //1. 在私有作用域下定义的变量都是私有变量；
+    //2. 形参也是私有变量；
+    //3. 函数体中通过function定义的函数也是私有的，在全局作用域不能使用；
+
+
+
+
+</script>
+</body>
+</html>

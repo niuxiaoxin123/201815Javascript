@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var  a;
+    var  b
+    // 当打开浏览器，首先形成一个全局的作用域，先进行变量提升，然后再进行代码从上到下执行；
+   // 变量提升：指的是代码解析的一个阶段；
+    //变量提升： 在当前作用域下，把带var和function进行提前的声明（提前通知有这个变量），带var的只声明不定义，带function的不仅声明而且还要定义(赋值);
+    // 变量提升：浏览器会过滤整个文件中代码，把带var和function给筛选出来；把筛选出变量放到当前作用域的最上端；
+    // 如果变量只声明，没有定义，那么默认存储值是undefined；
+    // 预解析：
+    // 函数的定义是发生在变量提升阶段；
+  /*  console.log(a);// undefined
+    console.log(b);
+    console.log(fn);// 函数的空间地址
+    fn();
+    var  a = 100;
+    var  b =1;
+    //console.log(rr);
+    // 当代码解析到这一行时，直接跳过；
+    ii();
+    function fn() {
+        // 当函数执行时，才会进行变量提升；
+        console.log(rr);// undefined
+        var  rr=10;
+        console.log(100);
+        function ii() {
+        }
+    }
+    fn();*/
+
+  /*  var  a =1;
+    console.log(window);//{a:1,b:2}
+    //debugger;// 让代码停止到这一行
+    // 控制台会监听空间地址中键值对的变化，当里面的键值对发生改变，控制台也会随着变化；
+    var b = 2;*/
+    var obj = {a:1};
+    console.log(obj);
+    obj.a = 2;
+    // 记
+    // 理解
+    // 练、敲；
+
+
+</script>
+</body>
+</html>
