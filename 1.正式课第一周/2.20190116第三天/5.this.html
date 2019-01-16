@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    var box = document.getElementById("box");
+    // 变量提升  作用域    this；
+    var  tt = 1;
+    // this : 在不同情况下，this指向的问题；在不同的作用域，this分别代表什么；
+    // this : 函数的执行主体；谁让这个函数执行的，那么this就是谁；
+    //console.log(this);
+    // 1. 在全局作用域下，this指向window；this和window的空间地址是一样的；
+    // 2. 给元素的事件行为绑定方法，那么方法中的this指向被绑定这个元素；
+    // 3. 函数体中的this看函数执行前有没有".",如果有点，点前面是谁，this就是谁，如果没有点，那么this指向window；
+    // 4. 自执行函数中的this永远指向window；
+    // 5. 回调函数中的this指向window；
+    // 6. 构造函数中的this指向实例
+    // 7. call、apply、bind可以改变this的指向；
+
+    /*box.onclick = function () {
+        console.log(this);
+    }*/
+
+   /* function fn() {
+        console.log(this);// window
+    }
+    fn();
+
+    var  obj = {
+        m:1,
+        fn:function () {
+            console.log(this);// obj
+        }
+    }
+    obj.fn();
+    var f = obj.fn;
+    f();*/
+
+
+    /*(function () {
+        console.log(this);
+    })()
+
+    var obj = {
+        fn:(function () {
+            console.log(this);
+            return function () {
+                console.log(this);
+            }
+        })()
+    }
+    obj.fn();
+*/
+    /*setTimeout(function () {
+        console.log(this);
+    },1000)*/
+
+    function A(m) {
+        m()
+
+    }
+    function B() {
+
+    }
+    A(B);
+    // 函数B作为函数A的实参，在函数A中任意位置都可以调用函数B，那么函数B就叫做函数A的回调函数；
+
+</script>
+</body>
+</html>

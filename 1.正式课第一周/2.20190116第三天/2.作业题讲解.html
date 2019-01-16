@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //  a   fn=aabbcc;
+
+   /* console.log(a);// undefined
+    var a=12;// a=12
+    function fn(){
+        console.log(a);// undefined
+        var a=13;
+    }
+    fn();
+    console.log(a);*/
+
+
+   /* console.log(a);// undefined
+    var a=12;// 13
+    function fn(){
+        console.log(a);// 12
+        a=13;
+    }
+    fn();
+    console.log(a);// 13*/
+   /*var  a =100;
+   b=1;
+   function fn() {
+       b=2;
+   }
+   fn();
+    console.log("b" in window);*/
+    /*console.log("a" in window);
+    console.log("b" in window);*/
+    //1.
+   /* var a = b = c =1;
+    var a = 1;
+    b=1;
+    c=1;
+    //2.
+    var a=1,b=1,c=1;
+    var a;
+    var b;
+    var c =1;
+    console.log(a);*/
+
+
+
+    /*console.log(a);
+    a=12;
+    function fn(){
+        console.log(a);
+        a=13;
+    }
+    fn();
+    console.log(a);*/
+
+
+   /* var foo=1;
+    function bar(){
+        // foo = undefined
+        if(!foo){
+            var foo=10;
+        }
+        console.log(foo);
+    }
+    bar();*/
+/*    var n=0;
+    function a(){
+        // n=undefined  b=aabbcc
+        var n=10; // 11
+        function b(){
+            n++;// n
+            alert(n);// 11  12
+        }
+        b();
+        return b;
+    }
+    var c=a();// a的返回值给了c,a的返回值看a中return后面的内容
+    c();
+    alert(n);*/// 0
+
+
+
+
+  /*  var a=10,b=11,c=12;// 3
+    function test(a){
+        // a=10  1  b=undefined  2
+        a=1;var b=2;c=3;
+    }
+    test(10);
+    alert(a);  alert(b);   alert(c);*/
+
+
+   /* if(!("a" in window)){
+        var a=1;
+    }
+    alert(a);*/// undefined
+
+
+/*    var a=4;
+    function b(x,y,a) {
+        // x=1  y=2  a=3
+        alert(a);// 3
+        arguments[2]=10;
+        alert(a);// 10
+    }
+    a=b(1,2,3);
+    alert(a);*/// undefined
+
+
+    var a=9;//0  1  0  1  2
+    function fn(){
+        a=0;
+        return function(b){ return b+a++; }
+    }
+    var f=fn()  // f=function(b){ return b+a++; }
+    var m=f(5);alert(m);// 5
+    var n=fn()(5);alert(n);//5
+    var x=f(5);alert(x);// 6
+    alert(a);// 2
+
+
+</script>
+</body>
+</html>

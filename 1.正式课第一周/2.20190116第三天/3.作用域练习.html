@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*var  a=b=c=1;
+    b=5;
+    console.log(a);// 1
+
+
+    var  a=b=c={d:1};
+    c.d=3;
+    console.log(a);//{d:3}
+
+
+    // ary存储的是空间地址  aabbcc;
+    var ary = [1, 2, 3, 4];
+    function ff(ary) { // aabbcc
+        ary[0] = 0;// [0,2,3,4] 私有变量ary和全局变量ary指向同一个空间地址；当私有变量发生改变，也会影响全局的ary;
+        // 在JS中，只要遇到了{}、[]都会开辟一个新的空间地址；
+        ary = [0];// 私有变量被赋值成另一个空间地址；和全局的aryd的地址不一样；
+        ary[0] = 100;// [100]
+        return ary;//[100]
+    }
+    var s = ff(ary);
+    console.log(ary);//[0,2,3,4]
+    console.log(s);*///[100]
+
+
+
+/*    var i =1;
+    function fn(i){
+        // i =2  3 fn形成的私有作用域不销毁；
+        // i=5  6
+        return function (n){
+            // i不是私有的，需要向上一级查找，上一级i=2;
+            console.log(n+(++i))
+        }
+    }
+    var f = fn(2);
+    f(3)// 6
+    fn(5)(6)// 12
+    fn(7)(8)// 16
+    f(4);// 8*/
+/*
+    function fn() {
+        var i = 8;  // 9  10
+        return function (n) {
+            console.log(n + i++)
+        }
+    }
+    var f = fn();
+    f(5);// 13
+    f(6);// 15
+    fn()(7);//15
+    fn()(8);// 16*/
+
+
+    //
+
+    // 1. 开辟一个空间地址
+    // 2. 把对象中的键值对放到堆内存中
+    // 3. 把这个空间地址赋值给变量名
+ /*   var obj = {
+        num: 10,
+        fn: (function () {
+            // obj以键值对存储到堆内存时，是以fn:自执行函数的返回值存入；
+            // 当存储键值对时，自执行函数执行,此时obj还没被赋空间地址；
+            var num = 1;// 2  3  4
+            return function (n) {
+                console.log(n + (++num))
+            }
+        })()
+    }
+    console.log(obj);
+    var f = obj.fn;
+    f(10);// 12
+    f(20);// 23
+    obj.fn(30);// 34
+    obj.fn(40);*/// 45
+
+
+
+    var i =2;// 4  3  2  4  3  5  4
+    function fn (){
+        i +=2
+        return function (n){
+            console.log(n+(--i))
+        }
+    }
+    var f =fn();
+    f();// NaN
+    f(3)// 5
+    fn()(2);// 5
+    fn()(3);//7
+    f(4)//7
+
+
+
+
+
+
+
+
+  /*  var i =1 ;
+    function fn(i){
+        return function (n){
+            console.log(n+(++i))
+        }
+    }
+    var f = fn(2);
+    f(3)
+    fn(5)(6)
+    fn(7)(8)
+    f(4)*/
+
+
+
+
+</script>
+</body>
+</html>

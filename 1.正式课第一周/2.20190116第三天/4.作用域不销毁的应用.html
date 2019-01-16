@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;padding:0;
+        }
+        .tab{
+            width:306px;
+            margin:30px auto 0px;
+        }
+        .tab .olist{
+            list-style: none;
+        }
+        .tab .olist li{
+            width:100px;
+            height:30px;
+            line-height:30px;
+            text-align: center;
+            float:left;
+            border: 1px solid green;
+            cursor: pointer;
+        }
+        .tab .olist li.select{
+            background-color:lightyellow;
+            color:blue;
+        }
+        .tab .odiv div{
+            width:304px;
+            height:100px;
+            line-height: 100px;
+            border: 1px solid green;
+            border-top:none;
+            text-align: center;
+            display:none;
+        }
+        .tab .odiv div.select{
+            display:block;
+        }
+
+    </style>
+</head>
+<body>
+<div class="tab" id="tabDiv">
+    <ul class="olist" id="olis">
+        <li class="select">张三</li>
+        <li>李四</li>
+        <li>王五</li>
+    </ul>
+    <div class="odiv" id="odi">
+        <div class="select">吃瓜</div>
+        <div>喝水</div>
+        <div>吃火锅</div>
+    </div>
+</div>
+<script>
+    var ou = document.getElementById('olis'),
+        oli = ou.getElementsByTagName('li');
+    var odive = document.getElementById('odi'),
+        odiveLi = odive.getElementsByTagName('div');
+    // 1.自定义属性，把当前点击的索引存储到每一个li上；
+   /* for (i = 0; i<oli.length; i++) {
+        oli[i].index = i;
+        oli[i].onclick = function(){
+            var int = this.index
+            for (l = 0;l<oli.length;l++){
+                oli[l].className = ''
+                odiveLi[l].className = ''
+            }
+            this.className = 'select'
+            odiveLi[int].className = 'select'
+        }
+    }*/
+   //  2.作用域不销毁的特点；
+   //  闭包可以存储值；
+    for(var i=0;i<oli.length;i++){
+        oli[i].onclick = (function (i) {
+            // 会形成三个不销毁的作用域，每个作用域存储了一个i值；i 0  1  2;
+            return function () {
+                for(var j=0;j<oli.length;j++){
+                    oli[j].className = ''
+                    odiveLi[j].className = ''
+                }
+                oli[i].className="select";
+                odiveLi[i].className="select";
+            }
+        })(i)
+    }
+
+    // 3. let
+
+   /* for(var i=0;i<3;i++){
+
+    }
+    console.log(i);// 3
+    for(let j=0;j<3;j++){
+        // let声明的变量只能在该块级作用域内使用，外界是访问不到的；
+        console.log(j);
+    }*/
+
+    for(let i=0;i<oli.length;i++){
+        oli[i].onclick =  function () {
+            // 函数的上一级作用域是for循环形成的每一个块级作用域；在该块级作用域下，保存了每一次循环i的值；
+            for (var j = 0; j < oli.length; j++) {
+                oli[j].className = ''
+                odiveLi[j].className = ''
+            }
+            oli[i].className = "select";
+            odiveLi[i].className = "select";
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 变量提升    作用域    作用域的销毁
+    // 变量 ：
+    /*var  a =100;
+    console.log(a);//100
+    console.log(a + 199);*/
+
+    // 变量提升 ： 【预解析】
+    // 变量如果只声明不赋值，那么默认存储值是undefined；
+    var yy;
+    console.log(yy);// undefined
+    console.log(a);// undefined
+    var a =100;
+    console.log(fn);// 函数的空间地址；
+    function fn() {// fn 存储一个函数空间地址
+    }
+    function f() {
+    }
+
+    // 变量提升的特殊情况
+
+    // 1. 不管条件是否成立，都要进行变量提升
+    // 1) 在新版本浏览器中，function只声明，不定义；
+    // 2. 变量提升只发生在等号的左边
+    // 3. return 后面不进行变量提升，但是下面的代码需要进行变量提升
+    // 4. 如果变量名重复，不需要重复声明，但是要重新定义；
+    // 5. 自执行函数当执行到这一行时，先定义再执行
+    // 6.let声明的变量不进行变量提升，而且不能进行重复声明；
+    /*fn()
+    if([]){
+        // 进入块级作用域，会立即父函数fn进行赋值；
+        fn();
+        function fn() {
+
+        }
+    }*/
+    /*var  f = 1;
+    function f() {
+
+    }*/
+
+    // 作用域 ： 全局作用域  私有作用域 块级作用域
+    // 作用域都是栈内存，提供代码运行环境的；
+    /*var total=0;
+    function fn() {
+        function f() {
+            // 函数f的上一级作用域是fn形成的私有作用域
+            console.log(total);
+            var total=100;
+        }
+        var total= 1;
+        f();
+    }
+    fn();*/
+    // fn 执行形成私有作用域；
+    // 1. 形成私有作用域；
+    // 2. 形参赋值
+    // 3,变量提升
+    // 4. 代码从上到下执行
+    // 5. 作用域是否销毁；
+
+    function fn() {
+        console.log(num)// 函数// 是否是私有变量
+        //是否是私有变量
+        // 1. 在私有作用域下声明的变量
+        // 2. 形参
+        // 3. 在私有作用域下声明的函数
+        var num=1;
+        console.log(num);//1
+        function num() {
+        }
+        console.log(num)//1
+    }
+    fn();
+
+    // 作用域销毁
+    //1. 全局作用域： 是不销毁的作用域
+    // 2. 立即销毁作用域
+    // 3. 不销毁的作用域
+    // 4.不立即销毁
+    function f() {
+        return function () {
+
+        }
+    }
+    f()();
+    var g = f();
+
+
+
+</script>
+</body>
+</html>
