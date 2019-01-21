@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 类 ： 内置类 和自定义类;类的首字母一般都是大写的；
+    // 内置类 ： Number  String   Boolean  Null Undefined  Symbol  Object   Array    RegExp   Date...
+    // 这些内置类都是window中的一个键值对；
+    var  num = 1;// Number
+    var  str  ="" // String
+    var  b= true // Boolean
+    console.log(Array);
+   // 自定义类；
+    function Fn() {
+    }
+    var f = new  Fn;// 小括号可以省略；不传参的情况下；
+    console.log(f);
+
+
+    // 变量
+    // 1. 字面量方式创建的变量
+    var num =1;
+    var str ="";
+    var obj = {}
+
+    // 2. 实例创建
+    var  a = new Number(12)
+    console.log(a+1);
+
+    var  obj = {};
+    var obj1 = new Object();
+    console.log(obj1);
+
+    var arr = new Array(12,1);
+    // 如果只有一个参数，代表是数组的长度，大于1个，就代表数组每一个成员；
+    console.log(arr);
+
+</script>
+</body>
+</html>

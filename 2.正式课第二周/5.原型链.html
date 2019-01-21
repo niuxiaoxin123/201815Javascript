@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Fn() {
+        this.x = 100;
+        this.y  =200;
+        this.getX = function (m) {
+            console.log(this.x);
+        }
+    }
+    Fn.prototype.getX = function (n) {
+        console.log(this.x);
+    }
+    // Fn  {prototype:aaabbb}
+    var f = new Fn;//{__proto__:aaabbb}
+    var f1 = new Fn;
+    //console.log(f);//{x:100,y:200,getX:function(){}}
+    // 1. in  : 检测当前属性是否属于该对象；
+    // 2.hasOwnProperty ： 检测是否是私有属性
+    //console.log("getX" in f);// true : 说明getX是f的一个属性；
+    //console.log("x" in f);
+    //console.log(f.hasOwnProperty("getX"));// false getX 不是f的私有属性；getX是f的公有属性；
+    //console.log(f.hasOwnProperty("x"));// true;
+    // 如果该属性在当前对象的__proto__上，那么就是该对象的公有属性；
+    function Fn() {
+        this.x = 100;
+        this.y  =200;
+        /*this.getX = function (m) {
+            console.log(this.x);
+        }*/
+    }
+    Fn.prototype.getX = function (n) {
+        console.log(this.x);
+    }
+    var f = new Fn;
+    var f1 = new Fn;
+    console.log(f);//{}
+    console.log(f.getX);// 私有的
+    console.log(f.getX === Fn.prototype.getX);// false
+    console.log(f.__proto__.getX === Fn.prototype.getX);// true
+    console.log(f.getX === f.__proto__.getX);// false
+    console.log(f.getX === f1.getX);// false
+    console.log(f.x===f1.x);// true
+    console.log(f.constructor === Fn.prototype.constructor);// true
+
+   // 类一定是函数，函数不一定是类；
+    // hasOwnProperty
+
+    /*f.hasOwnProperty("getX")
+    console.log("hasOwnProperty" in f);// true
+    console.log(f.hasOwnProperty);
+    console.log(f.hasOwnProperty);// undefined;
+    var  obj = {a:1};
+    console.log(obj.b);// undefined
+    console.log(obj.toString);// 函数；
+    // obj 是Object的一个实例；
+    // obj的__proto__ 指向Object的原型；
+    console.log(f.hasOwnProperty);*/
+
+    var obj = {a:1};
+    console.log(obj.c);//undefined;
+    console.log(obj.hasOwnProperty);
+
+    // 当获取对象属性名对应的属性值时，先看该属性是否是私有的，如果不是的话，那么会通过该对象中的__proto__继续向上查找，如果父级原型中也没有，会继续通过父级原型中的__proto__向上查找；直到找到Object的原型为止；如果Object的原型中也不存在，那么会输出结果undefined；这样一级一级向上查找，就会形成原型链。
+
+    var  obj ={};// __proto__ 指向Object的原型；
+
+</script>
+</body>
+</html>

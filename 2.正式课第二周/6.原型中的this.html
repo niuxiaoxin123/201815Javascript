@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Fn() {
+        this.x = 100;
+        this.y = 200;
+    }
+    Fn.prototype.x = 888;
+    Fn.prototype.getX = function () {
+        console.log(this);//
+        console.log(this.x);
+    }
+    var f = new Fn;
+    var f1 = new Fn;
+    f.getX();// this --> f
+    f.__proto__.getX();// this --> f.__proto__就是Fn.prototype的地址；
+    Fn.prototype.getX();// this --> Fn.prototype
+    console.log(f.__proto__ === Fn.prototype);// 指向同一块堆内存；
+
+    // 原型模式： 解决了公有属性的问题
+
+    var obj = {a:1,b:2};
+    obj.hasOwnProperty("a");
+    var obj1 = {c:2};
+    obj1.hasOwnProperty("a")
+    console.log(obj.hasOwnProperty === obj1.hasOwnProperty);
+    // hasOwnProperty 在Object这个类的prototype;
+
+    var  arr = [12.3,4];
+    var  ary = [28,38302,9];
+
+    arr.push(100)// Array的prototype
+    ary.push(200)
+
+
+</script>
+</body>
+</html>

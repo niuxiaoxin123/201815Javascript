@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 单例模式  工厂模式   构造函数模式   原型模式；
+    //
+   /* var  name = "王志超";
+    var  age = 18;
+    var sex = "男"
+
+    var name = "张英剑";
+    var  age = 20;
+    var sex = "男";*/
+    var  student = {name:"王志超",age:18,sex:"男"};
+    var  teacher = {name:"张英剑",age:20,sex:"男"}
+    // student,teacher 都叫这个对象的命名空间；
+
+    // 1. 单例模式  高级单例模式
+    var  utils = (function () {
+        var num =1;
+        function f() {
+            var num =81;
+        }
+        return {
+            f:f,
+            num:num
+        }
+    })();
+    //console.log(num);
+    // 2. 工厂模式： 函数;把实现同一功能的代码放在同一个函数中，想实现这个功能，只需要执行这个函数即可，减少了代码的冗余；高内聚、低耦合；这就是“函数的封装”
+    function fn() {
+    }
+    fn();
+    fn();
+
+    // 面向对象：类的继承、封装、多态；是一种编程的思想；基于对象
+    // 对象 ： 万物皆对象；
+    // 类 ： 代表的是对象的细分；代表具有相同特征的一类；
+    // 实例 ： 代表一个具体的事物；
+
+    // 构造函数模式：
+    function Fn() { // Fn就是一个自定义的类；Fn也是一个构造函数；
+        //var obj = {};
+        // this---> obj
+        this.a  =100;
+        var b = 1;
+        // return  obj;
+    }
+    //var  f = fn();// f=undefined
+    var  f = new  Fn()//{a：100} f就是fn的一个实例；
+    console.log(f);
+    console.log(Fn());
+    // new : 操作符；
+    // 1. 进入函数之后，首先会创建一个空对象
+    // 2. 让当前作用域的this指向这个空对象
+    // 3. 当代码执行完之后，默认返回这个对象；
+
+    // 1. 构造函数中的this指向当前的实例；
+    // 2. 函数如果执行前+new,函数就是一个构造函数，那么构造函数的返回值就是fn的一个实例；构造函数又叫类；
+    // 3.类分为两种：内置类和自定义类；
+    // 4. instanceof : 检测当前实例是否属于某个类；是的话返回true，不是返回False;
+    // 5. hasOwnProperty : 检测当前属性是否是私有属性
+    // 6. in  : 检测当前属性是否属于这个对象
+    if("a" in  window){
+        var a = 100;
+    }
+    /*console.log(f instanceof Fn);
+    var  num = {};
+    var rr = [];// Array
+    console.log(num instanceof Object);
+    console.log(rr instanceof Array);
+    console.log(num instanceof Array);*/
+
+
+</script>
+</body>
+</html>

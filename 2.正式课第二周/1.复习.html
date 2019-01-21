@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    // git     变量提升    作用域     this   面向对象；
+    // 1. git提交
+    //    1) git  add .
+    //    2) git  commit -m"注释"  提交到历史区
+    //    3) git  push origin  master  把代码提交到远程仓库
+    //  2.git 的拉取
+    //   1) git  pull
+
+    //二  ： 变量提升
+    // 1. 变量的概念
+    // 2. 变量的特殊情况
+
+    // 三 ： 作用域
+    // 1.全局作用域
+    // 2.私有作用域
+        // 1) : 函数执行形成私有作用域
+        // 2) : 形参赋值
+        // 3) : 变量提升
+        // 4) : 代码从上到下运行
+        // 5 ) : 作用域是否销毁
+    // 3. 块级作用域
+    // 4.上一级作用域
+    // 5.作用域的销毁
+    //   1) : 立即销毁
+    //   2) : 不立即销毁
+    //   3) : 不销毁的
+    //   4) : 性能优化；
+
+   /* function fn(f){
+        console.log(f);
+        //f:aabbcc
+        function f() {
+
+        }
+        var  f = 1;
+    }
+    fn(100);
+    console.log(m);// 如果使用或者输出只声明，没有定义过的变量，那么浏览器会默认给一个值就是undefined；
+    var m =1;*/
+   var  arr = [{a:1},{a:2},{a:3}];
+   var len = arr.length;// 获取arr中属性名是length的属性值；
+   for(var i=0;i< arr.length;i++){
+       console.log(1);
+   }
+    //四：
+    // this : 关键字 在特定的作用域下有特殊的意义；
+    // 1.
+
+
+
+
+</script>
+
+
+</body>
+</html>

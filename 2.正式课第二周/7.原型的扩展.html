@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 原型扩展： 向类的原型中添加一些方法；那么实例都可以进行调用；
+    // 1 ) 类.prototype.属性名= 属性值；
+   /* function Fn() {
+        this.x = 100;
+        this.y = 200;
+    }
+    // 自定义类新增键值对；
+    var f = new Fn;
+    Fn.prototype.getX = function () {
+        console.log(this.x);
+    };
+    Fn.prototype.getX = function () {
+        console.log(this.x);
+    };
+    f.getX();// f.getX is not a function
+    console.log(Fn.prototype);
+    var  obj = {};
+    obj.a  =100;
+    var d = obj.a;//*/ //获取
+
+    // 内置类的扩展
+    /*console.log(typeof Array);
+    Array.prototype.say =function () {
+        console.log("志超很低调");
+    }
+    var  ary = [];// ary是内置类的一个实例；
+    ary.say();*/
+    /*Array.prototype.quChong = function () {
+        var newAry = [];
+        for(var i=0;i<this.length;i++){
+            var cur = this[i];
+            if(newAry.indexOf(cur)===-1){
+                newAry.push(cur)
+            }
+        }
+        return newAry
+    }
+    var  ary1 = [12,12,8,12,8,99,0];
+    var a = ary1.quChong();
+    console.log(a);*/
+
+    //console.log(new Date().changeTime());// 2019-01-21 17:43:39
+    // 如果扩展的属性名和内置的属性名相同，会把原有的方法给覆盖掉；
+/*
+   Array.prototype.slice = function () {
+       console.log(100);
+   }
+    var ary = [2,6,7,90]
+    console.log(ary.slice(2, 3));*/
+
+   // 二 ： 类.prototype = {};
+    // 用新的空间地址覆盖类原有的空间地址；
+    // 会导致constructor的丢失；
+   function Fn() {
+   }
+   Fn.prototype.getX = function () {
+       console.log(1);
+   }
+   Fn.prototype = {
+      getA :function () {
+          console.log("a")
+      }
+   }
+   var f = new Fn;
+   f.getA();
+   //f.getX();
+    console.log(f.constructor);
+
+
+</script>
+</body>
+</html>
