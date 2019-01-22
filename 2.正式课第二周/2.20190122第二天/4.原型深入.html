@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // Object  Function
+    // 所有的函数数据类型（普通函数、类（自定义、内置））都是Function的一个实例
+    // Function是所有函数的基类；
+    // Object 是所有对象基类；
+   /* function fn() {
+    }
+    console.log(fn instanceof Function);// fn 是Function的一个实例；
+    var f = new Function;
+    console.log(typeof f);
+    console.log(Array instanceof Function);// 所有的内置类都是Function的一个实例；*/
+    function Fn() {
+    }
+    var f1 = new Fn;
+    f1.call();
+    console.log(Fn instanceof Function);// true
+
+    // Object 是一个内置的类，就是Function的一个实例；
+    // hasOwnProperty
+    console.log(Object.hasOwnProperty);
+    console.log(Function.prototype === Function.__proto__);
+    console.log(Function.prototype.__proto__ === Object.prototype);
+    console.log(Function.prototype.__proto__ === Object.__proto__);
+
+    Function.hasOwnProperty()
+    Object.call();
+    console.log(Object instanceof Function);// true;
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function sum() {
+        // arguments; 类数组
+        /*console.log(arguments instanceof Array);// true
+        arguments.sort(function (a,b) {
+            return a-b;
+        })*/
+        //arguments.prototype = Array.prototype; 因为只有函数才具有prototype属性，所以，不能这种方式更改；
+        // 这种继承方式在IE10及以下是不兼容的；
+        arguments.__proto__=Array.prototype;
+        console.log(arguments);
+        arguments.sort(function (a,b) {
+            return a-b;
+        });
+        arguments.pop();
+        arguments.shift();
+        var t = 0;
+        for(var i=0;i<arguments.length;i++){
+            t+=arguments[i];
+        }
+        console.log(t / arguments.length);
+    }
+    //sum(97,96,100,90,92,85)
+
+    Array.prototype.myPop = function () {
+        var last = this[this.length-1]
+        this.length--;
+        return last;
+    }
+    var  ary =[12,3,4,6];
+    ary.myPop();
+    console.log(ary);
+    //  push  shift  unshift    reverse  indexOf   slice  splice
+</script>
+</body>
+</html>

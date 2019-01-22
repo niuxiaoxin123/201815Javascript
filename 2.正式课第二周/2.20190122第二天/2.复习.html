@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 原型模式 ： 解决了公有属性
+    // 类 ： 一定是一个函数
+    // 实例 ： new + 类；
+    // 实例继承了父类身上的某些方法；prototype这个空间下的方法和属性；
+    //
+    function Fn() {
+        this.x = 1;
+        this.y = 10
+    }
+    Fn.prototype.sum = function () {
+        console.log(this.x + this.y);
+    }
+    /*Fn.prototype = {
+        constructor:Fn
+    }*/
+    var f = new Fn;// {x:1,y:10}
+    console.log(Fn.prototype === f.__proto__);
+    f.sum();
+
+    //var  ary=[12,3,4];
+    /*ary.pop()
+    console.log(ary.hasOwnProperty("0"));
+    var obj = {a:1,b:2};
+   // obj.pop();
+    obj.hasOwnProperty("a")*/
+    //var a = 100;
+    //console.log(a.hasOwnProperty);
+
+    var  arr = [18,3,4,6,7];
+   // arr.splice(2,5).slice(1,3).pop().push(100);
+
+    // 原型扩展
+    // 1. 类.prototype.属性名=属性值
+    //  1) : 自定义类扩展
+    //  2) : 内置类的扩展
+    /*Array.prototype.pu = function () {
+        
+    }*/
+    // 2. 类.prototype={}  导致constructor丢失；
+    // 不能覆盖内置类原型的空间地址；
+    Array.prototype = {}
+    var ary = [1];
+    ary.push(1);
+    console.log(ary);
+</script>
+</body>
+</html>

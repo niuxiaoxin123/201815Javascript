@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function A(){
+    }
+    function B() {
+        this.x =100;
+    }
+    B.prototype.getX = function () {
+        console.log("你很帅")
+    }
+    // 让A的原型重新指向B的一个实例；
+    // 原型继承： 让类A的原型执行类B的一个实例，这样通过类A创建的实例都继承类B实例的私有属性以及公有属性；这种继承方式就是原型继承；
+    A.prototype=new B;
+    var a = new A;//{}
+    console.log(a);
+    a.getX();
+    console.log(a.x);
+
+
+</script>
+</body>
+</html>

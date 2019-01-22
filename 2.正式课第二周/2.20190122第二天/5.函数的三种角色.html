@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 函数三种： 函数   类    对象；
+    //1. 函数
+    /*function fn() {
+        // 1. 函数定义以及核心原理
+        // 2. 形参和实参
+        // 3. arguments
+        // 4. return
+    }*/
+    // 一个普通函数的特征；
+    // 函数的定义
+    // 1. 首先开辟一个堆内存
+    // 2. 把函数体中的代码当做字符串存到堆内存中
+    // 3. 把函数的空间地址赋值给函数名；
+    // 函数的执行
+    // 1. 形成私有的作用域
+    // 2. 形参赋值
+    // 3. 变量提升
+    // 4. 代码从上到下执行
+    // 5. 作用域是否销毁；
+
+
+    // 2. 类（构造函数）
+    /*function Fn(){
+        // 代码执行之前，会默认创建一个空对象；
+        // 并且让当前作用域的this指向这个空对象；
+        this.x =100;
+        // 最后把这个默认创建的对象返回
+        return 1000;
+        return {};
+        // 如果return一个基本的数据类型，不会影响类创建的实例；如果return一个引用类型，会把默认返回的对象给覆盖；
+    }
+    Fn.two = 100;
+    Fn.getX = function () {
+
+    }*/
+    /*var f = new Fn;// 创建一个Fn的实例；
+
+    // 3.对象
+    // 函数名.属性名= 属性值；
+    f.getX();*/// 只有Fn的原型中才可以调用；所以不能使用Fn的私有属性getX;
+
+
+
+    var num = 0;// 20
+    function Fn(num) {
+        // num 是私有变量 存储是0； 10
+        arguments[0] = 10;
+        this.num = 20;
+        return num;// 10
+    }
+    Fn.num = 40;// 对象
+    Fn.prototype.num = 30;
+    Fn.prototype.getNum = function () {
+        console.log(this.num);
+    };
+    var f = new Fn(num);// 类 {num:20}
+    console.log(f.num);// 20
+    f.getNum();// 20
+    Fn.prototype.getNum();// 30
+    console.log(num);//  0
+    var n = Fn(num);// 函数
+    console.log(n);//10
+    console.log(num);// 20
+
+
+
+
+
+</script>
+</body>
+</html>

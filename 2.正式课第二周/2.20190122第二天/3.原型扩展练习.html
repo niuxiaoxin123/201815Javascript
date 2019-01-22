@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Fn() {
+        this.x = 100;
+        this.y = 200;
+    }
+    Fn.prototype.getX = function () {
+        console.log(100);
+    }
+    var f = new Fn;
+    // 由于在改变Fn空间地址之前创建了实例f,那么f的__proto__占用了Fn的原有的原型空间，所以当Fn的原型被覆盖之后，其堆内存也不会销毁；
+    Fn.prototype = {
+        constructor:Fn,
+        getX:function () {
+            console.log(200);
+        }
+    }
+    var f1 = new Fn;
+    f.getX();//100
+    f1.getX();//200
+
+
+
+
+</script>
+</body>
+</html>
