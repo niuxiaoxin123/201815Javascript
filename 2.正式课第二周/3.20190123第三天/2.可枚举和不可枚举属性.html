@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    Array.prototype.getX = function () {
+        console.log(1);
+    }
+    var  ary  =[12,2,3,4,8];
+    // 1.循环 ： for  for in  while
+    // for  forEach   map
+    /*ary.forEach(function (a,b) {
+        // a : 数组每一项
+        // b : 数组的索引；
+        console.log(a);
+    })*/
+    // 2.判断
+    // 可枚举属性：对象的私有属性以及当前对象原型链上自定义的公有属性都是可枚举的；
+    // 不可枚举： 当前原型链上内置的公有属性都是不可枚举的；
+    /*for(var key in ary){
+        //console.log(key);// 索引
+        console.log(ary[key]);
+    }*/
+
+    Object.prototype.tt = 1;
+    var obj = {a:1,b:2};
+    for(var key in obj){
+        console.log(key);// 字符串
+        console.log(obj[key]);
+    }
+
+
+
+
+</script>
+</body>
+</html>

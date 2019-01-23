@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // JSON : JSON不是一种新的数据类型，而是一种新的数据格式；
+    // JSON : 后端返回给前端的数据一般都是JSON格式的数据；
+    /*var obj = {a:1};
+    var obj1 = {"a":1}*/// JSON 格式的对象
+    //console.log(obj1.a);
+    var str = '{"a":100}';// JSON格式的字符串；
+    // 如果获取JSON格式字符串中属性名对应的属性值，需要先将字符串转成JSON格式的对象；
+    // 1. JSON.parse : 将JSON格式的字符串转成JSON格式的对象；
+    /*var o = JSON.parse(str);
+    o.a=200;//{"a":200}
+    console.log(o.a);
+    console.log(JSON);*/
+    // 在IE8以下，JSON是不存在的；
+    console.log(eval("("+str+")"));
+
+    //2. JSON.stringify
+    // 后端给前端一般都是JSON格式的字符串，前端如果传给后端也需要JSON格式的字符串；
+    //var f = JSON.stringify(o)
+    //console.log(f);// JSON 格式的字符串；
+
+    // JSON 是window下的一个属性名；JSON的属性值是一个对象；
+    // 对象下有parse 和stringify;
+
+
+
+
+</script>
+</body>
+</html>

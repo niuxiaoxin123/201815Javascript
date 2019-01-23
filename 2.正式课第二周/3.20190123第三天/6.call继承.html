@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 1. 原型继承
+    // 2. 中间类继承
+    // 3. call继承
+    // 4.寄生组合继承
+    function A() {
+        this.x=100;
+        this.y=200;
+    }
+    A.prototype.getX = function () {
+    }
+    function B() {
+        // this--> B的实例
+        A.call(this);// 让A中this指向B的实例，并且让A执行；
+        this.z =1;
+    }
+    // Call 继承： 让类A在类B中执行，并且改变类A中的this指向，指向B的实例，那么通过类B创建的实例具有类A创建实例的私有属性；这种继承方式就是call继承；
+    // call : 继承私有属性；
+    var b = new B;//{z:1,x:100,y:200}
+    console.log(b);
+    //b.getX();
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // try  catch
+    /*function sum() {
+        // arguments
+        /!*var ary = Array.prototype.slice.call(arguments);
+        console.log(ary);*!/
+    }
+    sum(1,2,33,88,56,883,92);*/
+    // 在JS中，一旦遇到报错的代码，那么代码将不再向下运行；
+    // try  catch
+    try{
+        // 代码先执行此处，如果此处的代码代码报错，那么就会执行catch中的代码；如果此处不报错，那么直接执行此处的代码；
+        console.log(a);
+    }catch(e){
+        // e 是一个对象
+        //console.log(e.message);// e是错误信息
+        // throw new Error(e.message);// 抛出异常信息；此行下面的代码都不再运行；
+        console.log(200);
+    }
+    console.log(10);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // call
+    function average() {
+        //1. 把arguments转成数组
+        /*var ary = [];
+        for(var i=0;i<arguments.length;i++){
+            ary.push(arguments[i]);
+        };*/
+        // 2.展开运算符；
+        /*var ary = [...arguments];
+        console.log(ary);*/
+        // 3.继承
+        //arguments.__proto__=Array.prototype;
+        // 4. call
+        var ary =[].slice.call(arguments,0)
+        ary.sort(function (a,b) {
+            return a-b;
+        });
+        ary.pop();
+        ary.shift();
+        // eval : 是window下的一个方法；把字符串转成真正的表达式执行；
+        console.log(eval(ary.join("+"))/ary.length);
+
+        /*var total=0;
+        for(var i=0;i<ary.length;i++){
+            total+=ary[i];
+        }
+        console.log(total / ary.length);*/
+
+
+
+        /*[1,23,3].slice();
+        Array.prototype.slice=function () {
+            // 克隆一份一模一样的数组；
+            var newAry =[]
+            for(var i=0;i<arguments.length;i++){
+                newAry.push(arguments[i]);
+            }
+            return newAry;
+        }*/
+
+    }
+    average(98,99,100,80,87,93,96,99,92,90);
+
+
+
+
+</script>
+</body>
+</html>

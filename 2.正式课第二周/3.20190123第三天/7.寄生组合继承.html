@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //var obj= {}; //__proto__ 指向Object的prototype；
+    // 寄生组合继承
+    // Object.create : 返回一个对象，返回的对象的__proto__并没有直接指向Object的原型；而是指向了Object.create这个方法的第一个实参；
+    /*var obj = Object.create({a:1});
+    console.log(obj);*/
+    
+    function A(){
+        this.x = 100;
+    }
+    A.prototype.sum= function () {
+        console.log(100);
+    }
+    function B() {
+        // call继承解决了私有的问题
+        // 希望类B的实例也能调用类A原型的方法；
+        A.call(this);
+    }
+    // 让类B的原型中的__proto__指向了类A的原型；那么通过类B创建的实例就可以找到类A原型上的方法
+    // 使用call继承私有属性，Object.create这个方法让类B的实例继承了类A原型上的方法和属性；这种就是寄生组合继承；
+    B.prototype = Object.create(A.prototype);
+    var b = new B;// {x:100}
+    b.sum();
+
+</script>
+</body>
+</html>

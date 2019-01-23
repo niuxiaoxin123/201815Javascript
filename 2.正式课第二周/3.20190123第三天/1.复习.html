@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 原型的深入
+    // Function和Object的关系；__proto__关系；
+    // Function : 是所有函数的基类
+    // Object : 是所有对象的基类
+    // Function 的原型上call、apply、bind
+    // Object 的原型中hasOwnProperty  toString
+    var  arr = [];
+    console.log(arr.toString === Object.prototype.toString);// false
+    function fn() {}
+    console.log(fn.toString === Object.prototype.toString);// false
+    //[].__proto__.__proto__.toString // ""
+    ({}).toString()// "[object Object]"
+    // Object的原型中的toString经常用于数据类型的检测；
+    // 函数的三种角色
+    // 1. 普通函数
+    // 2. 类
+    // 3. 对象
+    function Foo() {
+        this.name=100;
+    }
+    Foo.prototype.num = 100;
+    Foo.getNum = function () {
+    }
+    // Foo;{getNum,arguments,caller,length,name,prototype:{}}
+    var f = new Foo;
+    //f.getNum();
+    // 继承
+    // 原型继承
+    // A.prototype=new B; A的实例可以使用B实例的私有和公有的属性；
+    // 中间类继承
+    // 改变了当前实例__proto__的指向；改变实例的原型链；
+
+
+
+
+</script>
+</body>
+</html>

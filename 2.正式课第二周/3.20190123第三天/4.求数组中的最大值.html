@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var  ary = [19,199,8,28,299,46,88];
+    // 1.sort : 原有数组发生改变;先用sort对数组进行排序；然后取数组中的最后一项；
+    /*ary.sort(function (a,b) {
+        return a-b;
+    });*/
+
+    // 2.相邻两项进行比较，前面一项比后面一项大，则交换位置；这样循环一轮之后，会将数组的最大值放到数组的最后面；
+    /*for(var i=0;i<ary.length;i++){
+        if(ary[i]>ary[i+1]){
+            var temp = ary[i];
+            ary[i]=ary[i+1];
+            ary[i+1]=temp;
+        }
+    }
+    console.log(ary[ary.length-1]);*/
+    // 3.假设法的思想 ：让数组的每一项和max相比；如果比max大的话，就用该值赋值给max;如果比max小，什么都不做；
+    /*var max = ary[0];
+    for(var i=1;i<ary.length;i++){
+        if(ary[i]>max){
+            max=ary[i];
+        }
+    }
+    console.log(max);*/
+
+    //4.Math.max(12,3,34,4): 取一组数的最大值
+    //console.log(Math.max(ary));
+    //console.log(Math.max.apply(null, ary));
+
+    // 5.展开运算符
+    //console.log(...ary);
+    console.log(Math.max(...ary));
+
+    var  obj1 = {a:1};
+    var  obj2 = {a:100,b:2};
+    var  obj3 = {c:1};
+    /*for(var key in obj2){
+        obj1[key]=obj2[key];
+    }
+    console.log(obj1);*/
+   /* function assign() {
+        var obj = {};
+        for(var i=0;i<arguments.length;i++){
+            for(var key in arguments[i]){
+                obj[key] = arguments[i][key];
+            }
+        }
+        return obj;
+    }
+    console.log(assign(obj1, obj2, obj3));
+   */
+   var newObj = {...obj1,...obj2,...obj3};
+    console.log(newObj);
+
+</script>
+</body>
+</html>

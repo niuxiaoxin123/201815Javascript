@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #list{
+            width:300px;
+            margin:30px auto;
+            list-style: none;
+        }
+        #list li{
+            height:30px;
+            line-height: 30px;
+            width:100%;
+            text-align: center;
+            border-bottom: 1px solid red;
+        }
+         #btn{
+             width:80px;
+             height:30px;
+             line-height: 30px;
+             text-align: center;
+             margin:auto;
+             display: block;
+             cursor: pointer;
+         }
+    </style>
+</head>
+<body>
+<ul id="list">
+    <li>88</li>
+    <li>90</li>
+    <li>78</li>
+    <li>86</li>
+    <li>92</li>
+
+</ul>
+<button id="btn">排序</button>
+<script>
+    // 在JS中，元素都是对象数据类型的，由大量的键值对组成；
+    // 1. 要操作谁，就先获取谁
+    var oLis = document.getElementsByTagName("li");
+    console.log(oLis);
+    var ul = document.getElementById("list");
+    //console.dir(ul);
+    var btn = document.getElementById("btn");
+    // 2. 给按钮点击事件
+    // 1) : 把获取到的li集合先转成真正的数组；
+    // 2) : 通过数组sort方法进行排序；
+    // 3) : 把排好顺序的li,重新放回页面中；
+   /* btn.onclick = function () {
+        var ary = Array.prototype.slice.call(oLis);
+        ary.sort(function (a,b) {
+            // innerHTML 获取当前li对应的内容的值；
+            return a.innerHTML-b.innerHTML;
+        });
+        for(var i=0;i<ary.length;i++){
+            // appendChild : 向容器的末尾添加一项；
+            //debugger
+            ul.appendChild(ary[i]);
+        }
+    }*/
+    // DOM映射:在JS中存在一个对象和HTML中元素是一一对应的，当其中一个发生改变，那么另一个也会随着发生变化；这种一一对应的关系就是DOM的映射机制；
+
+    // 2.
+    btn.onclick= function () {
+        var li = document.createElement("li");
+        li.innerHTML=100;
+        ul.appendChild(li);
+        //console.log(oLis);// 输出6个li;浏览器会对li集合进行实时监听，当页面中li个数发生变化，那么此集合也会随着发生改变；
+    }
+</script>
+</body>
+</html>
