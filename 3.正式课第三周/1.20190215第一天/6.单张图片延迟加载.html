@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            display: block;
+            width:300px;
+            height:300px;
+            margin:1000px auto;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <!--用行间属性存储当前img标签的真实图片的路径-->
+    <img src="img/default.jpg" trueImg="img/3.jpg" alt="">
+</div>
+<script src="utils.js"></script>
+<script>
+    // 1.获取当前图片；
+    var img = document.getElementsByTagName("img")[0];
+    // 图片显示的临界条件是： 当图片的下边框距离页面的顶部的距离等于纵向滚动条卷起的高度+浏览器可视窗口的高度时，图片开始加载；
+    // 2.计算临界条件值；
+    // curT : 是图片的上偏移量
+    var curT = utils.offset(img).top;
+    var curH = img.offsetHeight;
+    var winH = utils.win("clientHeight");
+
+
+    // 滚动事件： 滚动条滚动就会触发滚动的事件行为
+    window.onscroll = function () {
+        // 当滚动条滚动一次，那么需要重新获取一次滚动条卷起的高度；
+        if(img.load){
+            // 如果图片没有加载过，那么img.load就是undefined；会继续向下判断；加载过一次，那么就不再执行了；
+            return;
+        }
+        var winT = utils.win("scrollTop");
+        // getAttribute 获取行间属性的属性值；
+        var trueAdd = img.getAttribute("trueImg");
+        // 当满足这个条件时，加载真实的图片；
+        if(winT + winH>=curT + curH){
+            // 创建一个新的img元素；
+            var  newImg = document.createElement("img");
+            newImg.src = trueAdd;
+            // 每一个图片元素都有一个onload事件；当元素的图片路径真实存在时，就会执行；
+            newImg.onload = function () {
+                // 如果路径真实存在，那么会触发newImg的onload事件，同时把真实路径赋页面中的img;
+                img.src = trueAdd;
+                img.load = true;
+                fadeIn(img);
+            }
+        }
+    }
+    
+    // 逐渐显示
+    //让透明度逐渐增大
+    function fadeIn(curEle) {
+        utils.css(curEle,"opacity",0.3);// 初始化透明度是0.3;
+        var timer = setInterval(function () {
+            var  curOp = Number(utils.css(curEle,"opacity"));
+            curOp += 0.1;
+            if(curOp>=1){
+                // 当透明度大于等于1时，清除定时器；
+                utils.css(curEle,"opacity",1);
+                clearInterval(timer);
+                return;
+            }
+            console.log(1);
+            utils.css(curEle,"opacity",curOp);
+        },200)
+    }
+
+
+
+
+</script>
+</body>
+</html>

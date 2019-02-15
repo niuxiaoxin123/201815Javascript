@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="utils.js"></script>
+<script>
+   //  utils.css();
+    // 获取或者设置当前可视窗口的滚动条卷起的高度或宽度
+    document.documentElement.scrollTop = 0;
+    function win(attr,val) {
+        // 如果是两个实参，那么一定是设置；如果是一个实参，是获取；
+        if(val===undefined){
+            return document.documentElement[attr] || document.body[attr];
+        }
+        document.documentElement[attr] = val;
+        document.body[attr] = val;
+
+
+    }
+    win("scrollTop",500)
+    win("scrollTop")
+</script>
+</body>
+</html>

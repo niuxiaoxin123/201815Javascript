@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width:300px;
+            padding:20px;
+            border: 1px solid black;
+            margin:50px;
+        }
+    </style>
+</head>
+<body>
+     <div id="box">123</div>
+<script>
+    var  oBox = document.getElementById("box");
+    //oBox : 值是一个对象数据类型；
+   // JS 的盒子模型；
+    // client系列
+    // 1. clientWidth  clientHeight : 内容的宽度+ 左右padding
+    // 2. clientLeft  clientTop : 左边框和上边框的宽高；
+
+    // offset系列
+    // 1.offsetWidth : clientWidth + 左右border的宽度
+    // 2. offsetHeight: clientHeight +上下border的高度
+    // 3. offsetParent : 父级参照物
+    // 4. offsetLeft : 左偏移量
+    // 5. offsetTop : 上偏移量
+    // 如果需要计算出一个盒子在当前页面上的坐标；
+
+    function offset(curEle) {
+        var  l = curEle.offsetLeft;
+        var  t = curEle.offsetTop;
+        var p = curEle.offsetParent;
+        while(p.nodeName !=="BODY"){
+            l+=p.offsetLeft +p.clientLeft;
+            t+=p.offsetTop+p.clientTop;
+            p = p.offsetParent;
+        }
+        return {
+            left:l,top:t
+        }
+    }
+
+    //  scroll系列
+    // 1. scrollWidth : 内容的真实宽度+ 一个左padding
+    // 2. scrollHeight : 内容的真实高度+ 一个上padding
+    // 3. scrollLeft : 滚动条横向卷起的宽度
+    // 4. scrollTop : 滚动条纵向卷起的高度；
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

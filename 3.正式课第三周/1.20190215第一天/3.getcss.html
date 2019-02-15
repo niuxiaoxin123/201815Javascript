@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width:100px;
+            height:100px;
+            background: red
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    // 获取元素的样式
+    // 1. 元素.style.属性名 ： 可以获取对应的元素的样式的值；
+    // 只能获取行内设置的样式；
+    var  oBox = document.getElementById("box");
+    /*var  oBox = document.getElementById("box");
+    console.log(oBox.style.width);// "100px";
+    console.log(oBox.style.background);*/// "100px";
+
+    // 2.getComputedStyle : 获取浏览器计算的元素样式；是window下的一个方法；
+    // getComputedStyle(元素).属性名；
+    // 在IE8及以下是不兼容的，window中不存在这个方法；
+    // console.log(getComputedStyle);
+    //console.log("getComputedStyle" in window);
+    //console.log(getComputedStyle(oBox).width);
+    // 3. currentStyle  : 是一个属性名
+    // 元素.currentStyle.属性名；兼容IE的所有浏览器
+    //console.log(oBox.currentStyle.width);
+    // 封装getCss,兼容所有浏览器；
+    function getCss(curEle,attr) {
+        var  val;
+        if("getComputedStyle" in window){
+            // 先判断是否支持getComputedStyle;
+            val = getComputedStyle(curEle)[attr];
+        }else{
+            val = curEle.currentStyle[attr];
+        }
+        // 去单位
+        var reg = /^(width|height|margin|padding|left|top|right|bottom|fontZise)$/;
+        // 校验当前属性是否带有单位
+        if(reg.test(attr)){
+            // 判断是否为空；
+            if(!isNaN(parseFloat(val))){
+                val = parseFloat(val);
+            }
+        }
+        return val;
+    }
+    console.log(getCss(oBox, "width"));
+    console.log(getCss(oBox, "background"));
+    // jQuery中有个css方法；
+
+
+
+
+</script>
+</body>
+</html>
