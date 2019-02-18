@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 1. let  const
+    // 2. 解构赋值
+    // 1) :数组按照数组成员的顺序进行解构
+    // 2) :对象按照属性名进行解构；
+
+    // Array.from : 将类数组转换成真正的数组；
+    /*let  obj = {
+        0:"a",
+        1:"b",
+        2:"c",
+        length:3
+    };
+    /*console.log(Array.from(obj));*!/
+    function any() {
+        console.log(Array.from(arguments));
+    }
+    any(1,2,3,4,5)*/
+
+
+    // Array.of
+    //console.log(Array.of(1, 2, 3, 4));
+    console.log(Array.of());
+    console.log(Array.of(4));
+    console.log(Array(4));// 代表的数组的长度
+
+    // Array: 根据参数的个数不同返回不同的结果；
+    // Array.of : 不管参数有几个，都会创建出一个数组来；
+
+</script>
+</body>
+</html>

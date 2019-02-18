@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*function fn() {
+
+    }
+    (function () {
+
+    })();
+    var fn = function () {
+
+    }
+    fn();// 函数表达式；
+    var obj = {
+        f:function () {
+
+        }
+    }*/
+    /*var fn = function (num) {
+
+    }*/
+    // 箭头函数
+   /* let fn = num => num;
+    console.log(fn(123));*/
+    // 箭头函数和普通函数的区别
+    // 1. 箭头函数没有function这个关键字；并且在形参和{}之间要有箭头；
+    // 2.如果形参只有一个，可以省略形参的小括号；
+    // 3.如果大括号只有一条语句时，可以省略{}；
+    // 4.如果大括号中只有return一条语句时，可以把大括号和return都省略；
+    // 5. 如果return出一个对象时，需要在对象的大括号外面加上小括号；
+    
+   /* function fn(a) {
+        return function (b) {
+            return b;
+        }
+    }*/
+  /*  let fn=a=>b=>b;
+    console.log(fn(1)(2));*/
+
+  /*function fn(a) {
+      return {a:a}
+  }*/
+  /*let fn = a =>({a:a});
+  console.log(fn(1));*/
+
+  // 函数执行
+    /*let  f = ()=>{
+        var a =1;
+        console.log(this);
+        return a;
+    }
+    f();*/
+
+    var  obj = {
+        fn:(...num)=>{
+            var a =1;
+            console.log(this);
+            //console.log(arguments);
+            return a;
+        }
+    }
+    //obj.fn(1,2,3,4,5,6,6);
+    // new obj.fn;
+
+    // 1. 箭头函数中没有this；那么如果输出this，就会输出箭头函数定义时所在的作用域中的this；
+    // 2. 在箭头函数中，不能使用arguments；
+    // 3. 箭头函数不能作为构造函数；
+    // 4. 不可以使用yield命令，不能作为Generator函数；
+</script>
+</body>
+</html>

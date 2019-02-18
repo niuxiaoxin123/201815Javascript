@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="a"></div>
+<div id="b"></div>
+<div id="c"></div>
+<div id="d"></div>
+<script>
+    // 第三周 ： 正则   JS盒子模型   封装   懒加载；
+    // toArray
+    function toArray(likeAry){
+        var  ary = [];
+        for(var i=0;i<likeAry.length;i++){
+            ary.push(likeAry[i]);
+        }
+    }
+    // 将JSON格式的字符串转化成JSON格式的对象；
+    // JSON
+    // eval
+    //eval("("+str+")")
+    /*function toJSON(str) {
+        /!*if("JSON" in window){
+            return JSON.parse(str)
+        }else{
+            return eval("("+str+")");
+        }*!/
+        return "JSON" in  window?JSON.parse(str): eval("("+str+")");
+    }
+    console.log(JSON);*/
+    // 上一个哥哥元素节点：
+
+    function fe(p) {
+        /*if("previousElementSibling" in p){
+            return p.previousElementSibling;
+        }*/
+        if(p.previousElementSibling){
+            // 在标准浏览器下执行的方法；
+            return p.previousElementSibling;
+        }
+        var pre = p.previousSibling;
+        while (pre){
+            if(pre.nodeType===1){// 一定是元素
+                return pre
+            }
+            pre = pre.previousSibling
+        }
+        return null;
+    }
+
+    // 获取当前元素在兄弟元素中的索引；
+    var box=document.getElementById("c");
+   /* var box1=document.getElementById("d");
+    var ary=[];
+    function getBrother(curEle) {
+        var cur=curEle.previousSibling;
+        if(cur){
+            if(cur.nodeType===1){
+                //ary.splice(cur,0,cur);
+                ary.unshift(cur);
+                return getBrother(cur)
+            }else{
+                getBrother(cur)
+            }
+        }
+    }
+
+    function getNext(curEle) {
+        var cur=curEle.nextSibling;
+        if(cur){
+            if(cur.nodeType===1){
+                ary.push(cur);
+                return getNext(cur)
+            }else{
+                getNext(cur)
+            }
+        }
+    }
+    function index(curEle) {
+       getBrother(curEle);
+        ary.push(curEle);
+       getNext(curEle);
+       return ary.indexOf(curEle)
+    }
+    console.log(ary);
+
+    console.log(index(box1));*/
+
+
+    function index(curEle) {
+        var siblings = curEle.parentNode.children;
+        var  ary = [...siblings];
+        return ary.indexOf(curEle);
+    }
+    console.log(index(box));
+
+    function index(curEle) {
+        // 获取所有的兄弟元素节点
+        var siblings = curEle.parentNode.children;
+        for(var i=0;i<siblings.length;i++){
+            if(siblings[i]===curEle){
+                return i;
+            }
+        }
+    }
+
+    function index(curEle) {
+       var pre = curEle.previousSibling;
+       var i=0;
+       while(pre){
+           if(pre.nodeType===1){
+              i++;
+           }
+           pre=pre.previousSibling;
+       }
+       return i;
+    }
+    //  addClass  removeClass  hasClass
+
+</script>
+</body>
+</html>

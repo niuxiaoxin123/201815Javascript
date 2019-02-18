@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //
+    function* hello () {
+        yield "hello";
+        yield "world";
+        return "我爱你"
+    }
+    var w = hello();
+    var r = w.next().value;
+    var t = w.next();
+    var y = w.next();
+
+    console.log(w);
+    console.log(r);
+    console.log(t);
+    console.log(y);
+
+
+
+</script>
+</body>
+</html>

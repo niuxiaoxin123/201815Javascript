@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // class : class 在Es6中用来定义一个类；
+/*    function  fn(){}
+    fn.prototype.getX = function () {}
+    class Fn{
+        constructor(){
+            // constructor中是往私有属性上新增方法；
+            this.a =100;
+        }
+        getX(){
+            console.log(this.a);
+        }
+        getY(){
+        }
+    }
+    console.log(new Fn);
+    console.dir(Fn);*/
+
+    /*var  obj = {
+        fn(){
+            console.log(100);
+        }
+    }
+    obj.fn();
+    console.log(obj.fn);*/
+
+
+    // class的extends继承
+    class  A{
+        constructor(a){
+            this.a = a;
+        }
+        getX(){
+            console.log(this.a)
+        }
+    }
+    var a = new A(100);
+    // 让类B继承类A;
+    // extends 继承了类A的私有和公有属性；
+    class B extends A{
+        constructor(a){
+            super(a);
+            this.b =1000;
+        }
+        getZ(){
+
+        }
+    }
+    var b = new B(200);
+    console.log(b);
+</script>
+</body>
+</html>

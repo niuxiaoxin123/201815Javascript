@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 函数的参数可以赋默认值
+    // 如果有实参，那么会将默认值覆盖
+    // 如果实参是undefined的话，不能改变形参的默认值；
+    /*function fn(x=100,y) {
+        console.log(x);
+    }
+    fn(undefined,200);*/
+    // 可以和解构赋值结合，给形参赋值；
+    /*function f({x,y=7}) {
+        console.log(x);
+        console.log(y);
+    }
+    f({x:100,y:200})*/
+
+    // 作用域
+    // 如果函数形参赋默认值，在函数初始化形参时，就会形成一个单独的作用域；初始化完成之后，作用域会消失；
+    var x = 1;
+    function fn(x=y,y=x) {
+        console.log(x);
+        console.log(y);
+    }
+    fn();
+</script>
+</body>
+</html>
