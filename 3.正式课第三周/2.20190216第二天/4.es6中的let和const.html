@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // var声明的变量要发生变量提升；只声明不定义；
+    // var 声明的变量可以重名；
+    /*console.log(num);// undefined
+    var  num =1;
+    var  num=2;*/
+    // let : 声明变量;let声明的变量不进行变量提升；
+    // let 是在代码执行之前进行的变量声明，但是不进行提升；
+    // let声明的变量不能重名；
+    //console.log(100);
+    /*let a = 100;
+    //let a = 99;
+    console.log(a);
+    function fn() {
+        let a=1;
+    }
+    fn()
+    if(true==[]){// 此处是一个块级作用域；
+        let a =9;
+    }*/
+    /*for(let i=0;i<18;i++){
+        // let 定义i;每循环一次，都会保存一个i的值在当前子作用域；
+        cur.onclick = function () {
+            console.log(i);
+        }
+    }
+    console.log(i);*/
+    /*var  tt = 123;
+    if([]){
+        tt=1;// 暂时性死区；
+        let tt =0;
+    }*/
+    // let定义的变量不能给window新增键值对；
+    let  a = 1;
+
+    // const : 定义一个常量；不可更改的值
+    const ww = 3.14;
+    const ul = document.getElementById("list");
+
+
+
+
+</script>
+</body>
+</html>

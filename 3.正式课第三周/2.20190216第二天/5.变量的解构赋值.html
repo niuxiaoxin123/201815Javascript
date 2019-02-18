@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // es6新增了哪些特性；
+
+    /*let a=1;
+    let b=2;
+    let c=3;*/
+   /* let [a,b,c]=[1,2,3,4]
+    console.log(a);
+    console.log(c);/*///变量解构不成功，默认值是undefined；
+
+    /*let [a,[b],c]=[1,[4],8];
+    console.log(b);*/
+    // 解构赋值：一定要保持等号左右的结构保持一致；
+   /* let  [a,b]={c:1,d:2};
+    console.log(a);*/
+
+    // 2.解构赋值左边可以赋默认值
+    /*let [a=22]=[];
+    console.log(a);// 22*/
+
+
+    // 对象的解构赋值
+    // 对象的解构赋值是按照属性名进行匹配
+  /*  let {name,a} = {age:10,name:"zhufeng"}
+    console.log(name);
+    console.log(a);*/
+
+    function ary([x,y]) {
+        console.log(x);
+    }
+    ary([1,2]);
+
+</script>
+</body>
+</html>
