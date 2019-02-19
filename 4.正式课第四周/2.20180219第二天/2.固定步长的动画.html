@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            position: absolute;
+            left:0;
+            top:0;
+            width:100px;
+            height:100px;
+            background: red;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script src="utils.js"></script>
+<script>
+    // 动画 ： 定时器 、样式
+    // 动画的原理： 点击的时候，设置定时器，每隔10ms,重新设置最新的left值；当运动到屏幕的最右端时，停止；
+    var oBox = document.getElementById("box");
+    // 计算出盒子运动的最大距离；
+    var  changeL =  utils.win("clientWidth")-oBox.offsetWidth;
+    var  timer;
+    oBox.onclick = function () {
+        clearInterval(timer);
+        var curL = 0;
+        timer = setInterval(function () {
+            curL += 10;
+            // 判断中止的动画的条件
+            if(curL >= changeL){
+                // 清除定时器
+                clearInterval(timer);
+                utils.css(oBox,"left",changeL);
+                return;// 终止代码运行；
+            }
+            utils.css(oBox,"left",curL);
+        },100)
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            position: absolute;
+            left:100px;
+            top:0;
+            width:100px;
+            height:100px;
+            background: red;
+            border-radius: 50%;
+            opacity:1;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script src="utils.js"></script>
+<script src="animate.js"></script>
+<script>
+    var oBox = document.getElementById("box");
+    /*function changeBig(){
+        oBox.style.width="200px"
+        oBox.style.height="200px"
+    }
+    zfAnimate(oBox,{left:500,top:600,opacity:0.1},3000,2,changeBig)*/
+
+    function linear(t,b,c,d) {
+        return t/d*c+b;
+    }
+    function animate(curEle,target,duration,callback) {
+        // 存储初始的状态和变化的状态；
+        var  begin = {};
+        var  change= {};
+        // 遍历target目标对象中的属性key
+        for(var key  in  target){
+            begin[key] = utils.css(curEle,key);
+            change[key] = target[key]-begin[key];
+        }
+        var interval=0;
+        curEle.timer = setInterval(function () {
+            interval+=17;
+            if(interval>=duration){
+                utils.css(curEle,target);
+                clearInterval(curEle.timer);
+                typeof callback==="function"?callback():null;
+                return;
+            }
+            // 每隔17毫秒设置一次最新的状态；
+            for(var key in target){
+                var curPo  = linear(interval,begin[key],change[key],duration);
+                utils.css(curEle,key,curPo)
+            }
+
+        },17);
+    }
+    function changeBg() {
+        oBox.style.background="blue";
+    }
+    animate(oBox,{left:500,top:600,opacity:0.1},3000,changeBg)
+
+</script>
+</body>
+</html>

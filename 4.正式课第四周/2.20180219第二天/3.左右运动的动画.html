@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            position: absolute;
+            left:0;
+            top:0;
+            width:100px;
+            height:100px;
+            background: red;
+            border-radius: 50%;
+        }
+        input{
+            position: absolute;
+            top:400px;
+            width: 100px;
+            height:30px;
+            background: lightgreen;
+            text-align: center;
+            line-height: 30px;
+            border:none;
+            cursor:pointer;
+        }
+        #left{
+            left:100px;
+        }
+        #right{
+            left:500px;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<input type="text" id="left"  value="向左走">
+<input type="text" id="right" value="向右走">
+<script src="utils.js"></script>
+<script>
+    var oBox = document.getElementById("box")
+    var left = document.getElementById("left")
+    var right = document.getElementById("right");
+    var  changeL = 0;
+    var  changeR = utils.win("clientWidth")-oBox.offsetWidth;
+
+    function move(target) {
+        clearInterval(oBox.timer);
+        var  curL = utils.css(oBox,"left");
+        // target只能取两个值；要么是0；要么是最大值；
+        // 0<=curL<=changeR 这个范围内的数据；
+        if(curL<target){
+            // 如果条件成立，说明一定是点击的向右的按钮；
+            // 把定时器的返回值赋值给oBox这个元素的timer属性；避免了全局timer的干扰；
+            oBox.timer = setInterval(function () {
+                curL += 10;
+                if(curL>=changeR){
+                    utils.css(oBox,"left",changeR);
+                    clearInterval(timer);
+                    return;
+                }
+                utils.css(oBox,"left",curL);
+            },17)// 浏览器最小识别时间；
+        }
+        if(curL>target){
+           oBox.timer = setInterval(function () {
+                curL -= 10;
+                if(curL<=changeL){
+                    utils.css(oBox,"left",0);
+                    clearInterval(timer);
+                    return;
+                }
+                utils.css(oBox,"left",curL);
+            },17)
+        }
+    }
+    left.onclick = function () {
+        move(changeL)
+    }
+    right.onclick = function () {
+        move(changeR)
+    }
+
+
+</script>
+</body>
+</html>

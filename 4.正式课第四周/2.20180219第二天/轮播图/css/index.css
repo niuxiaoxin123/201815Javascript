@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul{
+    list-style: none;
+}
+#outer{
+    width:800px;
+    height:300px;
+    margin:100px auto;
+    position: relative;
+    overflow: hidden;
+}
+#swiper{
+    position: absolute;
+    left:0;
+    width:4000px;
+    height:300px;
+}
+#swiper div{
+    float:left;
+}
+#swiper img{
+    width:800px;
+    height:300px;
+}
+#focus{
+    position: absolute;
+    left:50%;
+    bottom:15px;
+    margin-left: -60px;
+    width:120px;
+    height:30px;
+}
+#focus li{
+    width:25px;
+    height:25px;
+    border-radius: 50%;
+    background: lightseagreen;
+    float:left;
+    margin-right: 5px;
+}
+#focus li.select{
+    background: red;
+}
