@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="img/1.jpg" alt="">
+<input type="checkbox">
+<p class="first">1122</p>
+<input type="text">
+<script src="jquery-1.11.3.js"></script>
+<script>
+    // attr：可以获取行间属性，还可以设置行间属性
+    /*console.log($("img").attr("src"));
+    console.log($("img").attr("a",123));*/
+   // prop ： 经常用于input框改变元素属性；
+    //$("input")
+    // addClass
+    // removeClass
+    // 如果存在这个类，就删除，没有就新增；
+    // $("p").toggleClass("first")
+    // html : 可以获取内容；还可以设置内容； //innerHTML:可以识别标签
+    // text : innerText : 不可以识别标签；
+    // val : 获取或者设置值都可以
+    console.log($("p").html());
+    $("p").html("<a></a>")
+    console.log($("input").eq(1).val("中国"));
+
+</script>
+</body>
+</html>

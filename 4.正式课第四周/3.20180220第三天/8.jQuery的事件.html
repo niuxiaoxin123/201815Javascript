@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="width:100px;height:100px;background: red;border: 10px;padding:10px"></div>
+<script src="jquery-1.11.3.js"></script>
+<script>
+    // jQuery中的事件，不需要带on;把方法直接传给事件的回调函数；
+    /*$("div").click(function () {
+        alert(100)
+    })*/
+    $("div").mouseover(function () {
+
+    })
+    window.onload = function () {
+        
+    }
+    // ready
+    $(document).ready(function(){});// 当页面的所有的DOM加载完成之后，执行ready 的回调函数；
+</script>
+</body>
+</html>

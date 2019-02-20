@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //
+    (function () {
+        // 通过数组获取到数组原型上的方法；给当前作用域下的变量；方便下面封装方法直接调用这些方法；
+        var deletedIds = [];
+        var slice = deletedIds.slice;
+        var concat = deletedIds.concat;
+        var push = deletedIds.push;
+
+        var  version = "1.11.3";// 版本号；
+        // jQuery 这是一个函数；返回一个一个init的实例；init的实例可以使用jQuery的原型；
+        // 在jQuery中return一个init 的实例原因是防止new jQuery产生的死循环；
+        var jQuery = function( selector, context ) {
+            // The jQuery object is actually just the init constructor 'enhanced'
+            // Need init if jQuery is called (just allow error to be thrown if not included)
+            return new jQuery.fn.init( selector, context );
+        }
+        //  对象       函数
+        // 把jQuery的原型给了jQuery的一个fn属性；
+        jQuery.fn = jQuery.prototype = {
+            constructor:jQuery,
+            // 这里的方法只有jQuery 的实例可以调用这里的方法；
+            toArray:function () {
+
+            },
+            get:function () {
+
+            },
+            eq:function () {
+
+            }
+        }
+        // 在jQuery的私有属性上和jQuery的原型上新增一个extend方法；这个方法用来扩展jQuery私有属性和jQuery的原型；
+        jQuery.extend = jQuery.fn.extend = function() {
+
+        }
+        // 把jQuery.extend传来对象的键值对放在jQuery这个对象上；
+        // jQuery.fn.extend() 是把方法扩展到jQuery 的原型上；
+        jQuery.extend({
+            isFunction: function( obj ) {
+                return jQuery.type(obj) === "function";
+            },
+            isArray: Array.isArray || function( obj ) {
+                return jQuery.type(obj) === "array";
+            }
+        });
+        // init是一个函数；
+        init = jQuery.fn.init = function( selector, context ) {}
+        // init的原型指向jQuery的原型；
+        init.prototype = jQuery.fn;
+        // 把jQuery 这个类赋值给全局下的$和jQuery属性；
+        window.jQuery = window.$ = jQuery;
+    })();
+    $().prev();
+    $.isFunction();
+
+    function jQuery() {
+
+    }
+    jQuery.fn1=function () {
+
+    }
+    var h = new jQuery();
+    h.fn1();
+
+
+
+
+
+
+</script>
+</body>
+</html>

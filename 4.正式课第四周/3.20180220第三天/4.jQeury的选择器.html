@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="brother">
+    <p></p>
+    <ul>
+        <p></p>
+    </ul>
+</div>
+<div id="box"></div>
+<div class="a"></div>
+<script src="jquery-1.11.3.js"></script>
+<script>
+    //var box = document.getElementById("box");
+    // jQuery(selector)
+    // 1.id  #
+    //$("#box")// 返回一个jQuery 的实例；可以调用jQuery原型上的方法；
+    // prev : 上一个哥哥元素节点
+    // addClass： 新增class 类名
+    // index： 获取当前元素在兄弟元素中的索引位置；
+    /*console.log($("#box").prev().addClass("bg"));
+    console.log($("#box").index());*/
+    // 2.元素标签
+    // $ : 可以将原生的DOM对象转换成jQuery的实例；
+    // console.log($($("div")[1]).prev());
+    // 3.class   $(".名字")
+
+    //console.log($(".a"));
+    // 4.多个选择器
+    // 5后代选择器
+    // 6. 父>子
+
+    $("div p")
+    $("div>p")
+
+    // :first : 第一个
+    // :even : 索引是偶数的元素
+    // : odd: 索引是奇数的元素
+    // : eq(1) : 获取对应的索引的元素
+
+
+</script>
+</body>
+</html>

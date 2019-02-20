@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 动画 ： 定时器  样式；
+    // utils.css : getCss   setGroupCss  setCss
+    // animate
+    // opacity :1   0.2   -0.8
+    function linear(t,b,c,d) {
+        return t/d*c+b;
+    }
+    // utils.css
+
+    // curEle : 具有动画的元素
+    // target : 代表动画的目标位置 {left:500,top:300}
+    // duration : 动画的总时间
+    // callBack : 当动画结束之后，要执行的回调函数；
+
+    // 思路；
+    // 1. 获取和计算curEle的初始的位置和变化的位置
+    // 2. 通过target目标这个对象计算begin和change
+    // 3. 通过定时器设置元素的样式
+    function animate(curEle,target,duration,callBack){
+        var begin = {};
+        var change = {};
+        // key ： 属性名【字符串】
+        for(var key  in  target){
+            begin[key] = utils.css(curEle,key);
+            change[key] = target[key] - begin[key];
+        }
+        // 定时器
+        var interval =0;
+        curEle.timer = setInterval(function () {
+            interval+=17;
+            if(interval>=duration){
+                utils.css(curEle,target);
+                clearInterval(curEle.timer);
+                typeof callBack==="function"?callBack():null;
+                return;
+            }
+            for(var key in target){
+                var  cur = linear(interval,begin[key],change[key],duration);
+                utils.css(curEle,key,cur);
+            }
+        },17)
+    }
+
+
+
+
+
+</script>
+</body>
+</html>
