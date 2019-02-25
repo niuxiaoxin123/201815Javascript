@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width:100px;
+            height:100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<script>
+    window.onload = function () {
+        var box = document.getElementById("box");
+        console.log(box);
+    }
+</script>
+<div id="box"></div>
+<input type="text" id="username">
+<script>
+    // 事件 【事件对象、DOM2级事件】  案例【拖拽、放大镜，弹性小球、照片墙】  发布订阅模式；
+    // 事件 : 指的是元素天生自带的一种行为；
+    var box = document.getElementById("box");
+    var user = document.getElementById("username");
+    // 给box的某些行为添加监听者；当某些操作触发这些天生的行为时，那么绑定的这些监听者也会随着被执行；
+    // 给box的onclick事件行为绑定了一个方法；不同的事件行为相互之间不受影响；当事件行为绑定的不是一个函数时，事件行为一样被触发，只是没有任何的操作而已；
+    /*box.onclick = function () {
+        console.log(100);
+    }
+    box.onmouseover = function () {
+        console.log(200);
+    }*/
+    // 常见的事件行为： onclick  onmouseover  onmouseout onmouseenter onmouseleave  onmousemove onmousedown  onmouseup   onload  onscroll onkeyup  onkeydown
+    // input  : onfocus input框得到鼠标焦点就会触发的函数；
+    // onblur : 失去鼠标焦点会执行；
+    // onchange : 当input内容发生改变；
+    // oninput :当内容每变化一次，就会触发一次；
+
+    // ontouchstart ontouchmove ontouchend : 移动端事件；
+    /*box.onmousemove = function () {
+        console.log(1);
+    }*/
+    // onkeydown 获取的是当前input框中键盘按下之前的值；onkeyup 是键盘按下之后最新的值；
+    /*user.onkeydown = function () {
+        console.log(this.value);// ""
+    }
+    user.onkeyup = function(){
+        console.log(this.value)//"y"
+    }*/
+    // onfocus : input框得到鼠标焦点就会触发的函数；
+   /* user.onfocus = function () {
+        console.log(100);
+    }
+    user.onclick = function () {
+        console.log(300);
+    }
+    user.onblur = function () {
+        console.log("郜大哥喜欢")
+    }*/
+ /*   user.onchange = function () {
+        console.log("一百万个可能")
+    }
+    user.oninput = function () {
+        console.log("出山")
+    }*/
+
+ // onload ： 图片加载成功；当DOM结构都加载完毕，触发该事件；
+    /*window.onload=function () {
+    }
+    $(document).ready(function () {
+        
+    })*/
+</script>
+</body>
+</html>

@@ -242,7 +242,6 @@
         }
         // 执行本次动画之前 清除上次动画
         curEle.zfTimer? clearInterval(curEle.zfTimer) : null;
-
         var begin = {}; // 存储元素执行动画前 相应属性初始状态
         var change = {}; // 存储元素执行动画 相应属性状态变化值
         for(var key in target) {

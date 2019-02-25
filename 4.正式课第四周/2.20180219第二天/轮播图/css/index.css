@@ -44,3 +44,22 @@ ul{
 #focus li.select{
     background: red;
 }
+#left,#right{
+    display: block;
+    width:30px;
+    height:50px;
+    text-align: center;
+    line-height: 50px;
+    color:white;
+    background: rgba(0,0,0,0.3);
+    position: absolute;
+    top:50%;
+    margin-top: -25px;
+    text-decoration: none;
+}
+#left{
+    left:0;
+}
+#right{
+    right:0;
+}

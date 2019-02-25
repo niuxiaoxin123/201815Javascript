@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //JS知识点： 重复；
+    // es6 :
+    //  1.let  const
+    //  定义变量、for;
+    //  2. 解构赋值；
+    //    数组的解构和对象的解构；
+    //  3. 数组的Array.from   Array.of
+    //  4. set
+    //      去重；
+    //  5. 函数的扩展；
+    //   1. 函数参数扩展： 可以赋默认值；解构赋值
+    //   2. 箭头函数；
+    //     1) 形式
+    let  fn = function(num){return  num};
+    let   f=num=>num;
+    //     2) : 执行：1. 没有this；会指向上一级作用域的this指向；2. 没有arguments  ...【剩余运算符】 3. 不能被new  4.不能作为Generator函数，不能使用yield命令；
+
+    // class ： 声明一个类；
+    class  Fn{
+        constructor(){
+            this.a = 100;
+        }
+        getC(){
+            // 是一个普通的函数
+            // 类原型上的方法；
+        }
+    }
+
+    class F extends Fn{// 继承父类私有和公有；
+        constructor(){
+            super();// 调用父级的构造器；继承父类身上的属性和方法；
+            this.a = 100;
+        }
+    }
+
+    // 动画 ： 定时器和样式；
+    // 1. 固定步长的动画
+    // 2. 固定时间
+    // 3. 匀速动画
+    // 4.多方向的动画
+    // 5. 封装动画
+
+    function linear(t,b,c,d) {
+        return t/d*c+b;
+    }
+    // 1. 开始和变化的值；
+    // 2. 定时器设置当前最新的位置；
+    // 3. 时间和匀速运动公式计算出最新盒子的位置；然后设置css;
+    // 4. 当目标时间，设置最终的位置；
+    function animate(curEle,target,duration,callBack) {
+
+    }
+    // 轮播图;
+    // 轮播图原理： 通过设置step控制当前的显示图片；
+
+    // jquery
+    // // 1. jquery 核心原理；
+    function jQuery() {
+        return new jQuery.prototype.init()
+    }
+    jQuery.extend=jQuery.prototype.extend=function (obj) {
+    }
+    jQuery.extend({
+        css:function () {
+        },
+        fadeIn:function () {
+        }
+    });
+    window.jQuery = window.$= jQuery;
+
+    // 选择器
+    // 方法和属性  ；attr  prop offset  css  addClass
+    // 动画 slideUp  slideDown  slideToggle show  hide  fadeIn  fadeOut  stop   animate
+    //  jquery的渐隐渐现的轮播图；
+
+    // swiper插件；4
+    new  Swiper({
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

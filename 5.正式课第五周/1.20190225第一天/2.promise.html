@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // promise : 承诺 Promise 一定是一个类；
+    // Promise 是window中的一个属性名，其属性值是一个函数；
+    // Promise 是异步编程的一种解决方案；
+    // Promise : 1.是一个容器，存储着未来结束的事件；2. Promise 知道异步操作的消息；
+    // Promise的三个状态：pending(进行时) fulfilled(已成功) rejected(失败)；// 只有异步的操作可以改变promise的状态
+    // Promise 状态一旦发生改变，将无法再次修改；pending--> fulfilled    pending---> rejected;
+
+    // 优点： 可以将异步的操作以同步的方式显示出来；
+    // 异步：
+    //console.log(window.Promise);
+
+    /*function a(){
+        return function (){
+            return function () {
+                console.log(100);
+            }
+        }
+    }
+    a()()();*/
+    // 第二个请求需要在第一个请求成功之后，再去发送第二个请求；
+   /* var data ;
+    $.ajax({
+        url:"",
+        async:true,
+        success:function(val){
+            $.ajax({
+                url:"",
+                data:data,
+                success:function () {
+                    $.ajax({
+                        // 回调地狱；
+                    })
+                }
+            })
+        }
+    })*/
+
+
+    // 创建一个promise的实例；、、
+
+    // Promise 传递的回调函数是同步的；当new Promise创建实例，就会立即调用；
+    const promise = new Promise(function (resolve,reject) {
+        /*if([]==""){// 如果此处的条件成立，执行resolve;不成立，执行reject；
+            resolve();
+        }else{
+            reject();
+        }*/
+        console.log(1);
+        setTimeout(function () {
+            if(Math.random()>0.5){
+                resolve(100)
+            }else{
+                reject();
+            }
+        },2000)
+    });
+    console.log(promise);
+    console.log(2);
+    // then方法可以指定当异步操作完成时resolve或reject的回调函数；
+    promise.then(function (val) {
+        console.log(3);
+        console.log(val);
+        console.log("成功")
+        console.log(promise);
+    },function () {
+        console.log("失败")
+        console.log(promise);
+    });
+    console.log(4);
+
+
+    // promise 版的ajax;
+    // 三个请求：
+    // 1. 第一个请求 0.3s;
+    // 2. 第二个请求 0.4s;
+    // 3. 第三个请求0.8s;
+    // 同步   1.5s;
+    // 异步： 0.8s;
+    
+    
+    function getJSON(url) {
+        const promise = new Promise(function (resolve,reject) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("get",url,true);
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState!==4){
+                    return;
+                }
+                if(xhr.status==200){
+                    resolve(JSON.parse(xhr.responseText))
+                }else{
+                    reject()
+                }
+            }
+            xhr.send(null)
+        })
+        return promise;
+    }
+    getJSON("data.json").then(function(val){
+        for(let i=0;i<val.length;i++){
+
+        }
+    })
+
+
+
+</script>
+</body>
+</html>

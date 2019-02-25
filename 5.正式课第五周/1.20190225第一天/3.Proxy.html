@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // Proxy : 代理器；对对象架设了一层拦截；当获取对象中键值对时，必须经过这层拦截；可以对外界访问进行过滤和改写；
+    var obj = new Proxy({a:1,b:2},{
+        get:function (target,key,reciver) {
+            // 当获取obj下a属性名对应的属性值时，会触发get方法；
+            //如果想获取目标属性名对应的属性值，需要在get中将其属性值return出去；
+            console.log(target);
+            console.log(key);
+            console.log(reciver);
+            console.log("get")
+            return 1000;
+        },
+        set:function () {
+            // 当设置当前对象下属性名的属性值就会触发set方法；
+            console.log("set")
+        }
+    });
+    console.log(obj.a);
+    console.log(obj.b);//
+    //obj.a =100;
+    //console.log(obj);
+
+
+</script>
+</body>
+</html>
