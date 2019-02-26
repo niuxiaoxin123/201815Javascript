@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 1.Promise  : 解决异步的一种方案；解决回调地狱；
+    //  Promise : 三个状态： pending  fulfilled   rejected
+    // 状态一旦凝固，不能发生更改；
+    // Promise 可以根据异步操作的消息进行不同的处理；
+    const promise = new Promise(function (resolve,reject) {
+        setTimeout(function () {
+            if(Math.random()>0.5){
+                resolve();
+            }else{
+                reject();
+            }
+        },1000)
+    })
+    // then : 将事件放进promise容器中，未来的某一时刻会执行；
+    promise.then(function () {
+        // 成功执行的事件
+    },function () {
+        // 失败执行的事件
+    })
+    console.log(30);
+    //  2. Proxy : 拦截
+    // Object.defineProperty;
+    var obj = new Proxy({a:1},{
+        get:function (target,key,reciver) {
+            // 如果获取属性名对应的属性值，都会调用get这个方法
+            // target: Proxy 的第一个参数
+            // key：属性名
+            // receiver: Proxy的实例；
+            return 100;
+        },
+        set:function () {
+            // 如果设置属性名对应的属性值，都会调用set这个方法
+        }
+    });
+    console.log(obj.a);
+
+
+    // 事件 ： 天生具有的一种行为；
+    // onclick  onmousemover  ...onmousedown onmousemove  onmouseup
+    // onkeyup onkeydown  onfocus  onblur   onchange  oninput
+    //  onload  onscroll
+    // ontouchstat  ontouchmove  ontouchend
+
+
+</script>
+</body>
+</html>

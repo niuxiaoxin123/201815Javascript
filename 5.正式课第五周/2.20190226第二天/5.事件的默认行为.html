@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="http://baidu.com" id="baidu">百度一下</a>
+<script>
+    //1. 常见的事件默认行为： a 标签默认跳转；
+    //2. form  button submit : 点击submit的按钮会默认将输入框内容拼接到一起发送请求；
+    var  baidu = document.getElementById("baidu");
+    baidu.onclick = function(e){
+        e = e || window.event;
+        e.preventDefault = e.preventDefault || function () {
+            e.returnValue=false;
+        }
+        console.log(e);
+        // e.preventDefault : 阻止事件的默认行为；
+        e.preventDefault();
+        // 在IE8以下；e.preventDefault不存在；那么可以更改returnValue的属性值是false，同样可以阻止事件的默认行为；
+
+        console.log(100);
+    }
+</script>
+</body>
+</html>

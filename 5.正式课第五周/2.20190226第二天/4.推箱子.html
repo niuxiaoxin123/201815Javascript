@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width:100px;
+            height:100px;
+            background: lightcoral;
+            text-align: center;
+            line-height: 100px;
+            position: absolute;
+            left:200px;
+            top:50px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">推推推</div>
+<!--<input type="text" id="input">-->
+<script>
+   /* var input = document.getElementById("input");
+    input.onkeyup = function (e) {
+        // 键盘事件;有一个keyCode 属性；其中的属性值可以判断当前点击的是哪一个按键；
+        // enter : keyCode :13
+        // 左 -> 上--> 右--> 下： 37  38  39  40；
+        // A --Z: 65 --90
+        console.log(e);
+    }*/
+   var box = document.getElementById('box');
+   window.onkeyup = function (e) {
+       switch(e.keyCode){
+           case 37:
+               box.style.left = parseFloat(getComputedStyle(box).left)-10 +'px';
+               break;
+           case 38:
+               box.style.top = parseFloat(getComputedStyle(box).top)-10 +'px';
+               break;
+           case 39:
+               box.style.left  = parseFloat(getComputedStyle(box).left)+10 +'px';
+               break;
+           case 40:
+               box.style.top  = parseFloat(getComputedStyle(box).top)+10 +'px';
+               break;
+           default:
+               break;
+       }
+   }
+
+</script>
+</body>
+</html>

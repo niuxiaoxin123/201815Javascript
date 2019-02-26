@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{width:100px;
+            height:100px;
+        }
+
+        #box{
+            width:100px;
+            height:100px;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div id="box"></div>
+<script>
+    var box = document.getElementById("box");
+    box.onclick = function (e) {
+        // e : 事件对象；
+        // 在IE8及以下，把事件信息放在了window.event的属性上；
+
+        // 当触发元素的事件行为时，浏览器会给当前的方法默认传进一个对象，这个对象中包含了此次事件的一些信息；那个这个对象就是事件对象；
+        console.log(window.event);
+        e = e || window.event;
+        e.pageX=e.pageX||e.clientX + document.documentElement.scrollLeft;
+        e.pageY=e.pageY||e.clientY + document.documentElement.scrollTop;
+        e.target = e.target || e.srcElement;
+        // clientX  : 当前鼠标点击的位置距离可视窗口左边的距离
+        // clientY ： 当前鼠标点击的位置距离可视窗口上边的距离
+
+        // pageX : 当前鼠标点击的位置距离整个页面左边框的距离
+        // pageY : 当前鼠标点击的位置距离整个页面上边框的距离
+
+        // offsetX : 当前鼠标点击的位置距离盒子左边框的距离
+        // offsetY : 当前鼠标点击的位置距离盒子上边框的距离
+
+        // target : 当前的事件源；当前触发这个事件的源头；
+        // type: 当前事件类型；
+    }
+
+
+</script>
+</body>
+</html>

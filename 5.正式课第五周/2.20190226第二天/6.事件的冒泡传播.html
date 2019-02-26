@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #outer{
+            width:300px;
+            height:300px;
+            margin:100px auto;
+            background: red;
+        }
+        #inner{
+            width:200px;
+            height:200px;
+            margin: auto;
+            background: yellowgreen;
+        }
+        #center{
+            width:100px;
+            height:100px;
+            background: pink;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="outer">
+    <div id="inner">
+        <div id="center">
+
+        </div>
+    </div>
+</div>
+<script>
+    var outer = document.getElementById("outer");
+    var inner = document.getElementById("inner");
+    var center = document.getElementById("center");
+    outer.onclick = function () {
+        console.log("outer")
+    }
+    inner.onclick = function () {
+        console.log("inner")
+    }
+    center.onclick = function (e) {
+        e = e || window.event;
+        // 阻止事件的默认行为
+        e.preventDefault = e.preventDefault || function () {
+            e.returnValue = false;
+        }
+        // 阻止事件的冒泡传播
+        e.stopPropagation = e.stopPropagation || function () {
+            e.cancelBubble=true;
+        }
+        e.stopPropagation();
+        console.log("center")
+    }
+    // 事件冒泡传播： 给当前元素的子孙元素的事件行为绑定方法，当触发子孙元素身上的事件时，当前元素对应的事件行为也会随着触发；这种事件从内向外传播执行的方式就是事件冒泡传播；
+
+    // 阻止事件的冒泡传播；  e.stopPropagation();
+
+    // onmouseover   onmouseout
+    // onmouseenter  onmouseleave
+    // 区别： onmouseenter和onmouseleave不具有事件冒泡传播的机制；
+    outer.onmouseenter= function () {
+        console.log(100);
+    }
+    inner.onmouseenter = function () {
+        console.log(200);
+    }
+</script>
+</body>
+</html>

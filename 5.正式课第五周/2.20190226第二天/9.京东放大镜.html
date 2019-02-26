@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding:0;
+        }
+        div{
+            width:350px;
+            height:350px;
+            border:1px solid black;
+            float:left;
+            margin:15px;
+        }
+        #bigBox{
+            display: none;
+            overflow: hidden;
+            position: relative;
+        }
+        #bigBox img{
+            position: absolute;
+        }
+        #box{
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <img src="img/iphone.jpg" alt="">
+</div>
+<div id="bigBox">
+    <img src="img/iphone_big.jpg" alt="">
+</div>
+<script>
+    var oBox = document.getElementById("box");
+    var bigImg = document.getElementsByTagName("img")[1];
+    //当鼠标划上时，创建小盒子；把小盒子放进页面；让大盒子显示；
+    oBox.onmouseenter = function () {
+
+    }
+    // 当鼠标移动时，让小盒子移动，并且让大盒子中的图片跟着鼠标移动而移动；比例值是1:2;并且方向相反；
+    oBox.onmousemove = function () {
+
+    }
+    // 当鼠标移出，小盒子消失大盒子也消失；
+    oBox.onmouseleave = function () {
+        
+    }
+</script>
+</body>
+</html>

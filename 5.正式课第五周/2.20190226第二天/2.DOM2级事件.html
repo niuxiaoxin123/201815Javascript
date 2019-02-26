@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width:100px;
+            height:100px;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    // DOM0级事件；如果给同一个元素的同一个事件行为绑定同时绑定两个方法，那么后面绑定的方法会覆盖前面的那个方法；
+    var  box = document.getElementById("box");
+   /* box.onclick = function () {
+        console.log(1);
+    }
+    box.onclick = function () {
+        console.log(2);
+    }*/
+    function fn() {
+        console.log(this);
+        console.log(1);
+    }
+    function fn2() {
+        console.log(2);
+    }
+    // DOM2级事件绑定
+    // addEventListener : 添加事件的监听者
+    // addEventListener : 参数1）: 事件类型  参数2）： 监听者 参数3): 布尔值
+    // DOM2级事件绑定： 可以给同一个元素的同一个事件行为绑定多个方法；谁先绑定谁先执行；
+    // 给同一个元素的同一个事件行为不能重复绑定同一个方法；
+    box.addEventListener("click",fn,false);// false : 事件的冒泡阶段执行
+    box.addEventListener("click",fn2,false);// true：事件的捕获阶段执行；
+
+    // 2.attachEvent;
+    // 参数1： 带on的事件行为
+    // 参数2： 要绑定的函数；
+   /* box.attachEvent("onclick",fn)
+    box.attachEvent("onclick",fn)*/
+
+    // 1. 顺序问题； attachEvent绑定的事件方法顺序是倒序的；
+    // 2. 重复绑定的问题；可以给同一个元素的同一个事件绑定相同的方法；
+    // 3. 函数方法中的this指向window，不指向绑定的那个元素；
+
+    // 元素内置类： HTMLDIVElement-->HTMLElement-->Element-->Node-->EventTarget--->Object
+
+
+</script>
+</body>
+</html>
