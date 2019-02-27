@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // DOM2级事件的绑定
+    // addEventListener是一个EventTarget 这个类原型上的方法；
+    // 元素.addEventListener(type,fn,false);
+    // type: 去掉on的事件类型 "click" "mouseover"
+    // fn  : 函数
+    // false : 冒泡阶段执行   true  ： 捕获阶段执行
+    // DOM2级比DOM0级事件：可以给同一个元素的同一个事件绑定多个监听者；
+    // addEventListener只能在标准浏览器下使用；指的是IE8以上
+    // attachEvent(type,fn);
+    // attachEvent和addEventListener:
+    // 1) : 倒序执行  2) this指向window  3) 重复绑定;
+
+    // 事件对象: 当事件行为绑定监听者执行时，浏览器会默认传给该监听者一个对象；这个对象包含了该事件执行的一些信息；
+    //事件对象中属性
+    // 1. clientX  clientY :鼠标距离可视窗口左边的距离
+    // 2. pageX   pageY  : 鼠标距离页面的左边框的距离
+    // 3. offsetX  offsetY   : 鼠标距离事件源的左边框的距离；
+    // 4. target 事件源
+    // 5. type : 事件类型
+    // 6. preventDefault : 阻止事件的默认行为
+    // 7. stopPropagation : 阻止事件的冒泡传播
+    box.onclick = function (e) {
+        e = e || window.event;
+        e.pageX = e.pageX || e.clientX + document.documentElement.scrollLeft;
+        e.pageY = e.pageY || e.clientY + document.documentElement.scrollTop;
+        e.target = e.target || e.srcElement;
+        e.preventDefault = e.preventDefault || function () {
+            e.returnValue = false;
+        }
+        e.stopPropagation= e.stopPropagation || function () {
+            e.cancelBubble=true;
+        }
+    }
+
+    // 事件阶段 ：
+    // 捕获阶段 ===> 目标阶段 ====> 冒泡阶段
+    // 捕获： 从外向里   目标阶段： 跟绑定顺序有关   冒泡： 从里向外；
+    // DOM0级事件绑定都属于冒泡阶段执行；
+
+
+
+
+
+
+    var obj ={};
+    obj.addEventListener()
+
+
+</script>
+</body>
+</html>

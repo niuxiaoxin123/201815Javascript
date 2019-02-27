@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .box{
+            width:500px;
+            background: linear-gradient(-45deg,lightpink,lightblue,lightyellow,lightcoral);
+        }
+        li  span{
+            height:30px;
+            display: inline-block;
+            line-height: 30px;
+        }
+        li  span.close:before{
+            content:"+";
+            color:red;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        li  span.open:before{
+            content:"-";
+            color:red;
+            font-weight: bold;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<ul class="box" id="box">
+    <li><span>第一级菜单</span>
+        <ul>
+            <li><span>第二级菜单</span>
+                <ul>
+                    <li><span>第三级菜单</span>
+                        <ul>
+                            <li><span>第四级菜单</span></li>
+                            <li><span>第四级菜单</span></li>
+                        </ul>
+                    </li>
+                    <li><span>第三级菜单</span></li>
+                    <li><span>第三级菜单</span></li>
+                    <li><span>第三级菜单</span></li>
+                </ul>
+            </li>
+            <li><span>第二级菜单</span>
+                <ul>
+                    <li><span>第三级菜单</span></li>
+                    <li><span>第三级菜单</span></li>
+                    <li><span>第三级菜单</span></li>
+                    <li><span>第三级菜单</span></li>
+                </ul>
+
+            </li>
+            <li><span>第二级菜单</span></li>
+            <li><span>第二级菜单</span></li>
+        </ul>
+    </li>
+    <li><span>第一级菜单</span></li>
+    <li><span>第一级菜单</span></li>
+    <li><span>第一级菜单</span></li>
+</ul>
+<script>
+    var box = document.getElementById("box");
+    var spans = box.getElementsByTagName("span");
+    // 循环所有的span;根据当前span下是否有兄弟元素节点并且是ul的这个条件判断添加close,还是添加open;
+     for(var i=0;i<spans.length;i++){
+         var curSpan = spans[i];
+         var next = curSpan.nextElementSibling;
+         if(next&&next.nodeName==="UL"){
+             curSpan.classList.add("close")
+             next.style.display="none";
+         }else{
+             curSpan.classList.add("open");
+         }
+     }
+     // 实现点击收起来和展开状态
+    box.onclick = function (e) {
+         e = e || window.event;
+         var cur = e.target || e.srcElement;
+         var  next = e.target.nextElementSibling;
+         if(next){
+             // 根据class是close还是open，判断收起或展开；
+             // 如果是close,将兄弟显示，自己class变成open；
+             // 如果是open,将当前元素下所有Ul隐藏；并且让自己class变成close;
+             if(cur.className==="close"){
+                 next.style.display="block";
+                 cur.className="open";
+             }else if(cur.className==="open"){
+                 var  uls = next.getElementsByTagName("ul");
+                 for(var i=0;i<uls.length;i++){
+                     var  curUl = uls[i];
+                     curUl.style.display="none";
+                     curUl.previousElementSibling.className="close";
+                 }
+                 next.style.display="none"
+                 cur.className="close";
+             }
+         }
+    }
+
+
+</script>
+</body>
+</html>

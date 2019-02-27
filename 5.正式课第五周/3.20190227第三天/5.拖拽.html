@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width:300px;
+            height:300px;
+            background: pink;
+            position: absolute;
+            /*left:50%;
+            top:50%;
+            margin-left:-150px;
+            margin-top:-150px;*/
+            /*top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            margin:auto;*/
+
+        }
+        #box h3{
+            height:30px;
+            line-height: 30px;
+            background: lightblue;
+            color:white;
+            text-align: center;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <h3 id="title">珠峰培训-15期</h3>
+</div>
+<script>
+    var box = document.getElementById("box");
+    var title = document.getElementById("title");
+    // 在JS中让当前盒子居中；
+    var  winW = document.documentElement.clientWidth;
+    var  boxW = box.offsetWidth;
+    var  winH = document.documentElement.clientHeight;
+    var  boxH = box.offsetHeight;
+    var  maxL = winW-boxW;
+    var  maxT = winH-boxH;
+    box.style.left = winW/2-boxW/2+"px";
+    box.style.top = winH/2-boxH/2+ "px";
+
+    // onmousedown : 鼠标按下
+    // 记录鼠标当前的位置；和盒子当前的位置；
+    //console.log(box.style.left);
+    title.onmousedown = function (e) {
+        e = e || window.event;
+        // 记录鼠标点击时刻的位置；距离可视窗口横向和纵向的距离；把值存储在当前元素上；
+        this["strX"] = e.clientX;
+        this["strY"] = e.clientY;
+        // 记录盒子当前时刻的left值和top值；
+        this["strL"] = parseFloat(box.style.left);
+        this["strT"] = parseFloat(box.style.top);
+        // 需要绑定move和up事件；
+        title.onmousemove=move;
+        title.onmouseup=up;
+    }
+    // 得到鼠标水平和竖直方向移动的距离 + 盒子初始的位置；设置盒子最新的位置；
+    function move(e) {
+        e = e || window.event;
+        // 鼠标移动的距离
+        var curL = e.clientX-this["strX"];
+        var curT = e.clientY-this["strY"];
+        var  l = this["strL"] + curL;
+        var  t = this["strT"] + curT;
+        if(l>=maxL){
+            l = maxL;
+        }
+        if(l<=0){
+            l =0;
+        }
+        if(t>=maxT){
+            t=maxT;
+        }
+        if(t<=0){
+            t=0;
+        }
+        box.style.left = l + "px";
+        box.style.top = t + "px";
+    }
+    // 清楚onmousemove和onmouseup
+    function up() {
+        this.onmousemove=null;
+        this.onmouseup=null;
+    }
+
+
+</script>
+</body>
+</html>

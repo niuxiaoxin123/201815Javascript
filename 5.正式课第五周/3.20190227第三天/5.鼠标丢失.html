@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            width:100%;
+            height:100%;
+        }
+        #box{
+            width:300px;
+            height:300px;
+            background: pink;
+            position: absolute;
+
+        }
+        #box h3{
+            height:30px;
+            line-height: 30px;
+            background: lightblue;
+            color:white;
+            text-align: center;
+            cursor: move;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <h3 id="title">珠峰培训-15期</h3>
+</div>
+<script>
+    var box = document.getElementById("box");
+    var title = document.getElementById("title");
+    // 在JS中让当前盒子居中；
+    var  winW = document.documentElement.clientWidth;
+    var  boxW = box.offsetWidth;
+    var  winH = document.documentElement.clientHeight;
+    var  boxH = box.offsetHeight;
+    var  maxL = winW-boxW;
+    var  maxT = winH-boxH;
+    box.style.left = winW/2-boxW/2+"px";
+    box.style.top = winH/2-boxH/2+ "px";
+
+    // 鼠标丢失： 由于鼠标滑动过快，导致浏览器计算的速度跟不上滑动的速度；这样会引起鼠标滑出事件源；当鼠标抬起时，不能再触发事件源的onmouseup事件；不能清除盒子onmousemove事件行为绑定的方法；
+    // 1. setCapture : 在火狐和IE下，使用这个方法；可以让鼠标和盒子绑定在一起；保证不丢失，脱离盒子；
+
+    // 2. 事件委托；
+    title.onmousedown = function (e) {
+        e = e || window.event;
+        // 记录鼠标点击时刻的位置；距离可视窗口横向和纵向的距离；把值存储在当前元素上；
+        this["strX"] = e.clientX;
+        this["strY"] = e.clientY;
+        // 记录盒子当前时刻的left值和top值；
+        this["strL"] = parseFloat(box.style.left);
+        this["strT"] = parseFloat(box.style.top);
+        // 需要绑定move和up事件；
+        console.log(this.setCapture);
+        if(this.setCapture){
+            this.setCapture();
+            title.onmousemove=move;
+            title.onmouseup=up;
+        }else{
+            // 利用了事件委托给body;即便鼠标滑动快，脱离目标元素，但是仍然会触发body的onmousemove事件；body的onmousemove 执行会紧接着让move执行；计算盒子最新时刻的位置；
+            var that = this;
+            document.body.onmousemove = function (e) {
+                move.call(that,e)
+            }
+            document.body.onmouseup = function (e) {
+                up.call(that,e)
+            }
+        }
+
+    }
+    // 得到鼠标水平和竖直方向移动的距离 + 盒子初始的位置；设置盒子最新的位置；
+    function move(e) {
+        console.log(e);
+        e = e || window.event;
+        // 鼠标移动的距离
+        var curL = e.clientX-this["strX"];
+        var curT = e.clientY-this["strY"];
+        var  l = this["strL"] + curL;
+        var  t = this["strT"] + curT;
+        if(l>=maxL){
+            l = maxL;
+        }
+        if(l<=0){
+            l =0;
+        }
+        if(t>=maxT){
+            t=maxT;
+        }
+        if(t<=0){
+            t=0;
+        }
+        box.style.left = l + "px";
+        box.style.top = t + "px";
+    }
+    // 清楚onmousemove和onmouseup
+    function up() {
+        if(this.setCapture){
+            // releaseCapture ： 解绑元素的事件和鼠标的关系；
+            this.releaseCapture();
+            this.onmousemove=null;
+            this.onmouseup=null;
+        }else{
+            document.body.onmousemove = null;
+            document.body.onmouseup = null;
+        }
+
+    }
+
+
+</script>
+</body>
+</html>
