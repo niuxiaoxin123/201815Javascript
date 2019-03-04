@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            width:100%;
+            height:100%;
+        }
+        #box,#box1{
+            position: absolute;
+            width:100px;
+            height:100px;
+            border-radius: 50%;
+            background: url("./img/0.jpg") 100% 100% no-repeat;
+            background-size: 100%;
+            top:100px;
+            cursor: move;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        #box1{
+            top:300px;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<div id="box1"></div>
+<script>
+    var box = document.getElementById("box");
+    var box1 = document.getElementById("box1");
+    // 面向对象：
+    function Drag(ele) {
+        // this --> Drag的实例；
+        // 把元素存储到了Drag 的实例上；
+        this.ele = ele;
+        // 在down方法中需要调用实例还需调用元素；所以改变down方法中的this，让其指向实例；
+        this.ele.onmousedown = this.down.bind(this);
+    }
+    Drag.prototype.down = function (e) {
+        //console.log(this); // this--> ele;
+        //console.log(e);
+        e = e || window.event;
+        // 存储鼠标点击那一刻的坐标；并且存储到了点击的元素身上；
+        this["strX"] = e.clientX;
+        this["strY"] = e.clientY;
+        this["strL"] = parseFloat(getComputedStyle(this.ele).left);
+        this["strT"] = parseFloat(getComputedStyle(this.ele).top);
+        document.onmousemove = this.move.bind(this);
+        document.onmouseup = this.up;
+    }
+    Drag.prototype.move = function (e) {
+        // 根据鼠标的变化的距离+ 盒子初始的位置；就是盒子现在的位置
+        // this--> 实例；
+        var changeL = e.clientX - this["strX"];
+        var changeT = e.clientY - this["strY"];
+        this.ele.style.left = this["strL"]+ changeL + "px";
+        this.ele.style.top = this["strT"]+ changeT + "px";
+    }
+    Drag.prototype.up = function () {
+        document.onmousemove = null;
+        document.onmouseup = null;
+    }
+    new Drag(box);
+    new Drag(box1);
+
+
+
+</script>
+</body>
+</html>

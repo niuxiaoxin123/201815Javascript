@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 第五周 ：
+    // 1)es6： Promise  proxy  class
+    // 2)事件： DOM2级事件   事件委托   事件传播(捕获、目标、冒泡)  事件对象
+    // 3)案例 ： 放大镜、拖拽、树形菜单、照片墙；
+    // 4)发布订阅；
+
+    // 1. Promise： 是一个类；promise : 承诺；是解决异步编程的一种编程的方案；
+    // 同步和异步；
+    // 同步：在同一个时间上，只能做一件事；
+    // 异步： 在同一个时间，可以做多个任务；
+    // JS : 线程;单线程；
+    // 浏览器： JS是运行在浏览器中；浏览器是多线程，浏览器可以同一个时间做多个任务；
+    var promise = new Promise(function (resolve,reject) {
+        //console.log(100);// 同步；
+        setTimeout(function () {
+            if(Math.random()>0.5){
+                resolve();// 发布；
+            }
+        },1000)
+    });
+    console.log(1);
+    function Promise(callBack) {
+        callBack();
+    }
+    var p = new Promise();
+    // then: 添加监听者；
+    p.then(function () {
+        // 这个函数会等到异步的成功之后，执行这个函数；
+    },function () {
+
+    });
+    /*$.ajax({
+        // url : 地址；
+        // success: function ;成功之后回调
+        // error : function;失败的回调
+         async :true// 同异步；
+        // data:{} 参数；
+        //type: get post;
+
+    })*/
+
+    // Proxy : 拦截；
+    // class
+    function Fn() {
+    }
+    Fn.prototype.getX= function () {
+    }
+    class Fn{
+        constructor(){
+            this.a =100;
+            this.b =10;
+            let a = 1;
+        }
+        getX(){
+            // 会放在Fn的原型上
+        }
+    }
+    let obj = {
+        fn(){
+        }
+    }
+    class  Fn extends A{
+        constructor(){
+            super();
+        }
+    }
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

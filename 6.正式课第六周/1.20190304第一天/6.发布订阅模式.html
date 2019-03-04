@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    // 发布订阅模式： 先订阅后发布； 也叫自定义事件模式；
+    //
+
+    var  box = document.getElementById("box");
+    function fn1() {
+        console.log("可以泡面了")
+    }
+    function fn2() {
+        console.log("冲咖啡")
+    }
+    // 订阅 ： 
+    function add(curEle,type,fn) {
+        // 给当前的元素新增一个属性名boiling，属性值是空数组；
+        // 如果是第一次订阅事件，给curEle新增一个属性和空数组；
+        if(!curEle[type]){
+            curEle[type] = [];
+        }
+        // 循环遍历；通过循环判断之前是否订阅过；如果已经订阅，就不再次订阅；
+        var ary = curEle[type];
+        for(var i=0;i<ary.length;i++){
+            if(ary[i]===fn){
+               return;
+            }
+        }
+        //  订阅；
+        curEle[type].push(fn);
+    }
+    // 发布；
+    function fire(curEle,type) {
+        var a = curEle[type];
+        for(var i=0;i<a.length;i++){
+            if(typeof a[i]==="function"){
+                a[i]();
+            }
+        }
+    }
+    // 取消订阅
+    function remove(curEle,type,fn) {
+        var  a = curEle[type];
+        for(var i=0;i<a.length;i++){
+            if(a[i]===fn){
+                a[i] = null;
+            }
+        }
+    }
+    add(box,"boiling",fn1)
+    add(box,"boiling",fn2)
+    remove(box,"boiling",fn1)
+
+    setTimeout(function () {
+        fire(box,"boiling")
+    },3000)
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

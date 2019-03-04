@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // DOM2级事件
+    // DOM0级事件  DOM2级事件
+    box.onclick = function () {
+
+    }
+    function fn1() {
+    }
+    // addEventListener : eventTarget 这个类原型上的方法；
+    box.addEventListener("click",fn1,true);
+    box.addEventListener("click",fn2,true);
+
+    box.attachEvent("onclick",fn);
+    box.attachEvent("onclick",fn);
+    //attachEvent 和addEventListener 区别:
+    // 1. 顺序问题  2. this问题  3. 重复绑定；
+
+
+
+
+
+
+</script>
+</body>
+</html>

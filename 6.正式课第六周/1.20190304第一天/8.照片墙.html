@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            width:480px;
+            height:640px;
+            margin: 10px auto;
+            list-style: none;
+            background: yellow;
+            padding:10px;
+            position: relative;
+        }
+        ul li{
+            width:150px;
+            height:150px;
+            float: left;
+            background: yellowgreen;
+            margin: 5px;
+
+        }
+        ul li img{
+            width:100%;
+            height:100%;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            cursor: move;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><img src="img/1.png" alt=""></li>
+    <li><img src="img/2.png" alt=""></li>
+    <li><img src="img/3.png" alt=""></li>
+    <li><img src="img/4.png" alt=""></li>
+    <li><img src="img/5.png" alt=""></li>
+    <li><img src="img/6.png" alt=""></li>
+    <li><img src="img/7.png" alt=""></li>
+    <li><img src="img/8.png" alt=""></li>
+    <li><img src="img/9.png" alt=""></li>
+    <li><img src="img/10.png" alt=""></li>
+    <li><img src="img/11.png" alt=""></li>
+    <li><img src="img/12.png" alt=""></li>
+</ul>
+<script src="event.js"></script>
+<script>
+    var oLis = document.getElementsByTagName("li");
+    // 循环所有的li;加position属性；
+    // 当第一张设置position属性之后，会脱离文档流，第二章图片会占用第一张的位置；所以第二张此时的偏移量又是第一张的；
+    // 由于偏移量已经把margin值计算在内，所以需要清空所有的margin；
+    for(var i=oLis.length-1;i>=0;i--){
+        oLis[i].style.left = oLis[i].offsetLeft+ "px";
+        oLis[i].style.top = oLis[i].offsetTop+ "px";
+        oLis[i].style.position= "absolute";
+        oLis[i].style.margin="0px";
+        new Drag(oLis[i]).add("selfdown",changezIndex).add("selfmove",isHit).add("selfup",change)
+    }
+    var zIndex = 0;
+    function changezIndex() {
+        this.ele.style.zIndex = ++zIndex;
+    }
+    // 碰撞；
+    function isHit() {
+        // 进行碰撞的检测；
+       //this.ele --> 代表当前拖拽的li;
+        var curLi = this.ele;
+        this['hit'] = [];// 定义空数组；存储碰撞的元素；
+        for(var i=0;i<oLis.length;i++){
+            if(curLi === oLis[i])continue;
+            if(curLi.offsetTop+ curLi.offsetHeight<oLis[i].offsetTop || curLi.offsetLeft+curLi.offsetWidth<oLis[i].offsetLeft||curLi.offsetTop>oLis[i].offsetTop+oLis[i].offsetHeight ||curLi.offsetLeft>oLis[i].offsetLeft+oLis[i].offsetWidth){
+                // 只有满足这其中的一个条件，说明这个li不碰撞；
+                oLis[i].style.background="";
+            }else{
+                oLis[i].style.background="pink";
+                this['hit'].push(oLis[i]);
+            }
+        }
+    }
+    // 交换位置
+    function change() {
+        var ary = this['hit'];
+        for(var i=0;i<ary.length;i++){
+            ary[i].distance = Math.pow(ary[i].offsetLeft-this.ele.offsetLeft,2)+Math.pow(ary[i].offsetTop-this.ele.offsetTop,2);
+        }
+        ary.sort(function (a,b) {
+            return a.distance-b.distance;
+        });
+        if(ary.length){
+            // 如果碰撞的数组不为空；
+            this.ele.style.left = ary[0].style.left;
+            this.ele.style.top = ary[0].style.top;
+            ary[0].style.left = this["strL"]+"px"
+            ary[0].style.top = this["strT"]+"px";
+        }else{
+            this.ele.style.left = this["strL"]+"px";
+            this.ele.style.top = this["strT"]+"px";
+        }
+
+    }
+
+
+
+</script>
+</body>
+</html>

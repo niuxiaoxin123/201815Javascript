@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="event.js"></script>
+<script>
+
+    function fn1() {
+        console.log("可以泡面了")
+    }
+    function fn2() {
+        console.log("冲咖啡")
+    }
+    var  rr = new EventFire();
+    rr.add("boiling",fn1)
+    rr.add("boiling",fn2);
+    setTimeout(function () {
+        rr.fire("boiling")
+    },2000)
+</script>
+</body>
+</html>

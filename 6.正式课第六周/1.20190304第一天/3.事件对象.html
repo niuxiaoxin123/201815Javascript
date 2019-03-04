@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 事件对象： 给元素的事件行为绑定方法，那么浏览器会将当前事件触发的信息以参数方式传递给这个方法；这个参数就是事件对象
+    box.onclick = function (e) {
+        // e : 事件对象
+        e = e || window.event;
+        e.target = e.target || e.srcElement;
+        e.pageX= e.pageX || e.clientX + document.documentElement.scrollLeft;
+        e.pageY= e.pageY || e.clientY + document.documentElement.scrollTop;
+        e.stopPropagation = e.stopPropagation || function () {
+            e.cancelBubble = true;
+        }
+        e.preventDefault = e.preventDefault || function () {
+                e.returnValue = false;
+            }
+
+    }
+
+
+
+
+</script>
+</body>
+</html>
