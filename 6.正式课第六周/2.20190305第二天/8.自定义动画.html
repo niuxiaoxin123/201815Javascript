@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #clock{
+            width:150px;
+            height:400px;
+            margin:100px auto;
+            background: url("1.png") no-repeat center center;
+            animation: move  2s  linear  infinite;
+            /*linear  : 匀速  ease-in :加速  ease-out:减速 ease-in-out : 先加速后减速*/
+            transform-origin: top  center;
+            /*  top   center   bottom */
+            /*  left   center   right*/
+        }
+        @keyframes move {
+            0%{
+                /*逆时针旋转是负的*/
+                transform: rotate(-45deg);
+            }
+            25%{
+                transform: rotate(0deg);
+            }
+            50%{
+                transform: rotate(45deg);
+            }
+            75%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(-45deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="clock"></div>
+</body>
+</html>

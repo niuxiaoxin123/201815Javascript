@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width:100px;
+            height:100px;
+        }
+        /*当屏幕宽度大于1000px时，背景是红色；小于1000px,大于800px,背景是绿色，小于800px,背景是黄色*/
+
+        @media all and (max-width: 800px){
+            /*小于800成立*/
+            .box{
+                background: green;
+            }
+        }
+        @media all and(min-width: 800px) and (max-width:1000px){
+            /*屏幕的分辨率在800---1000px之间，这个样式生效*/
+            .box{
+                background: yellow;
+            }
+        }
+        @media screen  and (min-width:1000px) {
+            /*min-width : 最小宽度1000px;大于1000px时，样式生效*/
+            .box{
+                background: red;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+
+<script>
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 1.call\apply\bind 可以改变this指向；
+    // 1) : call 和apply传参不同
+    // 2) : bind预处理this;在IE8以下是不兼容的；
+
+    function fn(a,b,c) {
+        console.log(a);
+        console.log(b);
+        console.log(c);
+        console.log(this);
+    }
+    var obj = {num:1}
+    /*var f = fn.bind(obj,1,2);
+    f(3);*/
+    // 1. 如果bind不传参数，那么fn执行的this指向window；
+    // 2.  bind 可以分开传参；在bind中的第二个参数以后，有占位作用；
+    // 1) 在bind中使用call或apply;
+    // 2) myBind中一定返回一个函数；这个函数执行时，才是真正的函数执行
+    // 3) 参数需要合并；
+    Function.prototype.myBind = function () {
+        // this--> fn;
+        var  that = this;
+        // 如果myBind有第一个参数，那么指向第一个参数，没有指向window；
+        var  arg = arguments[0]||window;
+        // 截图arguments中从索引1开始之后的项
+        var ary1 = [].slice.call(arguments,1)
+        return function () {
+            // 类数组转数组
+            var ary2 = [].slice.call(arguments);
+            // apply 可以传数组，concat将数组连接在一起；
+            that.apply(arg,ary1.concat(ary2));
+        }
+    }
+    var f  = fn.myBind(1,2,3,4);
+    f();
+</script>
+</body>
+</html>

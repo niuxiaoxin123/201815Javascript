@@ -5,6 +5,8 @@ EventFire.prototype.add = function (type,fn) {
     if(!this[type]){
         this[type]= [];
     }
+    //add("boiling",fn)
+    // {boiling:[]}
     for(var i=0;i<this[type].length;i++){
         if(fn===this[type][i]){
             return;

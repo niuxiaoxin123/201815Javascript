@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width:100px;
+            height: 100px;
+            background: red;
+            margin: 100px;
+           /* transition-property:all;
+            transition-duration: 1s;
+            transition-timing-function: ease-in;
+            transition-delay: 1s;*/
+            transition: all 1s  linear 1s;
+            /*复合属性*/
+            /*transition-property :all 具有过渡动画的属性
+            transition-duration :动画运动的时间
+            transition-timing-function : 动画效果 linear  ease-in  加速  ease-out : 减速  ease-in-out 先加速后减速；
+            transition-delay : 动画延迟时间；
+
+            */
+        }
+        #box:hover{
+            /*transform : 变形；translate : 平移 scale : 缩放    rotate : 旋转   skew ： 倾斜；
+            */
+            transform: scale(2) translate(200px)  rotate(360deg) skew(30deg);
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    // 通过定时器不断设置其位置；
+</script>
+</body>
+</html>
