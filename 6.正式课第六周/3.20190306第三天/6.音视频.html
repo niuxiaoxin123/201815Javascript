@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<audio src="img/myDream.m4a"  controls preload="" id="btn"></audio>
+<script>
+    // html ： 超文本标记语言
+    // autoplay : 自动播放
+    // controls : 控制音频显示；控制播放；控制声音，还可以下载；
+    // preload : 预加载  auto: 自动加载 metadata ： 只加载片头  none 不预加载；
+    var btn = document.querySelector("#btn");
+    // 1. play : 在JS中控制当前音频标签播放的方法；
+    ///btn.play();
+    // 2.pause : 暂停音乐的播放；
+    //btn.pause();
+
+    // 3. paused :  布尔值，如果音乐是播放的状态，那么paused的属性值是false；如果是暂停状态就是true；
+    //console.log(btn.paused);
+    // 4. duration : 代表当前音乐一共需要多长时间播放完；是秒单位
+    //  console.dir(btn);
+    // 5. currentTime : 代表音乐播放的时间；
+    // 6. canplay : 事件；
+    // 当音乐可以播放时，会触发音频的canplay的事件；
+    btn.addEventListener("canplay",function(){
+        console.log(100);
+    },false)
+</script>
+</body>
+</html>

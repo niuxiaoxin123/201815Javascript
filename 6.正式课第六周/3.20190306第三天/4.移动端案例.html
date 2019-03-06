@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            font-size: 100px;
+        }
+        .box{
+            width:2rem;
+            height:2rem;
+            background: deeppink;
+            margin:auto;
+        }
+    </style>
+    <script>
+        (function () {
+            function computedFont() {
+                let winW = document.documentElement.clientWidth;
+                document.documentElement.style.fontSize = winW/750*100+"px";
+            }
+            computedFont();
+            window.addEventListener("resize",computedFont)
+        })();
+    </script>
+</head>
+<body>
+<div class="box"></div>
+<script>
+    let box = document.querySelector(".box");
+    // 给box绑定三个触摸事件；
+    // 点击旋转540deg；
+    // 如果触摸拖拽水平或竖直方向移动距离超过30px时，当触摸抬起时让其变成黄色；
+    box.addEventListener("touchstart",function (e) {
+        var position = e.touches[0];
+        // 记录触摸开始时的位置；放到this身上；
+        this.l = position.clientX;
+        this.t = position.clientY;
+        this.style.transition="all 0s linear";
+        this.style.transform="rotate(0deg)";
+        this.success = false;
+    },false)
+    box.addEventListener("touchmove",function (e) {
+        var cur = e.touches[0];
+        if(Math.abs(cur.clientX-this.l)>30 || Math.abs(cur.clientY-this.t)>30){
+            // 当满足条件时，给当前元素新增一个success的属性为true；
+            this.success = true;
+        }
+
+    },false)
+    box.addEventListener("touchend",function () {
+        this.style.transition="all 1s linear";
+        if(this.success){
+            this.style.background = "yellow"
+        }else{
+            this.style.transform="rotate(540deg)";
+        }
+
+
+    },false)
+</script>
+
+
+</body>
+</html>

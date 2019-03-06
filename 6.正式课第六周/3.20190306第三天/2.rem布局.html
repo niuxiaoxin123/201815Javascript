@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!--理想视口：meta:vp    content : width=device-width ：宽度等于设备宽度
+    user-scalable : 禁止用户缩放-->
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            font-size: 100px;
+            /*方便计算；*/
+        }
+        .box{
+            width:2.5rem;
+            height:2.5rem;
+            background: red;
+            float:left;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<script>
+    // 布局 ：
+    // PC 端：
+    // UI  : 设计图
+    // rem布局；
+    // rem : 是一个单位 ； 1rem :默认是16px; rem :html中的font-size 的属性值就是1rem;
+    // 设计稿一般是750px宽度
+    //      设计稿量出盒子的宽度   屏幕的宽度  盒子显示宽度    html的fontSize
+    // 750px   250px            375px       125px       100px      1.25rem
+    // 750px   250px            320px       320/3px                1.25rem
+
+    // 两个屏幕的比等于fontSize的比；
+    // 规定在750px像素屏幕上，fontSize是100px;那么其他屏幕fontSize :
+    // 屏幕宽度/750 = 新屏幕fontSize/100
+
+    function computedFont() {
+        let winW = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = winW/750*100+"px";
+    }
+    computedFont();
+    // window 的resize事件是当前窗口大小发生改变时，会触发的事件函数；
+    window.addEventListener("resize",computedFont)
+
+</script>
+</body>
+</html>

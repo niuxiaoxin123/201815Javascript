@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!--理想视口：meta:vp    content : width=device-width ：宽度等于设备宽度
+    user-scalable : 禁止用户缩放-->
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            font-size: 100px;
+            /*方便计算；*/
+        }
+        .box{
+            width:2.5rem;
+            height:2.5rem;
+            background: red;
+            float:left;
+        }
+    </style>
+    <script>
+        (function () {
+            function computedFont() {
+                let winW = document.documentElement.clientWidth;
+                document.documentElement.style.fontSize = winW/750*100+"px";
+            }
+            computedFont();
+            // window 的resize事件是当前窗口大小发生改变时，会触发的事件函数；
+            window.addEventListener("resize",computedFont)
+        })();
+    </script>
+</head>
+<body>
+<div class="box"></div>
+<script src="fastclick.js"></script>
+<script>
+    // 事件
+    //1. querySelector : 获取一个；如果有多个，只获取第一个；
+    //2. 不存在DOM映射；
+    // 解决移动端300ms的延迟；
+    window.addEventListener("load",function () {
+        FastClick.attach(document.body);
+    })
+    let  box = document.querySelector(".box");
+    /*box.onclick = function () {
+        console.log(1);
+    }*/
+    // onclick : 点击; 在移动端点击事件onclick存在300ms的延迟；在移动端如果连续两次点击的时间不超过300ms，那么认为是双击事件；
+   /* box.ondblclick = function(){
+        console.log(3);
+    }*/
+    // 移动端不存在鼠标的事件；
+    // 移动端提供了触摸事件： ontouchstart  ontouchmove  ontouchend
+    /*box.ontouchstart = function () {
+        console.log(100);
+    }
+    box.ontouchend = function () {
+        console.log(300);
+    }*/
+    // 1.如果只有点击，不会触发ontouchmove事件；这个事件是触摸并且移动才会触发此事件；
+    // 触摸开始
+    box.addEventListener("touchstart",function (e) {
+        console.log(e);
+        // 事件对象  touchEvent;
+        // type  target
+        // 位置信息： clientX clientY pageX  pageY 在e.touches[0]中
+        console.log(e.touches[0].clientX);
+    },false)
+    // 触摸移动中
+    box.addEventListener("touchmove",function (e) {
+        console.log(2);
+        //console.log(e.touches[0].clientX);
+    },false)
+    //触摸结束
+    box.addEventListener("touchend",function (e) {
+        console.log(3);
+        console.log(e);
+        // 在touchend的事件中，不存在e.touches这个属性；会把触摸信息存储到changedTouches中；
+    },false)
+    /*var  div = document.createElement("div");
+    div.className = "box";
+    document.body.appendChild(div);*/
+</script>
+</body>
+</html>
