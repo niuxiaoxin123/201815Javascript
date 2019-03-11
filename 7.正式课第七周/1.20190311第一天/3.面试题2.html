@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+/*
+    实现一个LazyMan，可以按照以下方式调用:
+     1) LazyMan(“Hank”)输出:
+     Hi! This is Hank!
+
+     2) LazyMan(“Hank”).sleep(10).eat(“dinner”)输出
+     Hi! This is Hank!
+     //等待10秒..
+     Wake up after 10
+     Eat dinner~
+
+     3) LazyMan(“Hank”).eat(“dinner”).eat(“supper”)输出
+     Hi This is Hank!
+     Eat dinner~
+     Eat supper~
+
+     4) LazyMan(“Hank”).sleepFirst(5).eat(“supper”)输出
+     //等待5秒
+     Wake up after 5
+     Hi This is Hank!
+     Eat supper
+*/
+
+// 同异步  1)定时器  2)while  时间戳 new Date(); 3) : 原型；\
+// 同步阻塞线程；
+let  curTime = new Date();
+while(new Date()-curTime<5000){}
+
+
+
+
+
+
+</script>
+</body>
+</html>

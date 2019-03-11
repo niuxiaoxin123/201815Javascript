@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 面试题1
+   let a = {x:1,y:2};
+   let b = a;// 把对象a的空间地址赋值给变量b;
+   a.y = a = {y:1};// 点的优先级最高；先运算a.y ;再运算a;
+    console.log(a);// {y:1}
+    console.log(b);//{x:1,y:{y:1}}
+
+
+    // 写对象属性名去重的方法；
+    // 面试题2
+    // 实现去重
+    let  arr1 = [{a:1,b:2},{a:3,b:4},{a:1,b:2},{a:1,b:4},{b:2,a:1}];
+    // 分析 ： 1. 数组中每一项只有两个键值对；键值对的属性名都是a和b;
+    //        2. 只需要确保a和b的属性值相同；说明该项是重复项；
+    let obj = {};
+    for(let i=0;i<arr1.length;i++){
+        let cur = arr1[i];
+        if(obj[cur.a+","+cur.b]){// 取值
+            arr1.splice(i,1);
+            i--;
+            continue;
+        }
+        obj[cur.a+""+cur.b] = true;
+    }
+    // 采用双循环去重；
+
+
+
+
+</script>
+</body>
+</html>

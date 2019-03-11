@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 第四周： 同异步  class的继承 es6的语法  动画  轮播图；
+    // 事件循环机制： 主任务队列和等待任务队列
+    // 等待任务： ajax  回调函数  定时器  事件绑定  promise async await
+    /*setTimeout(function () {
+       console.log(1)
+    },0)
+    setTimeout(function () {
+        console.log(2)
+    },0)
+    for(let i=0;i<1000000;i++){
+
+    }
+    console.log(100);*/
+
+    // class 继承私有和公有；
+   /* class  Fn{
+        constructor(){
+            this.a = 100;
+        }
+    }
+    class A extends  Fn{
+        constructor(){
+            super();
+        }
+
+    }*/
+   //  let和var; const  解构赋值  set  Array的新增方法  箭头函数；
+    // 执行的区别：
+    // 1. 不能使用arguments
+    // 2. 没有this
+    // 3. 不能被new；
+    // 4. 不能作为generator函数；
+
+    // promise : 解决异步编程的一种方案；
+
+    // 第五周：
+    // 事件 【DOM2事件、事件的传播、事件对象、事件委托】 案例：放大镜 拖拽 、弹性小球 、树形菜单、发布订阅、照片墙
+    // 发布订阅： add  remove  fire;
+    //  add : 订阅；
+    function fn() {
+    }
+    function add(curEle,type,fn) {
+        // 准备一个数组；此数组是放方法的容器
+        //curEle.type = [];
+        if(!curEle[type]){
+            curEle[type] = [];
+        }
+        let a  = curEle[type];
+        for(let i=0;i<a.length;i++){
+            if(a[i]===fn){
+               return;
+            }
+        }
+        a.push(fn);
+    }
+    add(box,"drop",fn);
+    add(box,"drop",fn1)
+
+    let  a = "b";
+    let obj = {};
+    obj.a = 1;
+    console.log(obj);// {a:1}
+
+    // 第六周 ： 移动端；
+    // H5  CSS3 移动端事件 less  字体图标 本地存储  QQ音乐  新浪  canvas  flexBox
+
+
+
+
+</script>
+</body>
+</html>
