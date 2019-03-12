@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<!--<form action="http://www.baidu.com">
+    <input type="text" name="user">
+    <input type="text" name="id">
+    <input type="submit">
+</form>-->
+<a href=""></a>
+
+<script>
+    // 可以发送请求： ajax  form src  浏览器  link标签的href属性
+    // 移动端中IOS10以上的版本不支持form表单；
+    let xhr = new  XMLHttpRequest();
+    xhr.open("get","aside.json",true);
+    xhr.onreadystatechange = function () {
+        //console.log(xhr.readyState);
+        if(xhr.readyState===4&&/^2\d{2}$/.test(xhr.status)){
+
+        }
+        console.log(xhr.status);
+        // xhr.status
+        // 200 : 代表请求成功；
+        // 301 : 永久重定向；
+        // 302: 临时转移
+        // 304 : 读取缓存
+        // 307:临时重定向
+        // 4 : 以4开头的都是客户端的问题；
+        // 400 : 请求的参数有误
+        // 401: 权限不够；
+        // 404 : 路径错误，找不到文件
+        // 5 : 以5开头都是服务端的问题
+        // 500 : 服务器的问题
+        // 503: 超负荷；
+
+
+
+    }
+    xhr.send();
+
+
+</script>
+</body>
+</html>

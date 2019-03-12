@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let xhr = new  XMLHttpRequest();
+    xhr.open("get","aside.json",true);
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState===4&&/^2\d{2}$/.test(xhr.status)){
+
+        }
+    }
+    xhr.send();
+    // 原生的ajax,通过控制open方法的第一个参数来确定请求的方式；
+    // ajax的请求： get post delete head put
+    // 常用的请求有get和post；
+    // get一般用于获取数据；post一般用于发送数据；
+    // get 和 post请求的区别：
+    // 1.get请求如果需要传递参数，那么会默认将参数拼接到url的后面；然后发送给服务器；
+    // 2.get请求传递参数大小是有限制的；是浏览器的地址栏有大小限制；IE不超过2K;谷歌不超过8K；超过会自动截掉；
+    // 3.get安全性较低
+    // 4.get 一般会走缓存，为了防止走缓存，给url后面每次拼的参数不同；
+    // 放在?后面，一般用个时间戳；
+
+    //1.post传递参数，需要把参数放进请求体中，发送给服务器；
+    //2.post请求参数放进了请求体中，对大小没有要求；
+    //3.安全性比较高；
+    //4.post请求不会走缓存；
+
+</script>
+</body>
+</html>

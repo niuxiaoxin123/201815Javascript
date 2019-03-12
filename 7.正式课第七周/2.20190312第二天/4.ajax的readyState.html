@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 创建一个ajax的实例
+    // new 操作符
+    // XMLHttpRequest: 内置的类；
+    // xhr是这个类的一个实例；通过XMLHttpRequest这个类创建的实例
+
+    let xhr = new  XMLHttpRequest();
+    console.log(xhr.readyState);// 0
+    // 2. 打开路径
+    // open : 第一个参数： 请求方式 第二个参数：路径
+    // 第三个参数： true 异步  false：同步；能用异步别用同步；
+    // 准备ajax的实例的请求方式，请求路径，同异步；但是此时，并没有发出请求；
+    // 只要监听到readyState发生变化，这个函数就会立即执行；
+    xhr.onreadystatechange = function () {
+        console.log(xhr.readyState);// 1 4
+
+        if(xhr.readyState===4){
+
+        }
+    }
+    xhr.open("get","aside.json",false);
+    //console.log(xhr.readyState);// 1
+    // 3.监听
+    // onreadystatechange : 这是xhr实例独有的事件行为；这个事件 on:监听  readyStatechange :状态变化
+    // 如果是个异步的请求，此函数会执行三次；分别输出2 3 4；
+    // 4.发送;向服务器发起请求；
+    console.log(3);
+    xhr.send();
+    console.log(100);
+
+
+    // xhr.readyState :
+    // 0 : 说明创建一个ajax的实例，默认值是0；
+    // 1 : 说明当前ajax实例已经执行了open，找到路径；确定了请求的方式，确定了同异步；请求任务准备好；
+    // 2 :说明请求已经发出，客户端已经接收到服务器发送过来的响应头；
+    // 3： 说明客户端正在接收响应体（数据）
+    // 4: 说明客户端已经成功接收到了所有服务器发来的数据；
+
+    // 为什么同步只执行一次，异步会执行三次呢；
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    /*
+     实现一个LazyMan，可以按照以下方式调用:
+     1) LazyMan(“Hank”)输出:
+     Hi! This is Hank!
+
+     2) LazyMan(“Hank”).sleep(10).eat(“dinner”)输出
+     Hi! This is Hank!
+     //等待10秒..
+     Wake up after 10
+     Eat dinner~
+
+     3) LazyMan(“Hank”).eat(“dinner”).eat(“supper”)输出
+     Hi This is Hank!
+     Eat dinner~
+     Eat supper~
+
+     4) LazyMan(“Hank”).sleepFirst(5).eat(“supper”)输出
+     //等待5秒
+     Wake up after 5
+     Hi This is Hank!
+     Eat supper
+     */
+    // 1. 同异步
+    // 2. 原型
+
+
+    function LazyMan(name){
+        // 由于防止递归导致的死循环，在LazyMan新创建一个函数Man;
+        function Man() {
+            // 从第四个执行结果来看，Man一定是异步的；
+            setTimeout(function () {
+                console.log(` Hi! This is ${name}!`);
+            },0)
+        }
+        Man.prototype.sleep = function (time) {
+            /*setTimeout(function () {
+                console.log(`Wake up after ${time}!`);
+            },10000)*/ // 将此处异步的定时器变成同步；
+            let curTime = new Date();
+           setTimeout(function () {
+               while(new Date()-curTime<time*1000){}
+               console.log(`Wake up after ${time}!`);
+           },0)
+            return this;// 目的是实现链式调用；
+        }
+        Man.prototype.eat = function (food) {
+            setTimeout(function () {
+                console.log(`Eat ${food}~`);
+            },0);
+            //console.log(`Eat ${food}~`);
+            return this;
+        }
+        Man.prototype.sleepFirst = function (time) {
+            let  curTime = new Date();
+            while(new Date()-curTime<time*1000){};
+            console.log(`Wake up after ${time}!`);
+            return this;
+        }
+        return new Man();
+    }
+
+    // LazyMan("Hank").sleep(10).eat("dinner");
+    //LazyMan("Hank").eat("dinner").eat("supper");
+    LazyMan("Hank").sleepFirst(5).eat("supper")
+</script>
+</body>
+</html>

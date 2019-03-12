@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="jquery-1.11.3.js"></script>
+<script>
+    // extend
+    // url : 请求路径
+    // type : 默认是get请求
+    // cache : 是否缓存；默认是走缓存true；
+    // data : 参数
+    // async : 同异步；默认是异步；
+    // success: 成功之后的回调；
+    // timeout : 设置请求超时时间；
+    // dataType: 设置返回的数据类型；
+    // beforeSend: 发送请求之前执行；
+    // complete: 请求成功或失败都会调用这个函数；
+    // error : 请求失败会调用这个函数；
+    $.ajax({
+        url:"aside.json",
+        type:"get",
+        cache:false,
+        dataType:"json",
+        data:{
+            // 如果是get请求，会将此处的键值对拼接起来放在url的后面；
+            // 如果是post请求，把这个对象放进请求体中；
+            a:1,
+            b:2
+        },
+        timeout:1000,
+        async:true,
+        beforeSend:function () {
+            // 在发送请求之前，调用这个函数；
+            // 一般用于设置HTTP请求头；
+            // 如果返回false，会默认取消这次ajax请求；
+        },
+        success:function (data) {
+            // jquery的ajax会把请求过来的数据，传递给success的属性值这个函数；并且这个参数是转化成JSON对象之后的数据；
+            console.log(data);
+            console.log(this);
+        }
+    });
+
+    function ajax(options) {
+
+    }
+    ajax({
+
+    })
+
+
+
+</script>
+</body>
+</html>
