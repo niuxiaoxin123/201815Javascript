@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // all : 是将多个Promise的实例包装成一个promise的实例；
+    // all方法是Promise这个类的私有方法
+    // all方法传递一个数组，数组中存放着Promise的实例；all方法返回一个promise的实例；
+    //let l1 = getJSON("a.json")
+    let p1 = Promise.all([l1,l2,l3]).then(function () {
+        // p1的成功或者失败的状态由数组中每一个promise的实例决定；当所有的实例的状态都是成功态，那么该p1的状态才是成功态，只要有一个失败，那么这个就会执行失败态；
+    },function () {
+
+    })
+
+
+    // race :
+    // 只要其中一个promise的实例发生改变；那么p2的状态就会随着发生变化；
+    const getJSON = function(url) {
+        const promise = new Promise(function(resolve, reject){
+            const handler = function() {
+                // 如果readyState是4的话，会继续向下执行；
+                if (this.readyState !== 4) {
+                    return;
+                }
+                // 当前请求状态码是200；则请求成功
+                if (this.status === 200) {
+                    resolve(this.response);
+                } else {
+                    // status.Text :代表当前的错误信息；
+                    // new Error :错误的一个实例；
+                    reject(new Error(this.statusText));
+                }
+            };
+            const client = new XMLHttpRequest();
+            client.open("GET", url);
+            client.onreadystatechange = handler;
+            // 制定相应类型
+            client.responseType = "json";
+            // 设置请求头
+            client.setRequestHeader("Accept", "application/json");
+            client.send();
+
+        });
+        return promise;
+    };
+    let p1 = getJSON("a.json")
+    let p2 = getJSON("b.json")
+    let p3 = getJSON("c.json")
+    let p2 = Promise.race([p1,p2,p3]).then(function(data){
+
+    });
+    
+    // Promise.resolve
+    Promise.resolve("foo").then(function () {
+        
+    })
+    new Promise(function (resolve,reject) {
+        resolve("foo");
+    })
+
+    
+    let img = document.createElement("img");// new Image;
+    img.src="";
+    img.onload = function () {
+        
+    }
+
+
+
+
+</script>
+</body>
+</html>

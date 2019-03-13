@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 复习
+    // 1.ajax ： 前端和后端交互的数据的工具
+    // 2.new XMLHttpRequest  ajax的实例；可以通过浏览器向服务器发送请求；
+    let  xhr = new XMLHttpRequest();
+    xhr.open("get","aside.json",true);
+    // 会根据当前xhr.readyState属性值发生改变，就会触发这个函数；
+    xhr.onreadystatechange = function () {
+        // 三次
+        // 1-2  2-3  3-4
+        // 获取到的是最新的readyState
+        // 0 : 创建ajax实例
+        // 1 ：打开路径；确定了请求方式；同异步
+        // 2 ：客户端接收到响应头
+        // 3 ：客户端正在接收响应体
+        // 4 : 客户端成功接收到所有的数据
+        // console.log(1);
+
+        // status :
+        // 200  301  302   304  401  404  500  503
+        
+    }
+    xhr.send();
+    // 如果ajax是异步的，则继续执行下面的任务；
+    // 如果ajax是同步，则下面主任务的代码需要等待ajax任务完成之后，再去执行
+    console.log(100);
+    for(let i=0;i<10000000;i++){
+    }
+    console.log(200);
+    
+    // 
+    $.ajax({
+        url:"",
+        type:"",
+        data:{},
+        async:true,
+        cache:true,
+        success:function () {
+        },
+        // 
+        timeout:1000,
+        error:function () {
+            
+        },
+        dataType:"json",
+        complete:function () {
+            
+        },
+        beforeSend:function () {
+            
+        }
+    })
+
+    // get和post 请求区别：
+    // 1.
+
+
+</script>
+</body>
+</html>

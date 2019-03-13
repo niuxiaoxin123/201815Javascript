@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const getJSON = function(url) {
+        const promise = new Promise(function(resolve, reject){
+            const handler = function() {
+                // 如果readyState是4的话，会继续向下执行；
+                if (this.readyState !== 4) {
+                    return;
+                }
+                // 当前请求状态码是200；则请求成功
+                if (this.status === 200) {
+                    resolve(this.response);
+                } else {
+                    // status.Text :代表当前的错误信息；
+                    // new Error :错误的一个实例；
+                    reject(new Error(this.statusText));
+                }
+            };
+            const client = new XMLHttpRequest();
+            client.open("GET", url);
+            client.onreadystatechange = handler;
+            // 制定相应类型
+            client.responseType = "json";
+            // 设置请求头
+            client.setRequestHeader("Accept", "application/json");
+            client.send();
+
+        });
+
+        return promise;
+    };
+    // 封装Promise版的ajax;
+    getJSON("aside.json").then(function (data) {
+        console.log(data);
+        return getJSON("");
+    }).then(function (a) {
+        console.log(a);
+    })
+
+    // then : 为promise的实例增加状态发生改变时的回调函数；
+    // then： 把第一个then中的回调的返回值会传递给第二个then回调的函数的形参；
+    // then : 方法中内置会返回一个新的promise的实例；但不是之前的那个promise的实例了；
+    // 前面一个回调函数中如果返回一个promise的对象，那么第二个回调函数会等待第一个返回的promise实例的状态发生变化才执行；
+
+
+
+</script>
+</body>
+</html>

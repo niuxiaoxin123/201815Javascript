@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+   /* $.ajax({
+        url:"",
+        type:'get',
+        data:{},
+        async:true,
+        cache:true,
+        success:function () {
+
+        }
+    });
+*/
+
+     function ajax(options) {
+         // 默认创建一个对象；
+         let defaults = {
+             url:"",
+             type:"get",
+             async:true,
+             cache:true,
+             data:{},
+             success:function () {}
+         };
+         //循环赋值
+         for(let key in options){
+             // 循环option，更改default中的值；
+             defaults[key] = options[key];
+         }
+         // 实现请求数据；
+         let  xhr = new  XMLHttpRequest();
+         // 1. post 请求参数直接放到send方法中，并且不需要解决缓存的问题；
+         // 2. get请求中传参
+         // 3.get请求是否走缓存；如果需要走缓存，需要在url最后拼接时间戳；
+         if(defaults.type.toLowerCase()==="get"){
+             defaults.url+="?";
+             // 拼接data中的键值对；
+             for(let key in defaults.data){
+                 defaults.url+=key +"="+defaults.data[key]+"&";
+             }
+             if(!defaults.cache){
+                 defaults.url+="tt="+Date.now();
+             }
+             // 如果是get请求，则对defaults的赋值为null；
+             defaults.data=null;
+         }
+         xhr.open(defaults.type,defaults.url,defaults.async);
+         xhr.onreadystatechange = function () {
+            if(xhr.readyState===4&&/^2\d{2}$/.test(xhr.status)){
+                defaults.success(JSON.parse(xhr.responseText))
+            }
+         }
+         xhr.send(defaults.data);// send的参数是请求体；
+     }
+     // "aside.json?tt="+Date.now()
+     // "aside.json?username=a&pass=b&tt="+Date.now();
+     ajax({
+         url:"aside.json",
+         type:'post',
+         data:{username:"a",pass:"b"},
+         async:true,
+         cache:true,
+         success:function (data) {
+             console.log(data);
+         }
+     })
+</script>
+</body>
+</html>

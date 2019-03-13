@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="../2.20190312第二天/jquery-1.11.3.js"></script>
+<script>
+    // es6新增的一个类
+    // promise : 承诺，允诺；解决异步的一种方案；
+    console.log(Promise);
+    let p1 = new Promise(function (resolve,reject) {
+        console.log(1);
+        $.ajax({
+            url:"aside.json",
+            type:"get",
+            async:true,
+            success:function (data) {
+                resolve(data)
+            }
+        })
+    });
+    // Promise : pending 等待状态  fulfilled 成功态  rejected：失败态
+    // pending--->fulfilled
+    // pending-->rejected
+
+    // 订阅： 订阅成功和失败的方法；
+    // then方法：创建了两个事件池；一个是成功的事件池，一个是失败的事件池；
+    // then方法会将第一个参数传递给成功的事件池；第二个参数传递给失败的事件池；订阅；
+    p1.then(function (data) {
+        console.log(3);
+        console.log(data)
+    },function () {
+        console.log("获取失败")
+    });
+    console.log(2);
+    /*p1.then(function () {
+        console.log(100)
+    },function () {
+        console.log(200);
+    })
+
+
+    $.ajax({
+        url:"",
+        type:"get",
+        async:true,
+        success:function () {
+            $.ajax({
+                url:"",
+                async:true,
+                success:function () {
+
+                }
+            })
+        }
+    })*/
+
+
+</script>
+</body>
+</html>

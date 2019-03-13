@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const getJSON = function(url) {
+        const promise = new Promise(function(resolve, reject){
+            const handler = function() {
+                // 如果readyState是4的话，会继续向下执行；
+                if (this.readyState !== 4) {
+                    return;
+                }
+                // 当前请求状态码是200；则请求成功
+                if (this.status === 200) {
+                    resolve(this.response);
+                } else {
+                    // status.Text :代表当前的错误信息；
+                    // new Error :错误的一个实例；
+                    reject(new Error(this.statusText));
+                }
+            };
+            const client = new XMLHttpRequest();
+            client.open("GET", url);
+            client.onreadystatechange = handler;
+            // 制定相应类型
+            client.responseType = "json";
+            // 设置请求头
+            client.setRequestHeader("Accept", "application/json");
+            client.send();
+
+        });
+
+        return promise;
+    };
+    // catch : 捕获当前异步的错误信息；
+    // 如果在catch之前已经有then将错误信息进行处理，那么不再执行这个catch方法；
+   /* getJSON("../aside.json").then(function (data) {
+        // 输出一些错误的信息；
+        console.log(data);
+    }).catch(function (error) {
+        console.log(error);
+    })
+
+    $.ajax({
+        url:"a.json",
+        type:"get",
+        async:true,
+        success:function () {
+            $.ajax({
+                url:"b.json",
+                async:true,
+                success:function () {
+
+                }
+            })
+        }
+    });*/
+    // 如果第一个请求失败，那么不会再执行第二个请求；
+    getJSON("aside.json").then(function (data) {
+        console.log(data);
+        return getJSON("b.json")
+    }).then(function (a) {
+        console.log(a);
+    }).catch(function (err) {
+        console.log(err);
+    }).finally(function () {
+
+    })
+    // catch : 只要之前的请求有一个失败，都会触发这个catch方法；
+
+
+
+
+</script>
+</body>
+</html>
