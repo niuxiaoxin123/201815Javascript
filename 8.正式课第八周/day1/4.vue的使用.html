@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="y">
+    {{a}}
+</div>
+<div id="app">
+    <div>
+        {{a}}
+    </div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    // npm  : 开放源；
+    // 在npm这个仓库上存储了大量的js库，包；
+    // npm  init -y : 初始化当前文件；可以采用npm这样的命令
+    // npm  install  vue --save: 把vue安装到生产依赖
+    // npm  install  vue --save-dev:作为开发依赖；
+    // 开发环境 ： 就是本地
+    // 测试环境 ： 把项目部署到测试环境上；
+    // 生产环境 ： 线上的环境；
+    // npm : npm 是安装node时，自动配置好的模块；可以使用npm命令行下载模块；
+    // vm : 是vue的一个实例；Vue是一个构造函数
+    let  vm = new Vue({
+        el:"#app",// el : 代表vue初始化的元素；
+        data:{  //  存储的是数据；这个数据具有响应式；
+            a:"志超很帅"// data中的的键值对最终放在vm上；
+        }
+    })
+    //console.log(vm.a);
+    //console.log(Vue);
+
+
+</script>
+</body>
+</html>

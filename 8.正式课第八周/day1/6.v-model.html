@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="box">
+<script>
+    let box = document.getElementById("box");
+    let  obj = {};
+    let temp ={}
+    Object.defineProperty(obj,"name",{
+        get(){
+            // 在get方法中，不能调用自己的属性名对应的属性值；
+            return temp.name;
+        },
+        set(val){
+            // val ： 代表的是将要设置的最新的值；是等号右边的值；
+            //console.log(obj);
+            //console.log(box.value);
+            //debugger
+            temp.name=val;
+            box.value = temp.name;
+        }
+    });
+    // 修改input的内容；改变数据中的name属性值；
+    box.addEventListener("input",function () {
+        // 监听box的input事件；当修改box的输入框内容时，同时修改数据中name属性；
+        obj.name = this.value;
+    });
+
+    // 1. 改变input的值；触发oninput事件；会调用set方法；改obj中的值；
+    // 2. 改变obj中的值，改input的框的值；
+
+
+
+</script>
+</body>
+</html>

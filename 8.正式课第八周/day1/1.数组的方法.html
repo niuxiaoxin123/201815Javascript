@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 1. sort  splice  reverse   slice  push  pop  shift  unshift  indexof  lasteIndexof   join  concat  forEach map;
+    //原有数组发生变化： push  pop  shift unshift  sort  reverse splice
+    //forEach  : 遍历;在forEach中没有return；所以默认的返回值是undefined；
+    //map : 映射:经常用于数据绑定；
+   /* let   arr = [1,2,3,45,6];
+    let  a = arr.forEach(function (item,index) {
+        console.log(item);
+        return 100;
+    })
+    console.log(a);
+    let  b = arr.map(item=>({a:1}));
+    console.log(b);
+    arr.map(item=>{
+        return `<li>${item}</li>`
+    })*/
+    // 1. filter : 过滤;如果回调函数返回true，则将此成员过滤出来，放到返回值中；如果为false,不需要放进返回值中；
+    /*let  arr= [100,66,88,30,40,25]
+    let a = arr.filter(item=>item>70)
+    console.log(a);
+    console.log(arr);*/
+
+    // 2. find  : 查找；查找满足条件的第一项值；如果找到这个值，直接终止find函数执行；如果找不到满足条件的项，则返回undefined； 【找true】
+    /*let  arr= [10,66,88,30,100,40,25];*/
+    /*let  a = arr.find(item=>item>800);
+    console.log(a);*/
+
+    // 3. every :返回值是布尔值；当回调函数都返回true，则every这个方法返回true；如果有一个是false，那么整体结果就是false；只要返回false,every就不需要再循环向下执行了；【找false】
+   /* let  a = arr.every(item=>{
+        console.log(10);
+        return  item>10
+    });
+    console.log(a);*/// false
+    // 4.some: 返回一个布尔值；只要回调函数有一个返回true，那么some的返回值就是true；当所有的都不满足条件，结果返回false；
+    /*let a = arr.some(item=>item>50);
+    console.log(a);*/
+    //let  arr= [10,66,88,30,100,40,25];
+    // 5.includes :包含； 检测数组是否包含某一项；如果包含返回true；不包含返回false；
+    //console.log(arr.includes(0));
+
+    // 6.reduce: 收敛；求和；prev:代表除第一次循环外，代表上一次回调函数的返回值；第一次prev代表第一项；
+    let  arr = [{price:2,count:10,name:"面筋"},{price:1,count:5,name:"烤肠"},{price:3,count:8,name:"鸡翅"},{price:3,count:6,name:"啤酒"}];
+    /*let yy  = arr.reduce((prev,next)=>{
+        console.log(prev, next);
+        return prev+next;
+        //return prev + next;
+    })
+    console.log(yy);*/
+    let yy = arr.reduce((prev,next)=>{
+        console.log(prev,next);
+        // prev : 0   next {price: 2, count: 10, name: "面筋"}
+        // prev : 20  next {price:1,count:5,name:"烤肠"}
+        return prev+next.price*next.count;
+    },0);
+    // 如果给reduce传第二个参数，那么会传给回调函数第一次执行的prev;
+    console.log(yy);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--在vue中以v-开头，放在行间属性具有特殊意义的一些指令-->
+    <input type="text" v-model="abc">
+    <div v-model="abc"></div>
+    {{abc}}
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            // vue 将遍历这个data中所有的属性名，并使用Object.defineProperty这个方法；当获取属性名对应的属性值时，会默认走get方法，设置会执行set方法；
+            // data中属性也会放到实例上；
+            // 视图-->数据；采用了DOM监听机制；当数据发生变化，会触发那些订阅者；
+            abc:"201815"
+        }
+    })
+    //
+    for(let key  in  data){
+        Object.defineProperty(data,key,{
+            get(){
+
+            },
+            set(){
+            }
+        })
+    }
+
+    // 1. 视图可以影响数据，数据可以改变视图；
+    let  obj = Object.defineProperty({},"name",{
+        get(){
+            // 当获取obj的属性名name时，会触发该get方法
+            console.log(100);
+            return 100;
+        },
+        set(){
+            // 当设置属性名name时，就会触发set方法；
+            console.log(200);
+        }
+    })
+    //console.log(obj.name);
+    obj.name =1;
+
+</script>
+</body>
+</html>
