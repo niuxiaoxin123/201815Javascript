@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <!--v-on:用来绑定事件的-->
+    <div @click="fn($event,1,2)">天气很好</div>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    /*app.onclick = function () {
+    }
+    app.addEventListener("click",fn,false);
+    $("#app").click(function () {
+
+    })*/
+    let vm = new Vue({
+        el: '#app',
+        data: {
+//            fn:1
+        },
+        methods:{// 方法;一般情况放一些函数或者一些事件触发的方法；
+                 // methods中的属性名不能和data中的属性名重名；
+            fn(e,a){
+                console.log(e)
+            }
+            // 1.如果在行间不加小括号的话；那么第一个参数默认就是事件对象;
+            // 2.如果有小括号，并且没有传参，那么第e就是undefined；
+            // 3.如果有小括号，并且需要传事件对象，那么需要在行间实参加一个默认的参数$event;
+        }
+    });
+</script>
+</body>
+</html>

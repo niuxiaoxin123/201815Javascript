@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" @keyup.enter="add" v-model="val">
+    <ul>
+        <li v-for="(item,index) in arr">{{item}}
+            <button @click="remove(index)">删除</button>
+        </li>
+    </ul>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // 给input框绑定事件；keyup事件；当键盘按键是enter时，把当前input中的value放入data的arr中；清空input框的value；
+    // 点击删除
+    // 1) 给每一个button绑定点击事件
+    // 2) 把相同的索引这一项给过滤出去；
+    let h= document.getElementById("box");
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            arr:[],
+            val:""
+        },
+        methods:{
+            add(){
+                // this-->会指向vue的实例；
+                // console.log(vm === this);
+                // 要想改变视图；只需要改变数据；
+                this.arr.push(this.val);
+                this.val = "";
+            },
+            remove(i){
+                //this.arr.splice(i,1)
+                // filter
+                // 把过滤之后的数组重新赋值给原来的arr;
+                // 如果传递进来的索引和这个索引不相等；则需要把这项留下；
+                // filter:当return返回值是true时才留下；
+                this.arr=this.arr.filter((item,index)=>{
+                    //console.log(this); this-->window
+                    return index!==i;
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>

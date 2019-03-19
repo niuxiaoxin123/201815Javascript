@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <style type="text/css">
+        .container .row div{
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+<div class="container">
+    <div class="row">
+        <!--col-md-8 : 在中屏下；占八列的宽度；中屏在992px-->
+        <!--col-lg-6 : 在大屏幕下 ；在1200px以上-->
+        <!--col-xs-6-->
+        <div class="col-md-8">122</div>
+        <div class="col-xs-5">334</div>
+        <div class="col-lg-12">44</div>
+    </div>
+    <table class="table text-center table-bordered">
+        <tr>
+            <td>第一项</td>
+            <td>第二项</td>
+            <td>第三项</td>
+        </tr>
+        <tr>
+            <td>第一项</td>
+            <td>第二项</td>
+            <td>第三项</td>
+        </tr><tr>
+        <td>第一项</td>
+        <td>第二项</td>
+        <td>第三项</td>
+    </tr>
+    </table>
+</div>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {}
+    });
+</script>
+</body>
+</html>

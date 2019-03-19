@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+{{arr}}
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            arr:[1,2,3,4,5]
+        }
+    });
+    //1.数组[索引]也是不具有响应式
+    //vm.arr[0]=100;
+    //console.log(vm.arr);
+    // 2. length--这种方式，数组也不具有响应式；
+    //vm.arr.length--;
+    // 3. 数组原型上的方法可以改变原数组的方法，具有响应式；
+    // pop  push  shift unshift  sort  reverse splice
+    // vm.arr.slice(1,2);
+    // 如果直接改变arr的空间地址，那么可以具有响应式；
+    //vm.arr=vm.arr.filter((item)=>item>3);
+    //vm.arr.push(1);
+    vm.arr=[78,9]
+
+
+</script>
+</body>

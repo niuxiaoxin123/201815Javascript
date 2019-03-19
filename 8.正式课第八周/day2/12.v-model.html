@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <!--<input type="text" v-model="val">-->
+    <!--radio可以利用name属性来实现单选-->
+    <!--在vue中通过v-model实现单选；并且将选中的值赋值给当前data中对应的那个值-->
+    <!--<input type="radio" value="男" v-model="val">男
+    <input type="radio" value="女" v-model="val">女
+    {{val}}-->
+
+    <!--在复选框中，v-model绑定的值不是数组，那么就会默认转成一个布尔值；true 和false;如果是数组，会将选中的内容放入这个数组中；-->
+    <input type="checkbox" v-model="hobby" value="跑步">跑步
+    <input type="checkbox" v-model="hobby" value="看电影">看电影
+    <input type="checkbox" v-model="hobby" value="吃饭">吃饭
+    {{hobby}}
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            val:"",
+            hobby:""
+        }
+    });
+</script>
+</body>
+</html>

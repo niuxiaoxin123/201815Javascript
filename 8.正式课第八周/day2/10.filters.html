@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    {{num | sum(2)}}
+    {{n | sum(1)}}
+    {{m|addZero()}}
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            num:10.6666,
+            n:0.345432,
+            m:3
+        },
+        methods:{
+
+        },
+        filters:{
+            // filters : 过滤；对数据进行处理
+            sum(val,count){
+                // 第一个参数：是管道符前面那个值
+                // 第二个参数：是sum方法传进来的真正的参数；
+                //console.log(val);
+                //console.log(count);
+                return val.toFixed(count);
+            },
+            addZero(val){
+                return val<10?"0"+val:val;
+            }
+        }
+    });
+</script>
+</body>
+</html>

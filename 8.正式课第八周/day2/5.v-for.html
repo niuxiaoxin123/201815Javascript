@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <!--v-for:可以用来循环  item in  items-->
+        <!--item ： 代表循环的每一项-->
+        <!--循环支持的类型： 数组 、字符串、对象、number、iterable-->
+        <li v-for="a,index in arr">{{a.name}}{{index}}</li>
+        <!--<li v-for="b in  6">{{b}}</li>
+        <li v-for="c in  age">{{c}}</li>
+        &lt;!&ndash;如果是对象则显示的是属性值；&ndash;&gt;
+        <li v-for="d in  obj">{{d}}</li>-->
+    </ul>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            arr:[{name:"郜世祥"},{name:"王志超"},{name:"肖贺"},{name:"杰哥"}],
+            age:"zfpx09",
+            obj:{a:1,b:2,c:3}
+        }
+    });
+</script>
+</body>
+</html>

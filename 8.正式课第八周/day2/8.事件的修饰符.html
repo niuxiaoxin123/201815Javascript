@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <!--事件修饰符；放到事件行为的后面-->
+    <div id="outer" @click="fn1" style="font-size: 40px;color:red">
+        outer
+        <div id="inner" @click.stop="fn2">
+            inner
+            <div id="center" @click.stop.once="fn3">
+                center
+            </div>
+        </div>
+    </div>
+    <input type="text" @keydown.left="add">
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        methods:{
+            // 鼠标的事件
+            // .stop : 阻止事件的冒泡传播；
+            // .prevent: 阻止事件的默认行为
+            // .once : 只触发一次
+            // .self : 只触发自己的事件行为时，才会执行
+
+            // 键盘事件； 事件直接加keyCode ；
+            // .enter : 回车
+            // .left : 左键
+            // .up  : 上键
+            // .right : 右键
+            // .down : 下键
+            fn3(){
+                console.log("排行老三")
+            },
+            fn2(){
+                console.log("排行老二")
+            },
+            fn1(){
+                console.log("排行老大")
+            },
+            add(){
+                console.log("添加成功")
+            }
+        }
+    });
+</script>
+</body>
+</html>

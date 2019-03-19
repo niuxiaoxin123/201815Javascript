@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <!--循环谁，给谁加v-for-->
+        <li v-for="(a,index) in fruits">{{index+1}}{{a.name}}
+            <ul>
+                <!--颜色-->
+                <li v-for="(b,index) in a.color">{{index+1}}{{b}}</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            fruits:[
+                        {name:'香蕉',color:['green','yellow']},
+                        {name:'苹果',color:['red','green','yellow']},
+                        {name:'西瓜',color:['pink']}
+                    ]
+        }
+    });
+</script>
+</body>
+</html>

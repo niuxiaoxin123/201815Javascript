@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <!--v-bind:用于绑定动态的属性；将普通的属性转变成可以去data中取值的属性-->
+    <img :src="arr[0]" alt="">
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            arr:["img/1.png","img/2.png"]
+        }
+    });
+</script>
+</body>
+</html>

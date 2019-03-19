@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--小胡子语法只能使用data的第一级属性-->
+    {{arr.school}}
+    {{arr.name}}
+    {{b}}
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+     let vm = new Vue({
+         el:"#app",
+         data:{
+             // data中属性最终挂载当前的实例上；也同时放入_data中；
+             arr:{
+                 school:"zfpx"
+             },
+             b:"帅"
+         }
+     })
+     //console.log(vm._data.arr.a);
+     //console.log(vm.arr.a);
+    // 1.修改data中的值
+     //console.log(vm);
+     // 2. $set(target,key,val)
+     //vm.$set(vm.arr,"school","peixun")
+     // 通过vm.arr新增键值对的方法不能实现数据的响应式；
+     //vm.arr.name="201815";
+     // 可以用新的空间地址直接覆盖原有的空间地址；
+    //vm.arr={school:"zfpx",name:"电扇"}
+    vm.$set(vm.arr,"name","电扇")
+
+
+
+</script>
+</body>
+</html>

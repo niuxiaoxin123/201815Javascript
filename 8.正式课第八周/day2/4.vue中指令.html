@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <!--v-开头-->
+    <!--v-model只能用于表单元素-->
+    <input type="text" v-model="a">
+    <div>{{a}}</div>
+    <!--v-text: 将data中的文本内容插入到当前的标签中-->
+    <!--<span v-text="a"></span>-->
+    <!--v-html: 可以识别标签-->
+    <!--<span v-html="a"></span>-->
+    <!--v-show: 显示；属性值是布尔值；true是显示，false是隐藏-->
+    <div v-show="0">88888</div>
+    <!--小胡子是支援三元云算法；会进行运算-->
+    {{num<20?8:7}}{{1+1}}
+    <!--v-if: 根据条件判断是否显示；如果不显示，那么直接删除这个DOM元素-->
+   <!-- <div v-if="flag">666</div>
+    &lt;!&ndash;v-else-if&ndash;&gt;
+    <div v-else-if="1==0">888</div>
+    &lt;!&ndash;v-else&ndash;&gt;
+    <div v-else>777</div>-->
+
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            a:"<a>请点击</a>",
+            flag:true,
+            num:10
+        }
+    });
+</script>
+</body>
+</html>

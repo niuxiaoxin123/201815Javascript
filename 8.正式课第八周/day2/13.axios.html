@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for=""></li>
+    </ul>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/axios/dist/axios.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            arr:[]
+        },
+        created(){
+            // 在created中发送请求；created是vue在初始化时，到某个阶段默认会调用的一个钩子函数；
+            //console.log(100);
+            // axios发送一个get请求；get方法会返回一个promise的实例；
+            axios.get("list.json").then(val=>{
+                // 当请求成功之后，才会调用这个函数；
+                // 当get请求成功之后，会将数据放在val的data属性上；
+                //console.log(val.data);
+                // 需要将数据放入data这个对象中；
+                this.arr = val.data;
+            },err=>{
+
+            })
+        }
+    });
+</script>
+</body>
+</html>

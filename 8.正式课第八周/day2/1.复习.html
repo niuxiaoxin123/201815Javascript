@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div></div>
+<!--小胡子语法-->
+<div id="app">{{}}</div>
+<script>
+    // 1. 数组的新方法
+    // forEach  map    filter  find  every some    includes reduce
+    let arr =[1,2,3,456,8];
+    arr.reduce((prev,next)=>{
+        //prev: 第一次代表第一项；第二次代表上一次的回调函数的返回值
+        //next ：第一次代表第二项，第二次代表第三项...;
+    },0)
+    // 箭头函数： 函数体中的this指向上一级作用域的this指向；
+    // 函数的上一级作用域跟函数在哪执行没有关系，函数在哪定义那么上一级作用域就是谁；
+
+    // VUE ： 渐进式框架；
+    new  Vue({
+        el:"#app",
+        data:{
+            arr:[48,93]
+        }
+    })
+
+
+</script>
+</body>
+</html>
