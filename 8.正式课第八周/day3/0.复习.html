@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img :src="" alt="">
+{{num|sum(2)}}
+<script>
+    // 1.v-text  v-html   v-if v-ele-if  v-else v-show
+    // v-for  v-on[@]  v-bind  v-model
+    //
+    new Vue({
+        el:"#app",
+        data:{
+            arr:[]
+        },
+        created(){
+            // 这是一个钩子函数；在初始化vue实例时的某个阶段会调用这个函数；
+            this.getData()
+        },
+        methods:{
+            // 方法；事件 、ajax请求的数据方法；
+            getData(){
+                // this --> vue的实例；
+                axios.get("list.json").then(val=>{
+                    this.arr=val.data
+                },err=>{
+
+                })
+            }
+        },
+        filters:{
+            sum(val,a){
+
+            }
+        }
+    })
+
+
+
+
+
+</script>
+</body>
+</html>

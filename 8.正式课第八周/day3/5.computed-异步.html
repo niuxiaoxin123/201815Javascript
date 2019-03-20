@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="a">{{msg}}
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            a:""
+        },
+        computed:{
+           /* msg:{
+                get(){
+                    setTimeout(()=>{
+                        console.log(1);
+                        if(this.a.length<5){
+                            return "太少了"
+                        }
+                        if(this.a.length>8){
+                            return "太多了"
+                        }
+                    },2000)
+                }
+            }*/
+            msg(){
+                // 默认走get方法；
+                // 如果get方法的返回值是undefined，那么页面不显示
+                // computed的属性是函数，那么函数中是不支持异步的；在get中是不支持异步；
+                setTimeout(()=>{
+                    console.log(1);
+                    if(this.a.length<5){
+                        return "太少了"
+                    }
+                    if(this.a.length>8){
+                        return "太多了"
+                    }
+                },2000)
+            }
+        }
+    });
+</script>
+</body>
+</html>

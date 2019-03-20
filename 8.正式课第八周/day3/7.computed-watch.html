@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    姓：<input type="text" v-model="firstName">
+    名：<input type="text" v-model="lastName">
+    {{fullName}}
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            firstName:"",
+            lastName:"",
+            fullName:""
+        },
+        /*computed:{
+            // fullName:是由firstName和lastName组合而来；
+            // 这是一个计算属性；
+            fullName(){
+                return this.firstName+this.lastName;
+            }
+        }*/
+        // computed : 多对一；
+        // watch : 一对多；
+        watch:{
+            firstName(val){
+                this.fullName = val+this.lastName;
+            },
+            lastName(val){
+                this.fullName=this.firstName+val;
+            }
+        }
+        // 能用computed就不用watch;
+        //computed 和watch的区别：
+        // 1.computed是不支持异步；
+        // 2.computed会走缓存
+        // 3.多对一
+        // watch
+        // 1. 支持异步；
+        // 2.不走缓存
+        // 3.一对多
+    });
+</script>
+</body>
+</html>

@@ -12,24 +12,34 @@
             width:100%;
             height:100%;
         }
-        #box{
+        #box,#box1{
             position: absolute;
             width:100px;
             height:100px;
             border-radius: 50%;
-            background: red;
+            background: url("./img/0.jpg") 100% 100% no-repeat;
+            background-size: 100%;
             top:100px;
             cursor: move;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        #box1{
+            top:300px;
         }
     </style>
 </head>
 <body>
 <div id="box"></div>
+<div id="box1"></div>
 <script>
     var  box = document.getElementById("box");
+    var  box1 = document.getElementById("box1");
     var  maxL = document.documentElement.clientWidth - box.offsetWidth;
     var  maxT = document.documentElement.clientHeight-box.offsetHeight;
-    box.onmousedown = function (e) {
+    function down(e) {
         // 记录鼠标当前的位置；放到box自定义属性上
         this["strX"] = e.clientX;
         this["strY"] = e.clientY;
@@ -45,6 +55,7 @@
             up.call(that,e)
         }
     }
+    box.onmousedown = down;
     function move(e) {
         var curL = e.clientX - this["strX"];
         var curT = e.clientY - this["strY"];

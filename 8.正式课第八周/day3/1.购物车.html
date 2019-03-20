@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>'
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .container .row  .table  tr td{
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="container">
+        <!--text-danger  text-success text-warning text-default-->
+        <div class="row">
+            <table class="table table-bordered">
+                <caption class="h2 text-center text-danger">珠峰购物车</caption>
+                <tr>
+                    <td>全选
+                        <input type="checkbox" @change="checkAll" v-model="selectAll">
+                    </td>
+                    <td>商品</td>
+                    <td>单价</td>
+                    <td>数量</td>
+                    <td>小计</td>
+                    <td>操作</td>
+                </tr>
+                <tr v-for="item in products">
+                    <td><input type="checkbox" v-model="item.isSelected" @change="checkOne"></td>
+                    <td>
+                        <img :src="item.productCover" alt="">
+                    </td>
+                    <td>{{item.productPrice}}</td>
+                    <td><input type="number" v-model="item.productCount"></td>
+                    <td>{{item.productPrice*item.productCount|toFixed(2)}}</td>
+                    <td><button class="btn btn-danger"  @click="remove(item)">删除</button></td>
+                </tr>
+                <tr><td colspan="6">总价格：{{sum()|toFixed(2)}}</td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/axios/dist/axios.js"></script>
+<script>
+    // 1.实现全选
+    // 2.实现删除
+    // 3.计算出总价格
+    // 4.把小数过滤成两位的；
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            products:[],
+            selectAll:true
+        },
+        created(){
+            this.getData();
+        },
+        filters:{
+            // 保留两位小数
+            toFixed(val,num){
+                return "￥" + val.toFixed(num);
+            }
+        },
+        methods:{
+            getData(){
+                // 请求数据，并将数据放到data中；
+                axios.get("carts.json").then(val=>{
+                    this.products=val.data;
+                    console.log(this.products);
+                    this.checkOne();
+                })
+            },
+            remove(product){
+                // 把和传递进来的product，相同的那项给删除；
+                // 空间地址的比较；
+                this.products=this.products.filter(item=>item!=product);
+            },
+            checkAll(){
+                // [{a:false}]/
+                // forEach 循环改变原有数组中每一项空间地址中的isSelected属性名所对应的属性值；
+                this.products.forEach(item=>item.isSelected=this.selectAll);
+            },
+            checkOne(){
+                // 只要数组中有一个是false，则selectAll就是false；所有的都是true，才返回true；
+                this.selectAll = this.products.every(item=>item.isSelected)
+            },
+            sum(){
+                return this.products.reduce((prev,next)=>{
+                    // 当product的isSelected是false时，直接返回prev;不需要进行计算求和；
+                    if(!next.isSelected){return prev;}
+                    return prev+next.productPrice*next.productCount;
+                },0)
+            }
+        }
+    });
+    // 虚拟的DOM  --> 在JS中存在一个JS对象 --> 虚拟的DOM发生改变--->和真实的DOM进行对比--->DOM-diff原理-->把不一样的地方进行修改；（重绘）
+</script>
+</body>
+</html>

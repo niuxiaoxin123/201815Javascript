@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <!--v-bind:style : 支持属性值是对象的形式-->
+    <!--支持数组，数组可以放样式的对象-->
+    <div style="color:red" :style="{opacity:0.5}"></div>
+    <div :style="[style1,style2]">9988899</div>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            style1:{background:'green'},
+            style2:{fontWeight:'bold'}
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <input type="text"  v-model="a">{{msg}}
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            a:"",
+            msg:""
+        },
+        watch:{
+            a(newVal,oldVal){
+                // 监听a属性值发生变化时，就会触发这个函数；
+                //console.log(100);
+                // watch监听是支持异步的；
+                // watch是不走缓存的；
+                // 在工作中，能用computed,就不用watch;
+                //console.log(newVal);//最新的值
+                //console.log(oldVal);//上一次的值；
+                setTimeout(()=>{
+                    if(newVal.length<5){
+                        // 要想改变视图，修改数据；
+                        this.msg="太少了"
+                    }
+                    if(newVal.length>8){
+                        this.msg="太多了"
+                    }
+                    if(this.a.length>=5&&this.a.length<=8){
+                        this.msg=""
+                    }
+                },2000)
+            }
+        }
+    });
+</script>
+</body>
+</html>

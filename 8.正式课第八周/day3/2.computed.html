@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="checkbox" v-model="checkAll">全选<br>
+    <input type="checkbox" v-for="item in arr" v-model="item.isSelected">
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            arr:[{isSelected:true},{isSelected:false}],
+        },
+        computed:{
+            // computed中放的属性都是计算属性；由其他属性或者其他值计算而来；这个属性值会受其他属性值的影响；
+            // computed : 不能和data和methods中的属性名重名；
+            // 1. computed 计算属性，会进行缓存；
+            // 2. 如果该属性是由其他属性决定的值，一般情况下，用computed;
+            checkAll:{
+                get(){
+                    // 获取
+                    //console.log(100);
+                    // 如果这个返回true，那么checkAll的值就是true;如果这个返回false，那么checkAll就会得到false；
+                    return this.arr.every(item=>item.isSelected);
+                },
+                set(val){
+                    // 在set方法中，会默认将input框的值传递给set的参数；
+                    // 当设置input时，会触发set方法；
+                    //console.log(200);
+                    console.log(val);
+                    this.arr.forEach(item=>item.isSelected=val)
+                }
+            }
+        }
+
+    });
+</script>
+</body>
+</html>

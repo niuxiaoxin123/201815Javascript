@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <style type="text/css">
+        .x{
+            font-size: 40px;
+        }
+        .y{
+            color:red;
+        }
+        .z{
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--v-bind:class=-->
+    <!--:class : 属性值可以是对象；那么样式class作为属性名，如果对应的属性名是true，该样式生效，如果是false，该样式无效-->
+    <!--:class对原有的class不产生影响-->
+    <!--:class :属性值还可以是数组；不加索引，那么样式都生效，加上索引，对应的class生效-->
+    <div :class="y">天气很好</div>
+    <div class="x" :class="{y:false,z:true}">今天下雨</div>
+    <div class="x" :class="['y','z']">今天凉快了</div>
+    <li v-for="a in 10" :class="{y:a%2}">a</li>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            y:"y",
+            z:"z"
+        }
+    });
+</script>
+</body>
+</html>

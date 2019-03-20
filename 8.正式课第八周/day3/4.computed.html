@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="word">
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        computed:{
+            word:{
+                get(){
+                    console.log("get")
+                },
+                set(a){
+                    setTimeout(()=>{
+                        if(a.length<5){
+                            console.log("太少了")
+                        }
+                        if(a.length>8){
+                            console.log("太多了")
+                        }
+                    })
+                }
+            }
+        }
+
+    });
+</script>
+</body>
+</html>

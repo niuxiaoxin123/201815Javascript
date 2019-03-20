@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <style type="text/css">
+        #app div{
+            width:100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            cursor: move;
+        }
+        #app div:nth-child(2){
+            top:200px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+<!--<ul>
+    <li v-for="a in arr"></li>
+</ul>-->
+    <div v-drag>1122</div>
+    <div></div>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // v-for  v-model  v-on  v-bind  v-if  v-else  v-else-if v-text
+    // v-html  v-show
+    // v-for
+    // el  data  created  filters  methods  computed watch
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            arr:[1,3,4]
+        },
+        directives:{
+            // 自定义指令
+            // 当初始化vue实例就会调用这个方法；
+            drag(el){
+                //el : 代表有v-drag属性的元素；
+                //console.log(el);
+                el.onmousedown  = function (e) {
+                    // 计算鼠标相对盒子横向和纵向的位置；
+                    this.l = e.pageX-this.offsetLeft;
+                    this.t = e.pageY -this.offsetTop;
+                    document.onmousemove = function (e) {
+                        // 用鼠标最新的横向和纵向的距离减去点击时相对的距离差；
+                        el.style.left = e.pageX-el.l+"px";
+                        console.log(el.l);
+                        el.style.top = e.pageY-el.t+"px";
+                    }
+                    el.onmouseup = function () {
+                        document.onmousemove=null;
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
