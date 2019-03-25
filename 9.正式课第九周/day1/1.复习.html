@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{msg}}
+    <!--<input type="text" v-model="">-->
+    <!--<li v-for="a in item" @click="fn"></li>-->
+    <li v-for="key in arr">
+        <!--<img v-bind:src="" alt="">
+        <button v-bind:[key]="1111"></button>-->
+    </li>
+</div>
+
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    // 1.  vue： 框架；数据的响应式；双向数据绑定的原理；
+    // 面试：理论  笔试  项目
+    let  vm  = new  Vue({
+        el:"#app",
+        created(){
+            // 会发请求；
+        },
+        filters:{
+            // 过滤器
+        },
+        directives:{
+            // 自定义指令
+        },
+        data:function () {
+            // data的属性值可以是对象也可以是函数；
+            return {
+                msg:"你你",
+                arr:["a","b"]
+            }
+        },
+        methods:{
+            fn:function(){
+                console.log(this);// 指向vm;
+                this.getData();
+                setTimeout(()=>{
+                    console.log(this);
+                },100)
+            },
+            getData(){}
+
+        },
+        computed:{
+            checkAll:{
+                get(){
+                    return 100
+                },
+                set(val){
+                }
+            },
+            all(){
+                // 默认调用get方法；
+            }
+        },
+        watch:{
+            a(newVal,oldVal){
+
+            }
+        }
+    });
+    // 在初始化vue实例时,遍历data这个对象，给每一个键值利用Object.definedProperty对data的键值对新增get和set方法；利用了事件监听DOM的机制,让视图去改变数据；
+
+    // v-model  v-for  v-on:@  v-bind  v-text  v-html  v-show  v-if   v-else-if  v-else;
+    // v-for
+
+    // el   data  methods
+    // computed :计算属性；
+    // watch:监听属性；
+    // created
+    // filters
+    // directives
+
+
+    // 组件
+
+
+
+
+</script>
+</body>
+</html>

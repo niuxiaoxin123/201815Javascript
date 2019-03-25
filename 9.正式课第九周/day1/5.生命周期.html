@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    {{msg}}
+    <!--<input type="text" v-model="val">-->
+    <!--<div @click="fn">1</div>-->
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // 生成一个vue的实例；需要执行一系列过程；需要设置数据监听，编译模板、并将实例挂载到DOM元素上，并在数据更新时，更新DOM；同时给这个过程中会运行一些生命周期钩子函数；
+    // 8个钩子函数；在不同阶段执行的；
+    // beforeCreate  created
+    // beforeMount   mounted
+    // beforeUpdate  updated
+    // beforeDestroy  destroyed
+
+    // 在初始化实例时，会默认调用beforeCreate  created  beforeMount   mounted 这四个钩子函数；
+    // 当更新数据时，更新之前会触发beforeUpdate这个钩子函数，更新完成之后，会触发updated这个钩子函数；
+    // 当vue的实例销毁时，会调用beforeDestroy和destroyed这个钩子函数；
+    let vm = new Vue({
+        el:"#app",
+        data: {
+            msg:"哈喽",
+            val:"123"
+        },
+        methods:{
+            fn(){
+              console.log(1)
+            }
+        },
+        beforeCreate(){
+            // 创建之前;无法获取响应数据
+            //console.log(1);
+            //console.log(this.msg);// undefined
+            console.log(this.$el);
+        },
+        created(){
+            // 创建之后
+            //console.log(2);
+            //console.log(this.msg);// "哈喽"
+            console.log(this.$el);
+        },
+        beforeMount(){
+            // 挂载前
+            console.log(3);
+            console.log(this.$el);
+        },
+        mounted(){
+            // 挂载后
+            console.log(4);
+            console.log(this.$el);
+
+        },
+        beforeUpdate(){
+            // 数据更新之前
+            console.log(5);
+        },
+        updated(){
+            // 数据更新完成之后；
+            console.log(6);
+        },
+        beforeDestroy(){
+            // 销毁之前
+            console.log(7);
+        },
+        destroyed(){
+            // 销毁之后
+            console.log(8);
+        }
+    });
+    //vm.$mount("#app")
+    vm.$destroy();// 销毁监听者watcher，子组件、事件监听者；
+</script>
+</body>
+</html>
