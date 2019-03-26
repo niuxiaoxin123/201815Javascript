@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    {{msg.a}}1
+    <child :m="msg"></child>
+    <button @click="change">点击一下</button>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // prop使父子之间形成一种单向向下绑定；当父组件中数据发生更新和改变时，同时数据会流动到子组件中；使子组件的视图也随着发生改变；
+    // 如果当前父传子的数据是一个对象或者数组，那么相当于传递给子组件一个空间地址；那么子组件改变空间地址中数据，同时也会改变父组件中的数据；
+    let child = {
+        props:['m'],
+        beforeUpdate(){
+            console.log(100);
+        },
+        methods:{
+            fn(){
+               this.m.a="NODE"
+            }
+        },
+        template:"<div>{{m.a}}<button @click='fn'>点击两下</button></div>"
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg:{a:"hello"}
+        },
+        components:{
+            child
+        },
+        beforeUpdate(){
+            // 更新钩子函数，只要响应式数据发生改变，视图虽不需要发生更新，但是同时也要触发更新钩子函数；
+            console.log(200);
+        },
+        methods:{
+            change(){
+                this.msg="VUE React"
+            }
+        }
+    });
+</script>
+</body>
+</html>

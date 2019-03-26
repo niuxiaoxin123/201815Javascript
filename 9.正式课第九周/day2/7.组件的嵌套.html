@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <parent></parent>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // 每一个组件都是一个vue的实例；
+    let grandSon = {
+        template:"<div>grandson</div>"
+    };
+    let son={
+        components:{
+            grandSon
+        },
+        template:"<div>son<grandSon></grandSon></div>"
+    };
+    let parent={
+        data(){
+           return {
+               a:"快下课了"
+           }
+        },
+        components:{
+            son
+        },
+        template:"<div>parent{{a}}<son></son></div>"
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        components:{
+            parent
+        }
+    });
+</script>
+</body>
+</html>

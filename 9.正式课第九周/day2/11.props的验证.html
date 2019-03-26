@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <child :n="num"></child>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            num:"succes"
+        },
+        components:{
+            child:{
+                props:{
+                    n:{
+                        type:[Number,String],
+                        //required:true,// 这个属性是必要的
+                        //default:300// 默认值；
+                        validator(val){
+                            // val： 代表的就是传递过来的值；
+                            // 如果该函数返回true，则不抛出任何警告，如果该函数返回false或返回undefined，那么就会抛出警告；
+                            console.log(val);
+                            return ['success', 'warning', 'danger'].indexOf(val) !== -1
+                        }
+                    }
+                },
+                template:"<div>{{n}}</div>"
+            }
+        }
+    });
+</script>
+</body>
+</html>

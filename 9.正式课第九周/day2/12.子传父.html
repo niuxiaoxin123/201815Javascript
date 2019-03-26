@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <!--当前组件标签绑定事件是没有意义的；是不会被渲染出来的；-->
+    <!--自定义事件-->
+    <child :m="money" @chanmoney="change"></child>
+    {{money}}
+    <!--<button @click="change"></button>-->
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // 数据传递:数据传递单向数据流；
+    // @chanmoney : 在订阅一个事件行为；
+    // $emit : 让订阅的事件都执行；
+    // 子组件想改变父组件，利用了发布订阅的方式；通过$emit 来触发自定义事件；
+    let child={
+        // props: 把父组件中数据拿到子组件中，用m接收；给当前组件新增了一个m属性；
+        methods:{
+           fn(){
+                this.$emit("chanmoney",2000)
+           }
+        },
+        props:["m"],
+        template:"<div>{{m}}<button @click='fn'>多要点</button></div>"
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            money:888
+        },
+        methods:{
+            change(a){
+                // 第一个参数就是$emit的第二个参数；
+                //console.log(333);
+                this.money=a;
+            }
+        },
+        components:{
+            child
+        }
+    });
+</script>
+</body>
+</html>

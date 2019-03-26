@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="a in  arr" ref="oLis">{{a}}</li>
+    </ul>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            arr:[1,2,3,4]
+        },
+        mounted(){
+            this.arr=[1,2,3,4,5];
+            // 更改了data中的数据，接下来需要重新渲染DOM，渲染DOM是一个异步的过程；不需要等到DOM重新渲染之后，再向下执行；
+            // $nextTick: 传一个回调函数；当DOM再次渲染成功之后，会默认掉用这个nextTick的回调；
+            this.$nextTick(()=>{
+                // 这个回调会等到updated执行完成之后，会执行这个函数；
+                console.log(this.$refs.oLis.length,1);
+            })
+        },
+        beforeUpdate(){
+            console.log(this.$refs.oLis.length,2);
+        },
+        updated(){
+            console.log(this.$refs.oLis.length);
+        }
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <hand-some></hand-some>
+</div>
+<div id="app1">
+    <hand-some></hand-some>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // 组件： 在vue中，组件是可以复用的vue的实例；
+    // 把一个页面拆分成很多个组件，当其他页面有相同类似功能，复用这个页面中部门组件；“高内聚、低耦合”；
+    // 全局组件 和局部组件；
+    // 1. vue.component创建一个全局组件；
+    //   1) 有两个参数；第一个参数是组件名称
+    //   2) 第二个参数,实例的属性；
+    // 2. 使用该组件，在app中作为标签来使用该组件；
+     // 命名；
+    // 在使用组件时，不支持驼峰的命名；但是支持-；
+    // 在创建组件时，可以使用驼峰，需要在使用时用-分隔；
+    Vue.component("hand-some",{
+        data(){
+            // 在组件的注册中，data的属性值必须是一个函数；
+            return {
+                msg:"hello"
+            }
+        },
+        // 先执行父组件的created();
+        created(){
+            console.log(100);
+        },
+        mounted(){
+            console.log(300);
+        },
+        methods:{
+
+        },
+        template:"<div>{{msg}}</div>"
+    });
+    // 每一个组件都有自己的生命周期；
+    // 父created  -->子组件的created  -->子组件mounted-->父组件的mounted；
+    let vm = new Vue({
+        el: '#app',
+        created(){
+            console.log(200);
+        },
+        mounted(){
+            console.log(400);
+        },
+        data: {},
+    });
+    let vm1 = new Vue({
+        el: '#app1',
+        created(){
+            console.log(200);
+        },
+        mounted(){
+            console.log(400);
+        },
+        data: {},
+    });
+</script>
+</body>
+</html>

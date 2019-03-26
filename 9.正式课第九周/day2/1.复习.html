@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+{{msg}}
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    //
+    // beforeCreate   created
+    // beforeMount    mounted
+    // beforeUpdate   updated
+    // beforeDestroy  destroyed
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            a:100,
+            msg:"春天"
+        },
+        beforeCreate(){
+            console.log(this.a);// undefined
+        },
+        // 注入了一些属性和响应式数据
+        created(){
+            console.log(this.a);// 100
+        },
+        // 判断有有没有el、template
+        beforeMount(){
+            console.log(this.$el);
+        },
+        mounted(){
+            console.log(this.$el);
+        },
+        beforeUpdate(){
+
+        },
+        updated(){
+
+        },
+        beforeDestroy(){
+
+        },
+        destroyed(){
+
+        }
+    });
+</script>
+</body>
+</html>

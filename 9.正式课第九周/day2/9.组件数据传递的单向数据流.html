@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <!--{{msg}}1-->
+    <child :m="msg"></child>
+    <button @click="change">点击一下</button>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // prop使父子之间形成一种单向向下绑定；当父组件中数据发生更新和改变时，同时数据会流动到子组件中；使子组件的视图也随着发生改变；
+    // beforeUpdate 和updated之间；让虚拟DOM重新渲染或打补丁；
+    // 当父组件中的数据发生改变之后，会调用子组件中的更新钩子函数；
+    let child = {
+        props:['m'],
+        beforeUpdate(){
+            console.log(100);
+        },
+        methods:{
+            fn(){
+               this.m="NODE"
+            }
+        },
+        template:"<div><button @click='fn'>点击两下</button></div>"
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg:"珠峰培训"
+        },
+        components:{
+            child
+        },
+        beforeUpdate(){
+            // 更新钩子函数，
+            // 1.只要响应式数据发生改变
+            // 2.别的属性占用该属性；
+            console.log(200);
+        },
+        methods:{
+            change(){
+                this.msg="VUE React"
+            }
+        }
+    });
+</script>
+</body>
+</html>

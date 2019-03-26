@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <!--<input type="text" v-model="msg">-->
+    <!--把父组件的数据作为子组件的动态属性传递给子组件-->
+    <son :m="msg" :t="yy"></son>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    //组件的通信：父传子   子传父     兄弟组件数据传递;
+    //1. 父传子；
+    // 1) 把父组件的数据作为子组件的动态属性传递给子组件
+    // 2) 在子组件中，用props来接收属性名的属性值
+    // 3) 在子组件中使用动态的属性名，就获取到父组件传递的数据；
+    let  son = {
+        data(){
+            return {
+                a:"爱好"
+            }
+        },
+        props:["m","t"],// props属性接收一下行间的动态属性
+        template:"<div>{{a}}{{m}}{{t}}</div>"
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg:"学习",
+            yy:"敲代码"
+        },
+        components:{
+            son
+        }
+    });
+</script>
+</body>
+</html>

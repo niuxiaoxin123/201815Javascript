@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <!--当前组件标签绑定事件是没有意义的；是不会被渲染出来的；-->
+    <!--自定义事件-->
+    <!--<child v-bind:m="money" v-on:update:m="money=$event"></child>-->
+    <!--.sync修饰符是一个语法糖；相当于对上面代码的缩写-->
+    <!--.sync用于子组件需要更改父组件-->
+    <child :m.sync="money"></child>
+    {{money}}
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // 数据传递:数据传递单向数据流；
+    // @chanmoney : 在订阅一个事件行为；
+    // $emit : 让订阅的事件都执行；
+    // 子组件想改变父组件，利用了发布订阅的方式；通过$emit 来触发自定义事件；
+    let child={
+        methods:{
+           fn(){
+                this.$emit("update:m",2000)
+           }
+        },
+        props:["m"],
+        template:"<div>{{m}}<button @click='fn'>多要点</button></div>"
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            money:888
+        },
+        components:{
+            child
+        }
+    });
+</script>
+</body>
+</html>

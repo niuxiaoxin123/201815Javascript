@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <first>8989</first>
+    <second></second>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // vue.component
+    // 局部组件
+    // 1. 创建组件；
+    // 2. 注册一个组件
+    // 3. 使用该组件
+    // 组件的生命周期的钩子函数是在使用时被调用；使用一次，调用一次；
+    let first ={
+        data(){
+            return {a:123}
+        },
+        created(){
+            console.log(999);
+        },
+        methods:{
+        },
+        template:"<div>{{a}}</div>"
+    };
+    // 在创建组件时，必须要有template属性或者render函数；
+    let  second={
+        template:"<div>1112233</div>"
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        components:{
+            first,second
+        }
+    });
+</script>
+</body>
+</html>
