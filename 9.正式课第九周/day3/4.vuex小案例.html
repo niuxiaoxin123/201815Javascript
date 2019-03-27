@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <first></first>
+    <second></second>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vuex/dist/vuex.js"></script>
+<script>
+    let store = new Vuex.Store({
+        state:{
+            // 公共的状态数据；
+            count:1000
+        },
+        getters:{
+            // 这个相当于vuex的计算属性；可以被用作缓存;会根据依赖的数据发生改变，这个属性就会重新计算；
+            str(state){
+                // state 代表了当前store中的state；
+                return state.count%2===0?"偶数":"奇数";
+            }
+        },
+        mutations:{
+            // 这里面存储了更改状态的方法；
+            increment(state){
+                // mutation中方法的第一个参数，都是当前vueX状态库的state值；
+                state.count++;
+            }
+        }
+    });
+    let first = {
+        data(){
+            return {num:0}
+        },
+        //this-->
+        methods:{
+            fn(){
+                // 子组件方法中的this指向了当前组件的实例；
+                console.log(this);
+            },
+            add(){
+                //this.$store.state.count++;
+                // commit : 是store上的一个方法，用来提交mutation的；
+                this.$store.commit("increment")
+            }
+        },
+        template:"<div>{{this.$store.state.count}}<button @click='add'>增加1</button></div>"
+    }
+    let second = {
+        data(){
+            return {num:0}
+        },
+        template:"<div>{{this.$store.state.count}}<div>{{this.$store.getters.str}}</div></div>"
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        //将store和当前的vue实例建立关联，注入到所有的子组件中
+        store,
+        components:{
+            first,second
+        }
+    });
+</script>
+</body>
+</html>

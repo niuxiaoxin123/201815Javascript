@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <router-link to="/home" tag="button">Home</router-link>
+    <router-link to="/list" tag="button">List</router-link>
+    <router-view></router-view>
+</div>
+<template id="list">
+    <div>
+        <router-link to="/list/detail">详情页</router-link>
+        <router-link to="/list/personal">个人中心页</router-link>
+        <router-view></router-view>
+    </div>
+</template>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script src="./node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    // 单页面应用开发；
+    let  home = {
+        template:"<div>首页</div>"
+    }
+    let list = {
+        template:"#list"
+    }
+    let detail = {
+        template:"<div>商品详情</div>"
+    }
+    let person = {
+        template:"<div>登录注册</div>"
+    }
+    // 配置路由映射表、
+    // path : 代表路径 component： 代表组件名称；
+    let routes =[
+        {path:"",component:home},
+        {path:"/home",component:home},
+        {path:"/list",component:list,
+            // 当前路由表的对象中有个children属性名，用来配置子路由的；children属性值是个数组，数组中配置子路由的映射表；
+            children:[
+                // 如果当前是子路由，那么path属性的属性值不需要再加/
+                {path:"detail",component:detail},
+                {path:"personal",component:person}
+                ]
+        }
+    ];
+    // 创建一个router；
+    let  router = new  VueRouter({
+        routes
+    })
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        router,
+        components:{
+//            home,list
+        }
+    });
+</script>
+</body>
+</html>

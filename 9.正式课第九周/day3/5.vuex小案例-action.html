@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <first></first>
+    <second></second>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vuex/dist/vuex.js"></script>
+<script>
+    let store = new Vuex.Store({
+        state:{
+            // 公共的状态数据；
+            count:1000
+        },
+        getters:{
+            str(state){
+                return state.count%2===0?"偶数":"奇数";
+            }
+        },
+        mutations:{
+            increment(state,n){
+                // 载荷；
+                console.log(n);
+                console.log(arguments);
+                // 如果不传参数，默认是1；
+                n=n||1;
+                state.count+=n;
+            }
+        },
+        actions:{
+            // actions中提交的是mutations;
+            // action中是支持异步；
+            add_delay(obj){
+                // obj : 接收一个和store属性和方法相同的对象
+                setTimeout(()=>{
+                    obj.commit("increment")
+                },1000)
+            }
+        }
+    });
+    let first = {
+        data(){
+            return {num:0}
+        },
+        methods:{
+            fn(){
+                // 子组件方法中的this指向了当前组件的实例；
+                console.log(this);
+            },
+            add(){
+                //this.$store.state.count++;
+                // commit : 是store上的一个方法，用来提交mutation的；
+                //this.$store.commit("increment",2)
+                // payload
+                this.$store.dispatch("add_delay");
+            }
+        },
+        template:"<div>{{this.$store.state.count}}<button @click='add'>增加1</button></div>"
+    }
+    let second = {
+        data(){
+            return {num:0}
+        },
+        template:"<div>{{this.$store.state.count}}<div>{{this.$store.getters.str}}</div></div>"
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        //将store和当前的vue实例建立关联，注入到所有的子组件中
+        store,
+        components:{
+            first,second
+        }
+    });
+</script>
+</body>
+</html>

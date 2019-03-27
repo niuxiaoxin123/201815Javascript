@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+   <!-- <router-link to="/article/1" tag="button">文章1</router-link>
+    <router-link to="/article/2" tag="button">文章2</router-link>
+    <router-link to="/article/3" tag="button">文章3</router-link>-->
+    <button @click="fn1">文章1</button>
+    <button @click="fn2">文章2</button>
+    <button @click="fn3">文章3</button>
+    <router-view></router-view>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script src="./node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    let  article = {
+        created(){
+            console.log(this.$route);
+        },
+        template:"<div>当前显示的是第{{$route.query.id}}篇文章</div>"
+    };
+    // 动态参数；
+    let routes = [{path:"/article",component:article,name:"article"}]
+    let router = new VueRouter({
+        routes
+    })
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        methods:{
+            fn1(){
+                this.$router.push("/article/1")
+            },
+            fn2(){
+                this.$router.push({name:"article",params:{id:2}})
+            },
+            fn3(){
+                this.$router.push({path:"/article",query:{id:3}})
+            }
+        },
+        router
+    });
+</script>
+</body>
+</html>

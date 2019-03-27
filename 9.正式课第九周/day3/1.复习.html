@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <hans></hans>
+    <obj v-bind:y="msg" @fff="change"></obj>
+</div>
+<template id="divs">
+    <div>
+        <div>{{y}}</div>
+    </div>
+</template>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // 生命周期    组件（数据传递）  路由   vuex   vue-cli    项目；
+    // 1. 实例身上的属性和方法
+    // $el  $data $options  $mount  $destroy  $set $refs  $nextTick  $emit  $on   $off
+    // 渲染DOM是异步的；在mounted中操作DOM，需要利用nextTick将任务放到等待队列中；
+    // 组件 ： 全局和局部
+    // 每一个组件都有自己的生命周期；
+   // template:只能有一个根元素；
+   /* Vue.component("hans",{
+        data(){return {}},
+        created(){},
+        mounted(){},
+        template:"<div></div>"
+    })*/
+
+    //
+    let obj ={
+        data(){
+
+        },
+        //props:["y"],\
+        methods:{
+          fn(){
+              this.$emit("fff")
+          }
+        },
+        props:{
+            y:{
+                type:Number,
+                required:true,
+                default:99,
+                validator(val){
+                    // 根据返回值是否是false，在控制台抛出警告；
+                    return;
+                }
+            }
+        },
+        template:"#divs"
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg:""
+        },
+        methods:{
+            change(){
+                this.msg=100;
+            }
+        },
+        components:{
+            obj
+        }
+    });
+</script>
+</body>
+</html>

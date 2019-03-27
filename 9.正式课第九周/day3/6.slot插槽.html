@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <h2>这是父组件</h2>
+    <son>
+       <div  slot="up">
+           <span>菜单1</span>
+           <span>菜单2</span>
+           <span>菜单3</span>
+           <span>菜单4</span>
+           <span>菜单5</span>
+           <span>菜单6</span>
+       </div>
+        <!---->
+        <div  slot="down">
+            <span>菜单1</span>
+            <span>菜单2</span>
+            <span>菜单3</span>
+            <span>菜单4</span>
+            <span>菜单5</span>
+            <span>菜单6</span>
+        </div>
+        <div>
+            <span>菜单11</span>
+            <span>菜单21</span>
+            <span>菜单31</span>
+            <span>菜单41</span>
+            <span>菜单51</span>
+            <span>菜单61</span>
+        </div>
+    </son>
+</div>
+<template id="box">
+    <div>
+        <slot></slot>
+        <slot name="up"></slot>
+        <slot name="down"></slot>
+        <h2>这是一个子组件</h2>
+        <!--匿名插槽-->
+    </div>
+</template>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // slot 是一个内置的组件；组件的显示由父组件决定的；
+    // 父组件的模板由子组件的位置决定；
+    // slot的显示内容由父组件决定；
+
+    // 具名插槽；
+    // 子组件中slot的name属性会匹配父组件中slot属性值值相同的元素；
+    let  son = {
+        template:"#box"
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        components:{
+            son
+        }
+    });
+</script>
+</body>
+</html>

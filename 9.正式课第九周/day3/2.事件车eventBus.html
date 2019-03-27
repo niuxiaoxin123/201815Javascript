@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <bro1></bro1>
+    <bro2></bro2>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // 事件车可以订阅和发布方法；就是一个Vue的实例；
+    // 解决了兄弟之间数据的传递问题；把当前要传递的数据通过事件车的订阅方法，那么另一个组件就可以获取对应的数据；
+    let eventBus = new  Vue;
+    // 1.创建组件
+    let  bro1 = {
+        data(){
+            return {color:"绿色"}
+        },
+        created(){
+            // $on : 用来订阅事件
+            // 参数1 ： 事件名称   参数2 ： 方法
+            // 把当前组件中的changeRed方法订阅给事件车的changeR这个自定义事件；
+            eventBus.$on("changeR",this.changeRed)
+        },
+        methods:{
+            changeRed(){
+                this.color="红色"
+            },
+            fn(){
+                // 点击fn时，希望能执行bro2的changeGreen;
+                // bro2不能将自己方法传递给兄弟组件；
+                eventBus.$emit("changeG")
+            }
+        },
+        template:"<div>{{color}}<button @click='fn'>变绿</button></div>"
+    }
+    let bro2 = {
+        data(){
+            return {color:"红色"}
+        },
+        created(){
+            eventBus.$on("changeG",this.changeGreen)
+        },
+        methods:{
+            // 这个方法不能直接传递给兄弟
+            changeGreen(){
+                this.color="绿色";
+            },
+            fn(){
+                // 点击fn时，希望能执行bro2的changeRed;
+                eventBus.$emit("changeR");
+            }
+        },
+        template:"<div>{{color}}<button @click='fn'>变红</button></div>"
+    }
+    // 2.注册组件
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+
+        components:{
+            bro1,bro2
+        }
+    });
+</script>
+</body>
+</html>

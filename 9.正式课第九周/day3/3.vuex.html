@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // vueX :统一数据管理；它配合vue进行数据的管理；
+    // redux :
+    // vuex : vueX 的核心就是一个Store；这里面存储了组件大部分的数据（state）
+    // 1. vueX的状态是响应式的；如果vue组件从store获取数据，当store中的数据发生了更新，那么组件会得到高效的更新；
+    // 2. 你不能直接改变store的状态；要想改变store中的状态，唯一的方法就是提交（commit）mutation;
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            count:0
+        },
+        template:"<div>{{count}}<button @click='add'>+1</button></div>",
+        methods:{
+            add(){
+                this.count++;
+            }
+        }
+    });
+</script>
+</body>
+</html>

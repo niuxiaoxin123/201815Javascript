@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <!--router-link : 这是vue路由提供的一个内置组件，用来进行跳转路径，该组件会默认渲染成a标签-->
+    <!--to : 代表当前点击的路径path；tag：表示要渲染成一个什么类型的标签；-->
+    <router-link to="/home" tag="button">Home</router-link>
+    <router-link to="/list" tag="button">List</router-link>
+    <!--router-view该组件用于显示路由对应的组件-->
+    <router-view></router-view>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script src="./node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    // 单页面应用开发；
+    let  home = {
+        methods:{
+            goList(){
+                // 如果该组件是由路由渲染出来的，那么该组件的实例就会新增一个$router的属性，这个$router上有一个push方法，更改路由；
+                this.$router.push("/list")
+            }
+        },
+        template:"<div>首页<button @click='goList'>去列表页</button></div>"
+    }
+    let list = {
+        methods:{
+            goBack(){
+                //this.$router.push("/home")
+                // 返回上一次的页面；
+                // history.go()
+                this.$router.go(-1);
+            }
+        },
+        template:"<div>列表页<button @click='goBack'>返回</button></div>"
+    }
+    // 配置路由映射表、
+    // path : 代表路径 component： 代表组件名称；
+    let routes =[{path:"",component:home},{path:"/home",component:home},{path:"/list",component:list}];
+    // 创建一个router；
+    let  router = new  VueRouter({
+        routes
+    })
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        router,
+        components:{
+            home,list
+        }
+    });
+</script>
+</body>
+</html>
