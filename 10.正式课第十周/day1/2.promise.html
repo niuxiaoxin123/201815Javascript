@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //console.log(1);
+    let p1 = new Promise(function (resolve,reject) {
+        // 这里是一个同步的
+
+        //resolve(100)
+        throw new Error("rra")
+    });
+    let p2 = p1.then(function (result) {
+        console.log(p1);
+        return result+100;
+    });
+    // 之所以then返回值能继续调用then方法；原因是在then中返回了一个promise的实例；
+    // then 方法：是向成功的事件池或失败的事件池中添加回调函数的作用；
+    p2.then(function (res1) {
+        console.log(p2);
+        // then会让第一个函数执行；并且上一次函数的返回值给了当前的形参；
+        // 当前函数不管是promise的实例是调取resolve还是reject，都会让当前函数执行；
+        console.log(res1);
+    },function(res2){
+        console.log(3);
+    })
+    //console.log(2);
+
+
+</script>
+</body>
+</html>

@@ -17,10 +17,14 @@ let vm = new Vue({
         //this.hash="#all";
         this.hash=window.location.hash;
         console.log(this.hash);
-        window.addEventListener("hashchange",()=>{
+        /*window.addEventListener("hashchange",()=>{
             // window.location.hash :获取页面的hash值；
             this.hash=window.location.hash;
-        },false)
+        },false)*/
+        window.onhashchange=()=>{
+            // window.location.hash :获取页面的hash值；
+            this.hash=window.location.hash;
+        }
     },
     methods:{
         // 存储的是事件或者方法；当键盘抬起并且是enter键时，向数组task中新增一个对象；
@@ -45,7 +49,7 @@ let vm = new Vue({
     computed:{
         filterTodo(){
             // 默认走get方法；
-            if(this.hash==="#all")return this.task;
+            if(this.hash==="#all"||this.hash==="")return this.task;
             if(this.hash==="#finish")return this.task.filter(item=>item.isSelected);
             if(this.hash==="#unfinish")return this.task.filter(item=>!item.isSelected);
         },

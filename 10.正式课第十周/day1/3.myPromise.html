@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class MyPromise{
+        constructor(excutor){
+            // 这里相当于MyPromise的函数体；
+            // 在promise中分三个状态；pending  fulfilled rejected;
+            // this --> promise的实例；给实例新增state属性，其属性值是"pending";
+            this.state="pending";
+            // 在实例上找了两块空间；一个是用来存储成功的回调，一个用来存储失败的回调；
+            this.fulfilledEvent = [];
+            this.rejectedEvent = [];
+            this.value =undefined;
+            let resolve = (result)=>{
+                 // resolve : 这个函数是用来管控所有成功态的函数执行；
+                // 一旦调用resolve,那么应该变成成功态；
+                //if(this.state==="fulfilled"||this.state==="rejected")return;
+                // 如果当前状态已经凝固，是成功或者失败中的一个，都不再执行；
+                if(this.state!=="pending")return;
+                this.state="fulfilled";
+                this.value=result;
+                clearTimeout(this.timer);
+                 this.timer = setTimeout(()=>{
+                    this.fulfilledEvent.forEach((item)=>{
+                        if(typeof item==="function"){
+                            item(this.value);
+                        }
+                    })
+                 },0)
+            };
+            let reject=(result)=>{
+                if(this.state!=="pending")return;
+                this.state="rejected";
+                clearTimeout(this.timer);
+                this.value=result;
+                this.timer = setTimeout(()=>{
+                    this.rejectedEvent.forEach((item)=>{
+                        if(typeof item==="function"){
+                            item(this.value);
+                        }
+                    })
+                },0)
+            }
+            try{
+                excutor(resolve,reject)
+            }catch(e){
+                // 如果在函数中抛出异常，那么会调用下面then的reject的方法；
+                reject(e);
+            }
+
+        }
+        then(resolveFn,rejectedFn){
+            if(resolveFn===undefined){
+                //如果then没有传递函数，那么给当前默认赋值一个函数
+                resolveFn=(result)=>{
+                    return result
+                }
+            }
+            if(rejectedFn===undefined){
+                rejectedFn=()=>{
+                    // 这个地方抛出异常，为了能够调用下个then的失败的方法；
+                    throw new Error;
+                }
+            }
+            // 为了确保下一次的then方法中的回调受上一次then方法中返回值的影响，所以每次调用then，都返回一个不同的实例；
+            return new MyPromise((resolve,reject)=>{
+                // this --> then中this--> p1;
+                this.fulfilledEvent.push(()=>{
+                    // 需要验证当前resolveFn函数的返回值是否是一个Promise的实例；
+                   try{
+                       let x = resolveFn();
+                       x instanceof MyPromise?x.then(resolve,reject):resolve();
+                   }catch(e){
+                       reject(e)
+                   }
+                });
+                this.rejectedEvent.push(()=>{
+                    try{
+                        let x = rejectedFn();
+                        x instanceof MyPromise?x.then(resolve,reject):resolve();
+                    }catch(e){
+                        reject(e)
+                    }
+                });
+            });
+        }
+    }
+    let p1 = new MyPromise(function (resolve,reject) {
+        resolve(200)
+    })
+    console.log(1);
+    let p2=p1.then(function (res) {
+        return new MyPromise(function (resolve,reject) {
+            reject();
+        })
+    },function () {
+        console.log(101);
+    });
+    p2.then(function () {
+        console.log(11);
+    },function () {
+        console.log(22);
+    })
+
+
+</script>
+</body>
+</html>
