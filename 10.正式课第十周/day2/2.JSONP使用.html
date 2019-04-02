@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function fn(data) {
+        console.log(data);
+    }
+</script>
+<script src="http://matchweb.sports.qq.com/kbs/calendar?columnId=100000&callback=fn">
+    // script 的src也属于非同源策略；
+    /*   let  xhr = new XMLHttpRequest();
+     xhr.open("get","http://matchweb.sports.qq.com/kbs/calendar?columnId=100000",false);
+     xhr.onreadystatechange = function () {
+     if(xhr.readyState===4&&xhr.status==200){
+         console.log(xhr.responseText);
+     }
+     }
+     xhr.send();*/
+
+    // JSONP :
+    // 1.利用了script的src属性，具有非同源的特征，去访问不同域下的数据不受影响
+    // 2. 在地址的后面需要拼接一个callback=fn;这个函数fn需要和当前作用域下定义的函数名相同
+    // 3. 当数据请求成功之后，会自动调用当前作用域下的方法fn;执行，并且把请求过来的数据传递给fn的第一个实参；
+
+</script>
+</body>
+</html>

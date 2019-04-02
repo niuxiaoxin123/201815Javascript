@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // Vue : 书城；项目结构；
+    // 跨域 ：
+    // ajax : 同源策略
+    //
+    // 项目 ： 部署到服务器；包含：前端和后端的代码；
+    // 域名 ：http://www.zhufengpeixun.cn--> DNS解析--> TCP 链接-->服务器 --> 找到对应的端口--> 对应的项目-->找到对应的文件-->通过http协议把文件打包传输到浏览器；浏览器对当前返回的内容进行渲染；
+    //同源：
+    // 两个项目：一个项目部署到3000端口，另一个项目部署到4000端口；3000端口下的项目不能直接访问4000端口项目中的数据；
+    // 1. 协议相同；http和https;
+    // 2. 域名相同
+    // 3. 端口号相同；
+
+     // ajax:用于前端的请求数据
+     // ajax属于同源策略，只有在同源的情况下才能请求数据；
+  /*   let  xhr = new XMLHttpRequest();
+     xhr.open("get","https://www.baidu.com/?tn=78040160_26_pg&ch=1",false);
+     xhr.onreadystatechange = function () {
+         if(xhr.readyState===4&&xhr.status==200){
+             console.log(xhr.responseText);
+         }
+     }
+     xhr.send();*/
+     // 浏览器属于非同源策略，支持不同的跨域请求；
+
+
+</script>
+</body>
+</html>
