@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="add">+</button>
+<p id="content"></p>
+<button id="min">-</button>
+<script src="redux.js"></script>
+<script>
+    // redux不仅仅用于react框架，还可以在原生JS中，jquery配合使用；但是vuex只能应用vue的项目；
+    let add  = document.getElementById("add")
+    let min  = document.getElementById("min")
+    let content  = document.getElementById("content");
+    // 利用redux公共数据管理的模式；
+    // 初始化当前的content
+    let initState = {num:10};
+    const ADD_NUM="ADD_NUM"
+    const MIN_NUM="MIN_NUM"
+    //reducer 一定是自己定义的；reducer的返回值才真正的更改了状态；
+    // 如果reducer中state实参是undefined，那么initState会赋默认值；如果不是，那么就会走传递进来的值；
+    function reducer(state=initState,action) {
+        // state : 代表是store作用域中的state
+        // action： 代表是dispatch函数传递进来的实参；
+        switch (action.type){
+            case ADD_NUM:
+                // 返回最新的状态；
+                return {num:state.num+1}
+            case MIN_NUM:
+                return {num:state.num-1}
+        }
+        return state;
+    }
+    let store = createStore(reducer)
+    // state ： 公共状态
+    // getState : 在外界获取store中的state的方法
+    // dispatch : 派发动作；派发一次动作，就会触发所有的listener中的事件执行；
+   function renderApp() {
+       content.innerHTML = store.getState().num;
+   }
+    renderApp();
+    store.subscribe(renderApp)
+    // 实现点击加减；
+    add.onclick=function () {
+        store.dispatch({type:ADD_NUM})
+    }
+    min.onclick = function () {
+        store.dispatch({type:MIN_NUM})
+    }
+
+
+
+</script>
+</body>
+</html>
