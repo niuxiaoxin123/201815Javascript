@@ -1,0 +1,103 @@
+html,body{
+  height:100%;
+}
+.home-header{
+  width:100%;
+  height: 56px;
+  position: fixed;
+  background: black;
+  z-index:99;
+  img{
+    width:40%;
+    margin-top:5px;
+    margin-left:5px;
+  }
+  i{
+    color:#ffffff;
+    float:right;
+    margin-top:18px;
+    margin-right:15px;
+  }
+  .header-course{
+    list-style: none;
+    position: fixed;
+    top:56px;
+    width:100%;
+    left:0;
+    li{
+      width:100%;
+      height:50px;
+      line-height: 50px;
+      text-align: center;
+      border-top:1px solid #ffffff;
+      background: black;
+      color:white;
+    }
+  }
+}
+// 下面是页面主体的部分
+// 轮播图
+.home-content{
+  position: absolute;
+  top:56px;
+  width:100%;
+  left:0;
+  bottom :56px;
+  overflow-y: scroll;
+   .home-swipe{
+     width:100%;
+     height:180px;
+     position: relative;
+      div{
+        height:100%;
+        img{
+          height:100%;
+          width:100%;
+        }
+      }
+     .focus{
+        position: absolute;
+        bottom:10px;
+        width:100%;
+        height:20px;
+        text-align: center;
+        span{
+           display: inline-block;
+           width:20px;
+           height:20px;
+           border-radius: 50%;
+           background: #eeeeee;
+           margin-right: 2px;
+           &.active{
+             background: orangered;
+           }
+        }
+     }
+   }
+}
+// 下面是课程页的样式、
+.home-lesson{
+   padding:5px;
+   .home-title{
+      padding-left:5px;
+      font-size: 18px;
+   }
+   .lesson{
+     width:100%;
+     list-style: none;
+     border:1px solid #eeeeee;
+     border-radius: 5px;
+     img{
+       width:100%;
+       height:150px;
+     }
+     p{
+       text-align: center;
+       height:25px;
+       line-height: 25px;
+       &.price{
+         color:red;
+       }
+     }
+   }
+}

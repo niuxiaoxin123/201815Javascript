@@ -1,0 +1,28 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.nav-footer{
+  position: fixed;;
+  height:53px;
+  width:100%;
+  left:0;
+  bottom:0;
+  border-top:1px solid #eeeeee;
+  display: flex;
+   a{
+     display: flex;
+     flex:1;
+     flex-direction: column;// 控制子元素排列方式；column：竖直排列；
+     align-items:center;// 水平居中
+     justify-content: center;// 竖直方向居中
+     text-decoration: none;
+     &.active{
+       color:blue;
+     }
+   }
+  i{
+    font-size: 25px;
+  }
+
+}

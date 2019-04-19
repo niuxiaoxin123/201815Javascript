@@ -16,4 +16,10 @@ class TodoFooter extends React.Component{
         </div>
     }
 }
-export default connect(state=>({...state.todo}),actions)(TodoFooter)
+export default connect(state=>({...state.todo}),diapatch=>{
+    return {
+        add(){
+            dispatch(actions.add())
+        }
+    }
+})(TodoFooter)
