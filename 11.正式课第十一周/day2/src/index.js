@@ -1,1 +1,1 @@
-import "./source/11.子传父"
+import "./slider1/index"

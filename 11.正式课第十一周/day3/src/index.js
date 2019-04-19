@@ -1,1 +1,1 @@
-import "./slider/index"
+import "./baidu"

@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    width:400px;
+    height:300px;
+    border:1px solid yellowgreen;
+    position: relative;
+    margin:200px auto;
+    overflow: hidden;
+}
+.wrapper{
+    width:1600px;
+    height:300px;
+    position: absolute;
+    left:0;
+    list-style: none;
+}
+.wrapper li{
+    width:400px;
+    height:300px;
+    float: left;
+}
+.wrapper li img{
+    width:100%;
+    height:100%;
+}
+/*一下是鼠标焦点的样式*/
+.focus{
+    list-style: none;
+    position: absolute;
+    bottom:10px;
+    width:100%;
+    text-align: center;
+}
+.focus li{
+    width:25px;
+    height:25px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right:2px;
+    background: #eeeeee;
+}
+.focus li.active{
+    background: yellowgreen;
+}
+/*以下是arrow的样式*/
+.arrow{
+    width:100%;
+    position: absolute;
+    top:50%;
+    height:30px;
+    margin-top:-15px;
+}
+.arrow span{
+    display: inline-block;
+    width:20px;
+    height:30px;
+    line-height: 30px;
+    text-align: center;
+    background: #eeeeee;
+    color:white;
+}
+.arrow span.right{
+    float:right;
+}
